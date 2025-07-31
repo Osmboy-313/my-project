@@ -1,0 +1,2563 @@
+html,
+body {
+    min-height: 100vh;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'NotoSymbols2';
+    src: url('fonts/NotoSansSymbols2-Regular.ttf') format('truetype');
+  }
+
+:root {
+    --header-height: 80px;
+    --nav_bar-height: 40px;
+    --footer-height: 50px;
+    --Theme-color: #222E3C;
+    /* rgb(66, 114, 185) && #222E3C */
+    --text-color: #222E3C;
+
+}
+
+/*** ===========---------------------=========== Home Pages ===========---------------------===========   ***/
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.wrapper {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/*** =================================================== Header =================================================== ***/
+
+.container .header {
+    /* height: var(--header-height); */
+    min-height: var(--header-height);
+    width: 100%;
+    background-color: var(--Theme-color);
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.container .header .logo {
+    height: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.container .header .logo a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .header .logo img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.container .header .options {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 80px;
+    justify-content: space-between;
+    transition: all 0.5s;
+}
+
+.container .header .options ul {
+    display: flex;
+    gap: 25px;
+}
+
+.container .header .options ul li {
+    display: flex;
+}
+
+.container .header .options ul li a {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.container .header .options a.login-btn {
+    margin-right: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #FFF;
+
+    height: 35px;
+    width: 160px;
+    border: 2px solid white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .header .options a.login-btn:hover {
+    background-color: #FFF;
+    color: var(--Theme-color);
+}
+
+/*** ------------------------------------------------- Dropdown Menu ------------------------------------------------- ***/
+
+.container .header .options .user-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.container .header .options .user-dropdown span {
+    font-weight: 600;
+    user-select: none;
+    color: #FFF;
+}
+
+.container .header .options .user-dropdown i {
+    color: #FFF;
+    font-size: 1.2rem;
+}
+
+.container .header .options .user-dropdown .main-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    border: 2px solid rgba(0, 0, 0, .175);
+    height: auto;
+    width: 160px;
+    margin-top: 5px;
+    padding: 0.8rem 0;
+    background-color: #FFF;
+    border-radius: 2px;
+    visibility: hidden;
+    cursor: default;
+}
+
+.container .header .options .user-dropdown .main-dropdown ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.container .header .options .user-dropdown .main-dropdown li {
+    cursor: pointer;
+}
+
+.container .header .options .user-dropdown .main-dropdown li:hover {
+    background-color: #f8f9fa;
+}
+
+.container .header .options .user-dropdown .main-dropdown li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 100;
+    padding: 5px 1rem;
+}
+
+.container .header .options .user-dropdown .main-dropdown li a i {
+    margin-right: 10px;
+    color: #888;
+}
+
+.container .header .options .user-dropdown .main-dropdown li a span {
+    font-weight: 500;
+    color: #888;
+}
+
+.container .header .options .user-dropdown .main-dropdown li:hover a i,
+.container .header .options .user-dropdown .main-dropdown li a span {
+    color: #495057;
+}
+
+.container .header .options .user-dropdown .main-dropdown.show {
+    visibility: visible;
+}
+
+/*** ------------------------------------------------- Header Responsiveness ------------------------------------------------- ***/
+
+@media screen and (max-width : 1100px) {
+    .container .header .options {
+        margin-left: 40px;
+    }
+}
+
+@media screen and (max-width : 1040px) {
+
+    .container .header {
+        padding: 0.5rem 0.5rem;
+    }
+}
+
+@media screen and (max-width : 1000px) {
+
+    .container .header {
+        padding: 0.5rem 0.2rem;
+    }
+
+}
+
+@media screen and (max-width : 911px) {
+
+    .container .header .logo {
+        width: 200px;
+    }
+
+    .container .header {
+        padding: 0.5rem 0rem;
+    }
+
+}
+
+@media screen and (max-width : 800px) {
+
+    .container .header {
+        flex-direction: column;
+    }
+
+    .container .header .options {
+        flex-direction: column;
+    }
+
+    .container .header .options {
+        margin-left: 0;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+
+    .container .header .options a.login-btn {
+        margin-top: 15px;
+    }
+
+}
+
+/*** =============================================== News Content Container ============================================= ***/
+
+.container .content {
+    background-color: #F5F7FB;
+    flex: 1;
+    padding: 1.5rem;
+    min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+
+    display: flex;
+    justify-content: center;
+}
+
+.container .content .news-page {
+    height: fit-content;
+    width: 90%;
+    background-color: #FFF;
+    border-radius: 3px;
+}
+
+/** ---------------------------------------------------- Search Bar ---------------------------------------------------- **/
+
+.container .content .news-page .news-search {
+    padding: 1rem;
+    margin: 30px 0;
+}
+
+
+.container .content .news-page .news-search .news-search__title {
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.container .content .news-page .news-search .news-search__field {
+    width: 100%;
+    padding: 0.5rem;
+}
+
+
+.container .content .news-page .news-search .news-search__field form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 70%;
+}
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box input {
+    flex: 1;
+    height: 50px;
+    font-size: 1rem;
+    padding-left: 50px;
+    border-radius: 50px 0 0 50px;
+    border: 2px solid rgb(209, 203, 203);
+}
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box input:focus {
+    outline: none;
+}
+
+/* First Design For Search with button */
+
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box .search-btn {
+    height: 30px;
+    width: 60px;
+    max-width: 120px;
+    font-size: 1rem;
+    background-color: transparent;
+    border-radius: 0 50px 50px 0;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+    cursor: pointer;
+}
+
+.container .content .news-page .news-search .news-search__field form .search-btn:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+/* Second Design For Search with Icons */
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box input {
+    border-radius: 50px;
+}
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box i {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #888;
+    top: 50%;
+    left: 20px;
+    transform: translate(0, -50%);
+}
+
+.container .content .news-page .news-search .news-search__field form .news-search__input-box i.right-icon {
+    left: auto;
+    right: 20px;
+}
+
+/*** ---------------------------------------------------- News Preview ---------------------------------------------------- ***/
+
+.container .content .news-page .news-post-preview {
+    padding: 1rem;
+    margin: 0 0 20px;
+    border-bottom: 2px solid #dddddd;
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    padding: 0 1rem;
+
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__tags {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__tags span.news-post-preview__tag {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__tags span.news-post-preview__tag i {
+    margin-right: 2px;
+    color: black;
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__image {
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    height: auto;
+
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 3px;
+}
+
+.container .content .news-page .news-post-preview .news-post-preview__description {
+    padding: 0 5rem;
+    margin: 36px 0 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/*** ---------------------------------------------------- News list ---------------------------------------------------- ***/
+
+
+.container .content .news-page .news-page__list {
+    margin-bottom: 20px;
+    border-radius: 3px;
+    align-self: flex-start;
+}
+
+.container .content .news-page .news-page__list .news-page__heading--list {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.container .content .news-page .news-page__list .news-post {
+    display: flex;
+    gap: 25px;
+    padding: 1rem 0.8rem 1rem 2.5rem;
+    transition: all 0.5s;
+    border-bottom: 2px solid #dddddd;
+}
+
+.container .content .news-page .news-page__list .news-post:hover {
+    background-color: #f3f0f0;
+}
+
+.container .content .news-page .news-page__list .news-post:last-of-type {
+    border: none;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__image {
+    width: 300px;
+    height: 180px;
+    flex-shrink: 0;
+    border: 3px solid rgb(211, 207, 207);
+    border-radius: 3px;
+    transition: all 0.5s ease;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__image img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__image:hover {
+    border-color: var(--Theme-color);
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details {
+    flex: 1;
+    margin-right: 70px;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__title {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__tags {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__tags span {
+    display: flex;
+    align-items: center;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__tags span i {
+    color: #888;
+    margin-right: 2px;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__description {
+    font-size: 1rem;
+    padding: 0.6rem 0;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 0.4rem 1rem;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__buttons a {
+    height: 25px;
+    width: 100px;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .content .news-page .news-page__list .news-post .news-post__details .news-post__buttons a:hover {
+    color: #FFF;
+    background-color: var(--Theme-color);
+}
+
+
+/*** =================================================== Footer =================================================== ***/
+
+.container .footer {
+    min-height: var(--footer-height);
+    width: 100%;
+    background-color: var(--Theme-color);
+    font-size: 2rem;
+    color: #FFF;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*** ===========---------------------=========== Authentication Page ===========---------------------=========== ***/
+
+.container.container__auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F7FB;
+    min-height: 100vh;
+}
+
+.container.container__auth .wrapper.auth {
+    width: 940px;
+    min-height: 650px;
+    margin: 20px;
+    position: relative;
+    background-color: #FFF;
+    border-radius: 25px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.container.container__auth .wrapper.auth .form.auth {
+    min-height: 100%;
+    width: 50%;
+    padding: 2.5rem;
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    transition: 0.6s ease-in-out 1.2s, visibility 0s 1s;
+}
+
+.container.container__auth .wrapper.auth .form.auth form {
+    width: 100%;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .notify {
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border: 2px solid transparent;
+    display: none;
+    margin-bottom: 10px;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .notify.success {
+    background-color: #d1ecf1;
+    border-color: #a2dae3;
+    color: #09414a;
+    display: flex;
+    align-items: center;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .notify.failure {
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+    color: #58151C;
+    display: flex;
+    align-items: center;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .title {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box {
+    margin: 0 0 10px;
+    text-align: start;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box label {
+    margin-left: 10px;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box .input-wrapper {
+    position: relative;
+
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box .input-wrapper input {
+    width: 100%;
+    padding: 0.9rem 2.5rem 0.9rem 0.9rem;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    outline: none;
+    background-color: #eee;
+    font-size: 0.9rem;
+
+}
+
+
+
+.container.container__auth .wrapper.auth .form.auth form .input-box .input-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 1.1rem;
+    color: #888;
+    /* pointer-events: none;  */
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box .input-wrapper select {
+    width: 100%;
+    padding: 0.9rem 2.5rem 0.9rem 0.9rem;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    outline: none;
+    background-color: #eee;
+    font-size: 0.9rem;
+    padding-right: 25px;
+    /* color: #6c757d; */
+    appearance: none;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box .input-wrapper i.select-tag-arrow {
+    pointer-events: none;
+    font-size: 1.5rem;
+    right: 12px;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box span.error-box {
+    color: red;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    margin-top: 5px;
+    display: none;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .forgot-password {
+    margin: 10px 0 0.9rem;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .forgot-password a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+
+.container.container__auth .wrapper.auth .form.auth form .auth-btn input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    text-decoration: none;
+    background-color: var(--Theme-color);
+    color: #FFF;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+/*** =================================================== invalid class =================================================== ***/
+
+
+.container.container__auth .wrapper.auth .form.auth form .input-box.invalid {
+    margin: 10px 0;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box.invalid .input-wrapper input {
+    border-color: red;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box.invalid .input-wrapper input::placeholder {
+    color: red;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box.invalid .input-wrapper select {
+    border-color: red;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box.invalid .input-wrapper i {
+    color: red;
+}
+
+.container.container__auth .wrapper.auth .form.auth form .input-box.invalid span.error-box {
+    display: block;
+}
+
+
+
+
+/*** =================================== the visibility of the Registeration is none by default =================================== ***/
+
+.container.container__auth .wrapper.auth .form.auth.register {
+    visibility: hidden;
+}
+
+/*** =================================== Container "Toggle" for animation =================================== ***/
+
+.container.container__auth .wrapper.auth .toggle-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+.container.container__auth .wrapper.auth .toggle-container::before {
+    content: '';
+    position: absolute;
+    left: -250%;
+    height: 100%;
+    width: 300%;
+    background-color: var(--Theme-color);
+    /* border: 2px solid seagreen; */
+    border-radius: 150px;
+    z-index: 2;
+    transition: all 1.8s ease-in-out;
+}
+
+.container.container__auth .wrapper.auth .toggle-container .toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    /* background-color: seagreen; */
+    color: #FFF;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: all 0.6s ease-in-out;
+}
+
+.container.container__auth .wrapper.auth .toggle-container .toggle-panel p {
+    margin: 0.9rem 0;
+    font-weight: 600;
+}
+
+.container.container__auth .wrapper.auth .toggle-container .toggle-panel button {
+    height: 35px;
+    width: 150px;
+    background-color: transparent;
+    border: 2px solid #FFF;
+    color: #FFF;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.container.container__auth .wrapper.auth .toggle-container .toggle-panel.toggle-left {
+    left: 0;
+    transition-delay: 1.2s;
+}
+
+.container.container__auth .wrapper.auth .toggle-container .toggle-panel.toggle-right {
+    right: -50%;
+    transition-delay: 0.6s
+}
+
+/*** =================================== Active class =================================== ***/
+
+.container.container__auth .wrapper.auth.active .toggle-container::before {
+    left: 50%;
+
+}
+
+.container.container__auth .wrapper.auth.active .toggle-container .toggle-panel.toggle-left {
+    left: -50%;
+    transition-delay: 0.6s;
+}
+
+.container.container__auth .wrapper.auth.active .toggle-container .toggle-panel.toggle-right {
+    right: 0%;
+    transition-delay: 1.2s;
+
+}
+
+.container.container__auth .wrapper.auth.active .form.auth {
+    right: 50%;
+}
+
+/*** =================================== Registeration form will now be visibile ===================================***/
+
+.container.container__auth .wrapper.auth.active .form.auth.register {
+    visibility: visible;
+}
+
+/*** =================================== Responsiveness =================================== ***/
+
+@media screen and (max-width : 650px) {
+
+    .container.container__auth .wrapper.auth {
+        height: calc(100vh - 40px);
+    }
+
+    .container.container__auth .wrapper.auth .form.auth {
+        width: 100%;
+        height: 70%;
+        right: 0;
+        bottom: 0;
+    }
+
+    .container.container__auth .wrapper.auth .toggle-container::before {
+        left: 0;
+        height: 300%;
+        width: 100%;
+        top: -270%;
+        border-radius: 20vw;
+    }
+
+    .container.container__auth .wrapper.auth .toggle-container .toggle-panel {
+        height: 30%;
+        width: 100%;
+    }
+
+    .container.container__auth .wrapper.auth .toggle-container .toggle-panel.toggle-left {
+        left: 0;
+        top: 0;
+    }
+
+    .container.container__auth .wrapper.auth .toggle-container .toggle-panel.toggle-right {
+        right: 0;
+        bottom: -30%;
+    }
+
+    /*** ------------------------------------------ Active Class with Responsivenes ------------------------------------------ ***/
+
+
+    .container.container__auth .wrapper.auth.active .toggle-container::before {
+        left: 0;
+        top: 70%;
+    }
+
+    .container.container__auth .wrapper.auth.active .form.auth {
+        right: 0;
+        bottom: 30%;
+    }
+
+    .container.container__auth .wrapper.auth.active .toggle-container .toggle-panel.toggle-left {
+        left: 0;
+        top: -30%;
+        /* transition-delay: 0.6s; */
+    }
+
+    .container.container__auth .wrapper.auth.active .toggle-container .toggle-panel.toggle-right {
+        right: 0;
+        bottom: 0;
+    }
+
+}
+
+@media screen and (max-width : 650px) {
+
+    .container.container__auth .wrapper.auth .form.auth {
+        padding: 20px;
+    }
+
+    .container.container__auth .wrapper.auth .toggle-container .toggle-panel h1 {
+        font-size: 1.5rem;
+    }
+
+    .container.container__auth .wrapper.auth .toggle-container .toggle-panel p {
+        font-size: 0.9rem;
+    }
+
+}
+
+/*** ===========---------------------=========== Private Pages/Post login pages Common Styles ===========---------------------=========== ***/
+
+.container.container__private {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    --sidebar-width: 250px;
+}
+
+/*** =============================================== Sidebar ============================================= ***/
+
+.container.container__private .sidebar {
+    height: 100vh;
+    width: var(--sidebar-width);
+    /* padding: 2rem 1.5rem; */
+    background-color: var(--Theme-color);
+    position: sticky;
+    top: 0;
+    transition: margin 0.4s ease-in-out;
+}
+
+.container.container__private .sidebar .sidebar__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    padding: 2rem 1.5rem 0;
+}
+
+.container.container__private .sidebar .sidebar__title a {
+    text-decoration: none;
+    color: #e9ecef;
+
+}
+
+.container.container__private .sidebar ul.sidebar__menu li.sidebar__item {
+    user-select: none;
+    cursor: pointer;
+}
+
+.container.container__private .sidebar ul.sidebar__menu li.sidebar__item a.sidebar__link {
+    width: 100%;
+    text-decoration: none;
+    color: #e9ecef;
+    padding: 0.5rem 1.7rem;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.container.container__private .sidebar ul.sidebar__menu li.sidebar__item:hover a.sidebar__link {
+    background: linear-gradient(90deg, rgba(59, 125, 221, .1), rgba(59, 125, 221, .088) 50%, transparent);
+    border-left-color: #3b7ddd;
+    color: #e9ecef;
+}
+
+.container.container__private .sidebar ul.sidebar__menu li.sidebar__item.active a.sidebar__link {
+    background: linear-gradient(90deg, rgba(59, 124, 221, 0.199), rgba(59, 124, 221, 0.329) 50%, transparent);
+    border-left-color: #3b7ddd;
+    color: #e9ecef;
+
+}
+
+.container.container__private .sidebar ul.sidebar__menu li.sidebar__item i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+
+.container.container__private .sidebar.hidden {
+    margin-left: calc(-1 * var(--sidebar-width));
+}
+
+/*** =============================================== Main Layout ============================================= ***/
+
+
+.container.container__private .main-layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    transition: all 0.4s ease-in-out;
+    position: relative;
+}
+
+/*** ------------------------------------------ Header ------------------------------------------ ***/
+
+
+.container.container__private .main-layout .header {
+    --header-height: 60px;
+    height: var(--header-height);
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem 1.6rem;
+}
+
+.container.container__private .main-layout .header .header__toggle-sidebar {
+    min-height: 20px;
+    width: 30px;
+    position: relative;
+}
+
+.container.container__private .main-layout .header .header__toggle-sidebar span {
+    height: 4px;
+    width: 100%;
+    background-color: gray;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container.container__private .main-layout .header .header__toggle-sidebar:hover span {
+    background-color: var(--Theme-color);
+}
+
+.container.container__private .main-layout .header .header__toggle-sidebar span:nth-child(1) {
+    top: 0;
+    transform: translate(-50%);
+}
+
+.container.container__private .main-layout .header .header__toggle-sidebar span:nth-child(2) {
+    height: 3px;
+}
+
+.container.container__private .main-layout .header .header__toggle-sidebar span:nth-child(3) {
+    top: 100%;
+    left: 0;
+    width: 70%;
+    transform: translate(0, -100%);
+}
+
+/*** __________________________________________ Dropdown Menu __________________________________________ ***/
+
+.container.container__private .main-layout .header .header__dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .header .header__dropdown span {
+    font-weight: 600;
+    user-select: none;
+}
+
+.container.container__private .main-layout .header .header__dropdown i {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    border: 2px solid rgba(0, 0, 0, .175);
+    height: auto;
+    width: 160px;
+    margin-top: 5px;
+    padding: 0.8rem 0 0.8rem;
+    background-color: #FFF;
+    border-radius: 2px;
+    visibility: hidden;
+    cursor: default;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li {
+    display: block;
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li:hover {
+    background-color: #f8f9fa;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li a {
+    display: flex;
+    align-items: center;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 100;
+    padding: 5px 1rem;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li a i {
+    margin-right: 10px;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li a span {
+    font-weight: 500;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li:hover a i,
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown li:hover a span {
+    color: #495057;
+}
+
+.container.container__private .main-layout .header .header__dropdown .header__main-dropdown.show {
+    visibility: visible;
+}
+
+/*** ------------------------------------------ Content ------------------------------------------ ***/
+
+.container.container__private .main-layout .content {
+    flex: 1;
+    min-height: calc(100vh - calc(var(--header-height) + var(--footer-height)));
+    background-color: #F5F7FB;
+    padding: 2.5rem 3rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card {
+    width: 100%;
+}
+
+.container.container__private .main-layout .content .content-card .title {
+    font-size: 1.2rem;
+    padding-left: 10px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container.container__private .main-layout .content .content-card .title button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.container.container__private .main-layout .content .content-card .title a {
+    height: 30px;
+    width: 150px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .title a:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+.container.container__private .main-layout .content .content-card .main-content {
+    min-height: 500px;
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/*** __________________________________________ Alerts __________________________________________ ***/
+
+.container.container__private .main-layout .content .content-card .main-content .alert {
+    width: 99%;
+    height: 50px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 2px solid transparent;
+    background-color: #d1ecf1;
+    display: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .alert.active {
+    background-color: #d1ecf1;
+    border-color: #a2dae3;
+    color: #09414a;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .alert.success {
+    width: 40%;
+    background-color: #d1ecf1;
+    border-color: #a2dae3;
+    color: #09414a;
+    display: flex;
+    align-items: center;
+    margin: 10px 0 -20px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .alert.failure {
+    width: 40%;
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+    color: #58151C;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+/*** __________________________________________ Tables __________________________________________ ***/
+
+.container.container__private .main-layout .content .content-card .main-content table {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 5px 5px 0 0;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    table-layout: fixed;
+    overflow: hidden;
+    /* visibility: none; */
+}
+
+.container.container__private .main-layout .content .content-card .main-content table.de-active {
+    display: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table thead tr {
+    background-color: var(--Theme-color);
+    color: #FFF;
+    text-align: left;
+    font-weight: bold;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table thead tr th.action {
+    width: 219px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table th,
+.container.container__private .main-layout .content .content-card .main-content table td {
+    padding: 0.8rem 1.5rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr:nth-last-of-type(even) {
+    background-color: #F3F3F3;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr:last-of-type {
+    border-bottom: 4px solid var(--Theme-color);
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr a {
+    height: 25px;
+    width: 100px;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: var(--Theme-color);
+    border: 2px solid var(--Theme-color);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr a:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons {
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button,
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a {
+    height: 25px;
+    width: 80px;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: var(--Theme-color);
+    border: 2px solid var(--Theme-color);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button.del-btn,
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a.del-btn {
+    color: red;
+    border-color: red;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button:hover,
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button.del-btn:hover,
+.container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a.del-btn:hover {
+    background-color: red;
+    color: #FFF;
+    font-weight: 600;
+}
+
+/*** __________________________________________ Post List __________________________________________ ***/
+
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #dddddd;
+    padding: 1rem 1rem 1rem 3rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post:hover {
+    background-color: #f3f0f0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post:last-of-type {
+    border: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 10px;
+    padding-right: 10px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user div {
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 3px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user div span.column-name {
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user div span.column-data {
+    display: inline-block;
+    width: 140px;
+    word-wrap: break-word;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user a {
+    height: 25px;
+    width: 120px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user a:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    border-left: 2px solid #dddddd;
+    padding-left: 2.5rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image {
+    width: 300px;
+    min-width: 200px;
+    max-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgb(211, 207, 207);
+    border-radius: 2px;
+
+    height: auto;
+    flex: 0 0 auto;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image:hover {
+    border-color: var(--Theme-color);
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 1;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content div {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content div span.column-name {
+    flex-shrink: 0;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons {
+    margin: 0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a {
+    height: 25px;
+    width: 90px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a.preview-btn {
+    width: 150px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a.del-btn {
+    border-color: red;
+    color: red;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a.del-btn:hover {
+    background-color: red;
+    color: #FFF;
+}
+
+/*** __________________________________________ Pagination __________________________________________ ***/
+
+.container.container__private .main-layout .content .content-card .main-content .pagination {
+    flex: 1;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination.de-active {
+    visibility: hidden;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination .pagination__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination .pagination__wrapper .dummy__div {
+    width: 200px;
+    height: 30px;
+    margin-left: 20px;
+    background-color: #F7F9FF;
+    color: #656565;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    visibility: hidden;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination .pagination__wrapper .pagination__summary {
+    width: 200px;
+    height: 30px;
+    margin-right: 20px;
+    background-color: #F7F9FF;
+    color: #656565;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 1rem;
+    border-radius: 50px;
+    background-color: #F7F9FF;
+    gap: 30px;
+    margin: 20px 0;
+    transition: width 5s ease-in-out;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li {
+    display: block;
+    transition: transform 0.2s;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul p,
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li a {
+    user-select: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 25px;
+    width: 25px;
+    color: #656565;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li:hover {
+    transform: scale(1.1);
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li.active {
+    transform: scale(1.05);
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li:hover a {
+    background-color: #8798D4;
+    color: #FFF;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li.active a {
+    background-color: #8798D4;
+    color: #FFF;
+
+}
+
+
+/*** __________________________________________ Error Class __________________________________________ ***/
+
+.container.container__private .main-layout .content .content-card .main-content form .input-box.error input {
+    border-color: red;
+}
+
+/*** ------------------------------------------ Footer ------------------------------------------ ***/
+
+
+.container.container__private .main-layout .footer {
+    height: var(--footer-height);
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+}
+
+/*** ===========---------------------=========== Private Pages Separate Styles ===========---------------------=========== ***/
+
+
+/* *** ------------------------------------------------------ Dashboard Style ------------------------------------------------------- *** */
+
+.container.container__private .main-layout .content .content-card .main-content.dashboard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* *** ------------------------------------------------------ Categories Page Style -------------------------------------------------- *** */
+
+.container.container__private .main-layout .content .content-card .main-content.categories {
+    height: 822px;
+}
+
+/* *** ------------------------------------------------------ Users Page Style -------------------------------------------------- *** */
+
+
+
+/* *** ------------------------------------------------------ My Posts Page Style -------------------------------------------------- *** */
+
+.container.container__private .main-layout .content .content-card .main-content.my-posts {
+    padding: 1rem 0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-posts .post-container .actual-post .post {
+    border: none;
+    padding: 0;
+}
+
+/* *** ------------------------------------------------------ ALL Post Show Style -------------------------------------------------- *** */
+
+.container.container__private .main-layout .content .content-card .main-content.all-posts {
+    padding: 1rem 0;
+}
+
+/* *** ------------------------------------------------------ Add/Edit Post Style -------------------------------------------------- *** */
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form {
+    width: 40%;
+    margin: 40px 0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box {
+    margin-bottom: 10px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box label {
+    color: #575a5c;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box input {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: 2px solid #dee2e6;
+    outline: none;
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error input {
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box input:focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error input:focus {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box input.limit::placeholder {
+    color: green;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box input.limit {
+    border-color: green;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box span.error-box {
+    display: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error span.error-box {
+    font-size: 0.8rem;
+    color: red;
+    margin-top: 2px;
+    margin-left: 10px;
+    display: block;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .tags {
+    /* background-color: green; */
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .tags .tag {
+    width: fit-content;
+    padding: 5px 15px;
+    background-color: #eee;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .tags .tag .close {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .tags .tag .close i {
+    background-color: #ffffff9c;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box textarea {
+    resize: none;
+    width: 100%;
+    height: 65px;
+    margin-top: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    background-color: transparent;
+    border: 2px solid #dee2e6;
+    outline: none;
+    border-radius: 3px;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error textarea {
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box textarea:focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error textarea:focus {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .select-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .select-wrapper select {
+    width: 100%;
+    height: 30px;
+    background-color: transparent;
+    border: 2px solid #dee2e6;
+    border-radius: 3px;
+    outline: none;
+    padding: 0rem 1rem;
+    font-size: 0.9rem;
+    appearance: none;
+    position: relative;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error .select-wrapper select {
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .select-wrapper select:focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error .select-wrapper select:focus {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .select-wrapper i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: #888;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error .select-wrapper i {
+    color: #DC3545;
+}
+
+
+/* *** Custom File Upload Input *** */
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .custom-file-upload {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: 2px solid #dee2e6;
+    padding: 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error .custom-file-upload {
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .custom-file-upload.focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box.error .custom-file-upload.focus {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
+    border-color: #DC3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .custom-file-upload button {
+    height: 100%;
+    width: 100px;
+    font-size: 0.9rem;
+    background-color: #eeeeeea9;
+    outline: none;
+    border: none;
+    border-right: 2px solid #dee2e6;
+    cursor: pointer;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .custom-file-upload:hover button {
+    background-color: #eee;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .input-box .custom-file-upload span {
+    user-select: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .add-edit-post-btn {
+    width: 100%;
+    margin-top: 20px;
+    height: 30px;
+    background-color: var(--Theme-color);
+    color: #FFF;
+    border: none;
+    border-radius: 3px;
+    /* font-size: 1rem; */
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.add-edit-post form .add-edit-post-btn:hover {
+    background-color: #222e3cd5;
+    font-weight: 600;
+
+}
+
+/*** ===========---------------------=========== Profile ===========---------------------=========== ***/
+
+
+/*** =============================================== Profile Preview ===============================================***/
+
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details {
+    width: 100%;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .title {
+    color: #939ba2;
+    font-size: .925rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 1rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div {
+    width: 50%;
+    padding: 0.5rem 1.5rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div span.column-name {
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div:nth-child(1),
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div:nth-child(3) {
+    border-right: 1px solid #dddddd;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div.buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div.buttons a {
+    height: 25px;
+    width: 80px;
+    background-color: transparent;
+    text-decoration: none;
+    border: 2px solid red;
+    color: red;
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div.buttons a:hover {
+    background-color: red;
+    color: #FFF;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .post-title {
+    color: #939ba2;
+    font-size: .925rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview {
+    padding: 1rem 0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .post-container .actual-post .post {
+    border: none;
+    padding: 0;
+}
+
+/*** =============================================== My Profile ===============================================***/
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile {
+    background-color: #FFF;
+    width: 70%;
+    border-radius: 3px;
+    padding: 1rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile .title1 {
+    color: #939ba2;
+    font-size: .925rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box {
+    width: 50%;
+    padding: 0 1rem;
+    margin-bottom: 10px;
+    /* flex: 1; */
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box#code-box.hidden {
+    visibility: hidden;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box.current-pass {
+    width: 100%;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box input {
+    height: 30px;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    outline: none;
+    border: 2px solid #dee2e6;
+    margin-top: 5px;
+}
+
+/* *** just for error message and border red { */
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box.error input {
+    border-color: red;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box span {
+    color: red;
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box .select-wrapper {
+    width: 100%;
+    margin-top: 5px;
+    position: relative;
+
+}
+
+/* *** } *** */
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box .select-wrapper select {
+    width: 100%;
+    height: 30px;
+    padding: 0 1rem;
+    background-color: transparent;
+    border: 2px solid #dee2e6;
+    border-radius: 3px;
+    outline: none;
+    appearance: none;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box .select-wrapper select:focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box .select-wrapper i {
+    position: absolute;
+    right: 5px;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box input:focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+/* .container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .submit-btn{
+    height: 30px;
+    width: 120px;
+    margin-left: 20px;
+    background-color: #3b7ddd;
+    color: #FFF;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+} */
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .submit-btn {
+    height: 30px;
+    width: 120px;
+    margin-left: 20px;
+    background-color: transparent;
+    color: var(--Theme-color);
+    border: 2px solid var(--Theme-color);
+    border-radius: 3px;
+    outline: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .submit-btn:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile .title2 {
+    color: #939ba2;
+    font-size: .925rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture {
+    background-color: #FFF;
+    height: fit-content;
+    width: 30%;
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture .title {
+    color: #939ba2;
+    font-size: .925rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture img {
+    height: 128px;
+    width: 200px;
+    margin: 10px auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box {
+    width: 100%;
+}
+
+/* *** Custom File Upload Input *** */
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box .custom-file-upload {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: 2px solid #dee2e6;
+    padding: 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box .custom-file-upload.focus {
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box .custom-file-upload button {
+    height: 100%;
+    width: 100px;
+    font-size: 0.9rem;
+    background-color: #eeeeeea9;
+    outline: none;
+    border: none;
+    border-right: 2px solid #dee2e6;
+    cursor: pointer;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box .custom-file-upload:hover button {
+    background-color: #eee;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box .custom-file-upload span {
+    user-select: none;
+}
+
+/* submit */
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .submit-btn {
+    height: 30px;
+    width: 120px;
+    margin-top: 20px;
+    background-color: transparent;
+    color: var(--Theme-color);
+    border: 2px solid var(--Theme-color);
+    border-radius: 3px;
+    outline: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .submit-btn:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+
+/*** ===========---------------------=========== Modals ===========---------------------=========== ***/
+
+.container.container__private .main-layout .modal {
+
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur();
+    width: 550px;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    padding: 0.4rem;
+
+}
+
+.container.container__private .main-layout .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.container.container__private .main-layout .modal .modal__wrapper {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #FFF;
+    border-radius: 25px;
+}
+
+/*** =============================================== Modal Head ===============================================***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__head {
+    margin: 0 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__head .modal__close-btn {
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/*** =============================================== Modal Body =============================================== ***/
+
+/*** ------------------------------------------ Icons ------------------------------------------ ***/
+
+/*** __________________________________________ Add/Edit Icons __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__icon {
+    height: 60px;
+    width: 60px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background-color: #E9EDFE ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color: #D5DCFF ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape{
+    height: 25px;
+    width: 25px;
+    background-color: #267CFA; /* original : #264AFD , light : #267CFA */
+    /* border-radius: 50%; */
+    border-radius: 5px;
+    rotate: 45deg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper i {
+    font-size: 1.5rem;
+    color: #FFF;
+    display: block;
+    rotate: -45deg;
+}
+
+/*** __________________________________________ Edit Icon Size Change __________________________________________ ***/
+
+.container.container__private .main-layout .modal.modal--edit .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.container.container__private .main-layout .modal.modal--edit .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper i {
+    font-size: 1rem;
+    color: #FFF;
+}
+
+/*** __________________________________________ Delete Icons __________________________________________ ***/
+
+.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon {
+    background-color:#F8ECEE;
+}
+
+.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper {
+    background-color: #F6DADD;
+}
+
+.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape{
+    height: 25px;
+    width: 25px;
+    border-radius: 5px;
+    rotate: 45deg;
+    background-color: #DB342D;
+}
+
+.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape i{
+    rotate: -45deg;
+    font-size: 1rem;
+}
+
+/*** ------------------------------------------ Modal Heading ------------------------------------------ ***/
+
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__heading .modal__message-title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: "Poppins", "Sans-serif";
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__heading .modal__message-text {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 15px 0;
+    padding: 0 40px;
+    font-family: "Poppins", "Sans-serif";
+}
+
+/*** ------------------------------------------ Modal Alert ------------------------------------------ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert{
+    width: 100%;
+    padding: 2px 1rem 2px 2rem;
+    margin:  0 0 10px;
+    background-color: transparent;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-symbol{
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-symbol i{
+    display: block;
+    font-size: 1.1rem;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-message .modal__alert-title{
+    font-family: "Poppins", "Sans-serif";
+    color: #FFF;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-message .modal__alert-text{
+    font-size: 0.9rem;
+    color: #FFF;
+    font-weight: 600;
+    margin: 0 0 5px;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__close-btn{
+    flex: 1;
+    text-align: end;
+}
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__close-btn i{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/*** __________________________________________ Alert Hidden __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.hidden{
+    display: none;
+}
+
+/*** __________________________________________ Alert Success __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.success{
+    background-color: #03A75B;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.success .modal__alert-symbol{
+    background-color: #005632;
+}
+
+/*** __________________________________________ Alert Failure __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.failure{
+    background-color: #DC3053;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.failure .modal__alert-symbol{
+    background-color: #831E3E;
+}
+
+
+/*** ------------------------------------------ Input Fields ------------------------------------------ ***/
+
+
+/*** __________________________________________ Add/Edit Modal Input Fields __________________________________________ ***/
+
+/* .container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box {
+
+} */
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box label {
+    margin: 0 10px 10px;
+    display: block;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box input {
+    height: 40px;
+    width: 100%;
+    padding: 0 1rem;
+    border-radius: 50px;
+    border: 2px solid #dddddd;
+
+}
+
+/*** __________________________________________ Error Class For Input __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error input{
+    border-color: red;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box span.error-box {
+    display: none;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error span.error-box {
+    color: red;
+    font-size: 0.8rem;
+    margin:5px 20px;
+    display: block;
+}
+
+/*** ------------------------------------------ Buttons And Input Submit Fields ------------------------------------------ ***/
+
+/*** __________________________________________ Add/Edit Modal buttons __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__add-btn {
+    height: 40px;
+    width: 100%;
+    border-radius: 50px;
+    border: 2px solid #267CFA; /* original : #264AFD , light : #267CFA */
+    background-color: #267CFA; /* original : #264AFD , light : #267CFA */
+    color: #FFF;
+    font-weight: 600;
+    cursor: pointer;
+}
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__add-btn:hover{
+    background-color: #264AFD;
+}
+
+/*** __________________________________________ Delete Modal buttons __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions button.modal__cancel-btn,
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__delete-btn {
+    height: 40px;
+    width: 200px;
+    font-weight: 600;
+    background-color: transparent;
+    border: 2px solid #dddddd;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__delete-btn {
+    color: #FFF;
+    background-color: #D53635;
+    border-color: #D53635;
+}
+
+/*** =============================================== Overlay =============================================== ***/
+
+
+.container.container__private .main-layout .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.container__private .main-layout .overlay.active {
+    opacity: 0.4;
+    pointer-events: all;
+}
