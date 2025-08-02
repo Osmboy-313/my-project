@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../models/category.php';
+require_once __DIR__ . '/../models/post.php';
 require_once __DIR__ .  '/../core/view.php';
 require_once __DIR__ .  '/../core/auth.php';
 
@@ -27,7 +28,7 @@ function category_add()
         $nameAlreadyExists = categoryExistenceCheck($name) ? true : false;
 
         if (empty($name)) $response['errors']['name'] = "Enter category name";
-        if(!empty($name) && $nameAlreadyExists) $response['errors']['name'] = "Category Already Exists";
+        if (!empty($name) && $nameAlreadyExists) $response['errors']['name'] = "Category Already Exists";
 
         if (!isset($response['errors'])) {
 
@@ -41,7 +42,6 @@ function category_add()
         }
 
         echo json_encode($response);
-
     }
 
     exit;
@@ -89,23 +89,23 @@ function category_existenceCheck()
     }
 }
 
-function category_edit(){
+function category_edit()
+{
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents('php://input'), true);
         $reponse = [];
         $id = trim($data['id']);
         $name = trim($data['name']);
-        $nameExistenceCheck = categoryExistenceCheck($name,$id);
+        $nameExistenceCheck = categoryExistenceCheck($name, $id);
 
         if (empty($name)) $response['errors']['name'] = "Enter Category Name";
         if (!empty($name) && !empty($nameExistenceCheck)) $response['errors']['name'] = "Category Already Exists";
 
         if (!isset($response['errors'])) {
-            if(editCategory($id, $name )){
+            if (editCategory($id, $name)) {
                 $response['success'] = "Successfully Edited Category";
-            }
-            else{
+            } else {
                 $response['failure'] = "Failed To Edit Category";
             }
         }
@@ -113,25 +113,48 @@ function category_edit(){
     }
 }
 
-function category_delete(){
+function category_delete()
+{
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $data = json_decode(file_get_contents('php://input'),true);
+        $data = json_decode(file_get_contents('php://input'), true);
         $response = [];
-        $id = trim($data['id']);
+        $id   = isset($data['id']) ? (int)$data['id'] : 0;
 
-        $deleteCategory = deleteCategory($id);
+        
+        
+        // 1) Fetch all images for this category
 
-        if($deleteCategory){
-            $response['success'] = "Successfully Removed Category";
+        $images     = getPostsByCategoryId($id);
+        $permFolder = __DIR__ . '/../../public/assets/uploads/permanent/';
+        
+
+        // $response['images'] = $images;
+    
+        // 2) Delete File of each post
+        foreach ($images as $img) {
+            $filename = $img['post_image'];
+            $path     = $permFolder . $filename;
+
+            if (is_file($path)) {
+                unlink($path);
+            }
+        }
+
+        // 3) Delete the post aswell
+        $okPosts = deletePostsByCategory($id);
+
+        // 4) Delete the Category too !!
+        $okCat = deleteCategory($id);
+
+        if ($okPosts && $okCat) {
+            $response['success'] = "Successfully Removed Category and its Posts";
         }
         else{
             $response['failure'] = "Failed Removed Category";
         }
 
         echo json_encode($response);
-
     }
-
 }

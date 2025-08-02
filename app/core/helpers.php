@@ -17,20 +17,18 @@ function active( string $c , ?string $a = null){
 
 }
 
-function unsetTempSession($c,$a){
-    if($c === 'post' && $a !== 'add'){
-        if(isset($_SESSION['temp-upload'])){
-            unlink($_SESSION['temp-upload']['file-temp-path']);
-            unset($_SESSION['temp-upload']);
-        }
-    }
+function unsetTempSession($c, $a){
 
-    else if($c !== 'post'){
-        if(isset($_SESSION['temp-upload'])){
-            unlink($_SESSION['temp-upload']['file-temp-path']);
-            unset($_SESSION['temp-upload']);
-        }
+    // keep temp-upload alive on add & edit
+    if ($c === 'post' && in_array($a, ['add','edit'], true)) {
+        return;
+    }
+    // otherwise clear it
+    if (isset($_SESSION['temp-upload'])) {
+        unlink($_SESSION['temp-upload']['file-temp-path']);
+        unset($_SESSION['temp-upload']);
     }
 }
+
 
 ?>

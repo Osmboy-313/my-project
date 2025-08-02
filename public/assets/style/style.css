@@ -1234,6 +1234,16 @@ body {
     align-items: center;
 }
 
+.container.container__private .main-layout .content .content-card .main-content .alert.warning {
+    width: 40%;
+    background-color: #FFEEBB;
+    border-color: #E4D191;
+    color: #B1A169;
+    display: flex;
+    align-items: center;
+    margin: 10px 0 -20px;
+}
+
 .container.container__private .main-layout .content .content-card .main-content .alert.success {
     width: 40%;
     background-color: #d1ecf1;
