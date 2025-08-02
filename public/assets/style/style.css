@@ -19,10 +19,18 @@ body {
 :root {
     --header-height: 80px;
     --nav_bar-height: 40px;
-    --footer-height: 50px;
-    --Theme-color: #222E3C;
+    --footer-height: 60px;
+    --Theme-color: #1D2733;    /* emerald : #1B4332, Charcoal with a Touch of Purple : #2A2A40 , indigo : #3F3D56 */
     /* rgb(66, 114, 185) && #222E3C */
     --text-color: #222E3C;
+
+    --primary-color: #2C6E49; /* Forest Green */
+    --secondary-color: #F59E0B; /* Amber */
+    --neutral-base: #FFFFFF; /* White */
+    --neutral-accent: #F1F5F9; /* Slate Gray */
+    --text-color: #1F2937; /* Dark Slate */
+    --success-color: #10B981; /* Emerald Green */
+    --danger-color: #EF4444; /* Red */ 
 
 }
 
@@ -44,17 +52,24 @@ body {
 /*** =================================================== Header =================================================== ***/
 
 .container .header {
+    padding: 1.5rem 3rem 1.6rem;
+    /* margin-bottom: 1.5rem; */
+    background-color: #F5F7FB;
+}
+
+.container .header__wrapper {
     /* height: var(--header-height); */
     min-height: var(--header-height);
     width: 100%;
     background-color: var(--Theme-color);
+    border-radius: 70px;
     padding: 0.5rem 2rem;
     display: flex;
     align-items: center;
     transition: all 0.5s;
 }
 
-.container .header .logo {
+.container .header__wrapper .logo {
     height: 50px;
     width: 300px;
     display: flex;
@@ -63,21 +78,26 @@ body {
     transition: all 0.5s;
 }
 
-.container .header .logo a {
+.container .header__wrapper .logo a {
     height: 100%;
+    text-decoration: none;
+    color: #FFF;
+    font-family: 'Poppins', 'Sans-serif';
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container .header .logo img {
+
+.container .header__wrapper .logo a img {
     height: 100%;
     width: 100%;
     object-fit: contain;
     display: block;
 }
 
-.container .header .options {
+.container .header__wrapper .options {
     display: flex;
     align-items: center;
     flex: 1;
@@ -86,23 +106,23 @@ body {
     transition: all 0.5s;
 }
 
-.container .header .options ul {
+.container .header__wrapper .options ul {
     display: flex;
     gap: 25px;
 }
 
-.container .header .options ul li {
+.container .header__wrapper .options ul li {
     display: flex;
 }
 
-.container .header .options ul li a {
+.container .header__wrapper .options ul li a {
     color: #FFF;
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
 }
 
-.container .header .options a.login-btn {
+.container .header__wrapper .options a.login-btn {
     margin-right: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -117,14 +137,14 @@ body {
     justify-content: center;
 }
 
-.container .header .options a.login-btn:hover {
+.container .header__wrapper .options a.login-btn:hover {
     background-color: #FFF;
     color: var(--Theme-color);
 }
 
 /*** ------------------------------------------------- Dropdown Menu ------------------------------------------------- ***/
 
-.container .header .options .user-dropdown {
+.container .header__wrapper .options .user-dropdown {
     position: relative;
     display: flex;
     align-items: center;
@@ -132,18 +152,18 @@ body {
     cursor: pointer;
 }
 
-.container .header .options .user-dropdown span {
+.container .header__wrapper .options .user-dropdown span {
     font-weight: 600;
     user-select: none;
     color: #FFF;
 }
 
-.container .header .options .user-dropdown i {
+.container .header__wrapper .options .user-dropdown i {
     color: #FFF;
     font-size: 1.2rem;
 }
 
-.container .header .options .user-dropdown .main-dropdown {
+.container .header__wrapper .options .user-dropdown .main-dropdown {
     position: absolute;
     right: 0;
     top: 100%;
@@ -158,21 +178,21 @@ body {
     cursor: default;
 }
 
-.container .header .options .user-dropdown .main-dropdown ul {
+.container .header__wrapper .options .user-dropdown .main-dropdown ul {
     display: flex;
     flex-direction: column;
     gap: 0px;
 }
 
-.container .header .options .user-dropdown .main-dropdown li {
+.container .header__wrapper .options .user-dropdown .main-dropdown li {
     cursor: pointer;
 }
 
-.container .header .options .user-dropdown .main-dropdown li:hover {
+.container .header__wrapper .options .user-dropdown .main-dropdown li:hover {
     background-color: #f8f9fa;
 }
 
-.container .header .options .user-dropdown .main-dropdown li a {
+.container .header__wrapper .options .user-dropdown .main-dropdown li a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -182,22 +202,22 @@ body {
     padding: 5px 1rem;
 }
 
-.container .header .options .user-dropdown .main-dropdown li a i {
+.container .header__wrapper .options .user-dropdown .main-dropdown li a i {
     margin-right: 10px;
     color: #888;
 }
 
-.container .header .options .user-dropdown .main-dropdown li a span {
+.container .header__wrapper .options .user-dropdown .main-dropdown li a span {
     font-weight: 500;
     color: #888;
 }
 
-.container .header .options .user-dropdown .main-dropdown li:hover a i,
-.container .header .options .user-dropdown .main-dropdown li a span {
+.container .header__wrapper .options .user-dropdown .main-dropdown li:hover a i,
+.container .header__wrapper .options .user-dropdown .main-dropdown li a span {
     color: #495057;
 }
 
-.container .header .options .user-dropdown .main-dropdown.show {
+.container .header__wrapper .options .user-dropdown .main-dropdown.show {
     visibility: visible;
 }
 
@@ -261,9 +281,9 @@ body {
 /*** =============================================== News Content Container ============================================= ***/
 
 .container .content {
-    background-color: #F5F7FB;
+    background-color: #F1F5F9;
     flex: 1;
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
     min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
 
     display: flex;
@@ -537,9 +557,15 @@ body {
 /*** =================================================== Footer =================================================== ***/
 
 .container .footer {
+    padding: 1.5rem 3rem;
+    background-color: #F5F7FB;
+}
+
+.container .footer__wrapper {
     min-height: var(--footer-height);
     width: 100%;
     background-color: var(--Theme-color);
+    border-radius: 70px;
     font-size: 2rem;
     color: #FFF;
 
@@ -1180,7 +1206,7 @@ body {
     min-height: 500px;
     width: 100%;
     background-color: #FFF;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -1592,6 +1618,11 @@ body {
     background-color: #8798D4;
     color: #FFF;
 
+}
+
+.container.container__private .main-layout .content .content-card .main-content .pagination ul li.disabled a {
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 

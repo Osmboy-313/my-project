@@ -7,7 +7,7 @@ function addPost($title , $tags , $description, $category, $img_O_name, $img_S_n
     $conn = db();
 
     $id = $_SESSION['user']['id'];
-    $sql = $conn->prepare('INSERT INTO `posts`(`post_title`, `post_tags`, `post_description`, `post_category`, `post_image`, `post_img_ori_name`, `user_id`) VALUES ( ? , ? , ? , ? , ? , ? , ? )');
+    $sql = $conn->prepare('INSERT INTO `posts`(`post_title`, `post_tags`, `post_description`, `post_category`, `post_image`, `post_img_original_name`, `user_id`) VALUES ( ? , ? , ? , ? , ? , ? , ? )');
     $sql->bind_param('sssissi', $title, $tags, $description, $category, $img_S_name , $img_O_name, $id);
 
     return $sql->execute();

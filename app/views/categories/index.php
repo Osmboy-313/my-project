@@ -7,7 +7,7 @@
 
     <div class="alert"><span>No Category Found!</span></div>
 
-    <table class="de-active" >
+    <table class="de-active">
         <thead>
             <tr>
                 <th>Serial No.</th>
@@ -54,15 +54,8 @@
             </div>
 
             <div class="pagination__summary">
-                
-                <p>
-                    <!-- Showing 
-                    <span id="range-start">0</span>
-                     - 
-                     <span id="range-end">0</span>
-                     of
-                    <span id="total-records">50</span> -->
-                </p>
+
+                <p> Showing 0 - 0 of 50 </p>
 
             </div>
 

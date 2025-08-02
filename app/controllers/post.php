@@ -105,7 +105,6 @@ function post_addd()
         ], 'private');
 
         return;
-
     }
 
     $tempUpload = $_SESSION['temp-upload'];
@@ -126,7 +125,6 @@ function post_addd()
         ], 'private');
 
         return;
-
     }
 
     unset($_SESSION['temp-upload']);
@@ -137,7 +135,8 @@ function post_addd()
 
 // ============================================ New clean up funciton with PRG technique ===============================================
 
-function post_add(){
+function post_add()
+{
 
     $errors = $_SESSION['errors'] ?? [];
     $oldValues = $_SESSION['old-form'] ?? [];
@@ -159,12 +158,12 @@ function post_add(){
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
-        if(empty($oldValues) && isset($_SESSION['temp-upload'])){
+        if (empty($oldValues) && isset($_SESSION['temp-upload'])) {
             unlink($_SESSION['temp-upload']['file-temp-path']);
             unset($_SESSION['temp-upload']);
         }
 
-        echo view('/posts/add', compact('title', 'categories', 'errors', 'oldValues', 'status'),'private');
+        echo view('/posts/add', compact('title', 'categories', 'errors', 'oldValues', 'status'), 'private');
 
         return;
     }
@@ -185,9 +184,7 @@ function post_add(){
         if ($uploadDetails['error'] && !isset($_SESSION['temp-upload'])) {
             $errors['image'] = $uploadDetails['error'];
         }
-
-    } 
-    else if (!empty($uploadDetails)) {
+    } else if (!empty($uploadDetails)) {
 
         $fileTempPath = $uploadsTempDir . $uploadDetails['storage-name'];
         if (!move_uploaded_file($uploadDetails['php-temp-dir'], $fileTempPath)) {
@@ -203,7 +200,6 @@ function post_add(){
             $image_O_Name = $uploadDetails['original-name'];
             $image_S_Name = $uploadDetails['storage-name'];
             $didImgUpload = true;
-            
         }
     }
 
@@ -222,7 +218,6 @@ function post_add(){
         $_SESSION['old-form'] = $oldValues;
         header('location: ?c=post&a=add');
         exit;
-
     }
 
     $tempUpload = $_SESSION['temp-upload'];
@@ -238,24 +233,123 @@ function post_add(){
         $_SESSION['old-form'] = $oldValues;
         header('location: ?c=post&a=add');
         exit;
-
     }
 
-    $addPost = addPost($title,$tags, $description, $category, $image_O_Name, $image_S_Name);
+    $addPost = addPost($title, $tags, $description, $category, $image_O_Name, $image_S_Name);
     unset($_SESSION['temp-upload']);
 
-    if($addPost){
+    if ($addPost) {
         $_SESSION['status'] = ['success' => 'Successfully Uploaded The Post !'];
         header('Location: ?c=post&a=add');
         exit;
-    }
-    else{
+    } else {
         $_SESSION['status'] = ['error' => 'Failed To Upload Post !'];
         header('Location: ?c=post&a=add');
         exit;
     }
+}
+
+function post_edit(){
+
+    $id = isset($_GET['id']) ? (int) $_GET['id'] : 1;
+    $Userpost = getPostById($id);
+
+    $post = [
+        'id' => $Userpost['id'],
+        'title' => $Userpost['post_title'],
+        'tags' => $Userpost['post_tags'],
+        'description' => $Userpost['post_description'],
+        'category' => $Userpost['post_category'],
+        'image_S_name' => $Userpost['post_image'],
+        'image_O_name' => $Userpost['post_img_original_name'],
+        'user' => $Userpost['user_id'],
+        'created' => $Userpost['created_at'],
+        'updated' => $Userpost['updated_at'],
+        'category_name' => $Userpost['category_name'],
+    ];
+
+    $errors = $_SESSION['errors'] ?? [];
+    $oldValues = $_SESSION['old-form'] ?? $post;
+    $status = $_SESSION['status'] ?? ['pending' => 'Edit Action is pending'];
+
+    unset($_SESSION['errors'], $_SESSION['old-form'], $_SESSION['status']);
+
+    $uploadsPermDir = __DIR__ . '/../../public/assets/uploads/permanent/';
+    $uploadsTempDir = __DIR__ . '/../../public/assets/uploads/temp/';
+
+    if (!is_dir($uploadsPermDir)) mkdir($uploadsPermDir, 0755, true);
+    if (!is_dir($uploadsTempDir)) mkdir($uploadsTempDir, 0755, true);
+
+    // Get Request ! Render Form with error, success or anything 
+
+    $title = 'Edit Post';
+    $categories = getAllCategories();
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
+        if (empty($oldValues) && isset($_SESSION['temp-upload'])) {
+            unlink($_SESSION['temp-upload']['file-temp-path']);
+            unset($_SESSION['temp-upload']);
+        }
+
+        echo view('/posts/edit', compact('title', 'categories', 'errors', 'oldValues', 'status'), 'private');
+
+        return;
+    }
+
+    $title = htmlspecialchars($_POST['title'] ?? '');
+    $tags = htmlspecialchars($_POST['tags'] ?? '');
+    $description = htmlspecialchars($_POST['description'] ?? '');
+    $category = htmlspecialchars($_POST['category'] ?? '');
+
+    $image_O_Name = $_SESSION['temp-upload']['original-name'] ?? '';
+    $image_S_Name = $_SESSION['temp-upload']['storage-name'] ?? '';
+    $didImgUpload = $_SESSION['temp-upload']['didImgUpload'] ?? false;
+
+    $uploadDetails = validateImage();
+
+    if (isset($uploadDetails['error'])) {
+
+        $errors['image'] = $uploadDetails['error'];
+        // if ($uploadDetails['error'] || !isset($_SESSION['temp-upload'])) {
+        // }
+        
+    } else if (!empty($uploadDetails)) {
+
+        $fileTempPath = $uploadsTempDir . $uploadDetails['storage-name'];
+        if (!move_uploaded_file($uploadDetails['php-temp-dir'], $fileTempPath)) {
+            $errors['image'] = 'Failed to store File temporarily';
+        } else {
+
+            $_SESSION['temp-upload'] = [
+                'original-name' => $uploadDetails['original-name'],
+                'storage-name' => $uploadDetails['storage-name'],
+                'file-temp-path' => $fileTempPath,
+                'didImgUpload' => true,
+            ];
+            $image_O_Name = $uploadDetails['original-name'];
+            $image_S_Name = $uploadDetails['storage-name'];
+            $didImgUpload = true;
+        }
+    }
 
 
+    if (empty($title)) $errors['title'] = 'Enter Post Title';
+    if (empty($tags)) $errors['tags'] = 'Enter Post Tags';
+    if (empty($description)) $errors['description'] = 'Enter Post Description';
+    if (empty($category)) $errors['category'] = 'Select Post category';
+
+    $oldValues = compact('title', 'tags', 'description', 'category', 'didImgUpload', 'image_O_Name');
+
+    // Post Request ! Redirect to same page with errors and exit !
+
+    if (!empty($errors)) {
+
+        $_SESSION['errors'] = $errors;
+        $_SESSION['old-form'] = $oldValues + ['id' => $id];
+        header("Location: ?c=post&a=edit&id=$id");
+        exit;
+    }
 }
 
 // ==================================== Remove Session + temp file if user select another picture ======================================
@@ -308,11 +402,4 @@ function validateImage()
         'php-temp-dir' => $file['tmp_name'],
         'extension' => $extension,
     ];
-}
-
-
-function post_edit(){
-
-    echo view('/posts/edit', ['title' => 'My Posts'], 'private');
-
 }

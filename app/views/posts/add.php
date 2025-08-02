@@ -100,7 +100,7 @@ $statusMsg = $status[$statusClass];
             <?php endif; ?>
 
 
-            <?php if( $msg = $fieldError('imageOriginalName') ) :?>
+            <?php if( $msg = $fieldError('image') ) :?>
             <span class="error-box"> <?= $msg?> </span>
             <?php endif ?>
 

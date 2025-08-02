@@ -14,7 +14,7 @@ $dateAndTime = new DateTime($post['created_at']);
 
     <div class="news-search">
 
-        <div class="news-search__title">Search News</div>
+        <div class="news-search__title">Search Posts</div>
 
         <div class="news-search__field">
             <form action="">
