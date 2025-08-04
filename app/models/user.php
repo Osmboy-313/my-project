@@ -46,5 +46,92 @@ function addUser($username, $email, $userType, $password){
     
 }
 
+function getUsers(){
+    $conn = db();
+
+    $userType = 'user';
+    $sql = $conn->prepare("SELECT * FROM `users` WHERE `user_type` = ? ");
+    $sql->bind_param('s', $userType);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function getAdmins(){
+    $conn = db();
+
+    $userType = 'admin';
+    $sql = $conn->prepare("SELECT * FROM `users` WHERE `user_type` = ? ");
+    $sql->bind_param('s', $userType);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function getBosses(){
+    $conn = db();
+
+    $userType = 'boss';
+    $sql = $conn->prepare("SELECT * FROM `users` WHERE `user_type` = ? ");
+    $sql->bind_param('s', $userType);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+
+
+function getAccountsPaginated($userType, $limit, $offset) {
+    $conn = db();
+
+    $sql = $conn->prepare("SELECT * FROM users WHERE user_type = ? LIMIT ? OFFSET ?");
+    $sql->bind_param('sii', $userType, $limit, $offset);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function getAccountsCount($userType) {
+    $conn = db();
+
+    $sql = $conn->prepare("SELECT COUNT(*) as total FROM users WHERE user_type = ?");
+    $sql->bind_param('s', $userType);
+    $sql->execute();
+    $result = $sql->get_result()->fetch_assoc();
+
+    return $result['total'];
+}
+
+
+
+
+function getUserWithPosts($id, $recordsPerPage, $offset){
+    $conn = db();
+
+    $userStmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+    $userStmt->bind_param('i', $id);
+    $userStmt->execute();
+    $userResult = $userStmt->get_result();
+    $user = $userResult->fetch_assoc();
+
+    if (!$user) return null;
+
+    // Now, get the posts
+    $postStmt = $conn->prepare("SELECT * FROM posts WHERE post_user = ? LIMIT ? OFFSET ? ");
+    $postStmt->bind_param('iii', $id, $recordsPerPage,$offset);
+    $postStmt->execute();
+    $postResult = $postStmt->get_result();
+    $posts = $postResult->fetch_all(MYSQLI_ASSOC);
+
+    return [
+        'user' => $user,
+        'posts' => $posts
+    ];
+}
+
 
 ?>

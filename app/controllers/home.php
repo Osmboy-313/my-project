@@ -10,9 +10,12 @@ function home_index(){
 }
 
 function home_preview(){
+
   $postId = $_GET['id'] ?? 0;
   $post = getPostById($postId);
-   echo view('/home/news-preview' ,['title' => 'Preview', 'post' => $post], 'public');
+  $latestPosts = getLatestPosts(10, $postId);
+
+  echo view('/home/news-preview' ,['title' => 'Preview', 'post' => $post, 'latestPosts' => $latestPosts], 'public');
 }
 
 ?>

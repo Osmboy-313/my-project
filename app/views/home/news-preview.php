@@ -1,7 +1,7 @@
 <?php
 
 // echo '<pre>';
-// print_r($post);
+// print_r($latestPosts);
 // echo '</pre>';
 
 $tags = explode(',', $post['post_tags']);
@@ -66,150 +66,50 @@ $dateAndTime = new DateTime($post['created_at']);
 
         <div class="news-page__heading--list">Recent Posts</div>
 
+        <div class="news-page__list">
 
+            <?php foreach ($latestPosts as $latestPost): ?>
 
-        <div class="news-post">
+                <?php $tags = explode(',', $latestPost['post_tags']) ?>
+                <?php $dateAndTime = new DateTime($latestPost['created_at']) ?>
 
-            <div class="news-post__image"><img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt=""></div>
+                <div class="news-post">
 
-            <div class="news-post__details">
+                    <div class="news-post__image"><img src=" <?= 'assets/uploads/permanent/' . $latestPost['post_image'] ?> " alt=""></div>
 
-                <div class="news-post__title"> Nothing </div>
+                    <div class="news-post__details">
 
-                <div class="news-post__tags">
-                    <span> <i class='bx bxs-purchase-tag'></i> <span> Something</span> <span> Nomething</span> </span>
-                    <span> <i class='bx bxs-calendar'></i> <span>26-27-2032</span> </span>
-                    <span> <i class='bx bx-time'></i> <span> 02:11:30 </span> </span>
+                        <div class="news-post__title"> <?= $latestPost['post_title'] ?> </div>
+
+                        <div class="news-post__tags">
+
+                            <?php foreach ($tags as $tag): ?>
+                                <span> <i class='bx bxs-purchase-tag'></i> <span><?= $tag ?></span> </span>
+                            <?php endforeach ?>
+
+                            <span> <i class='bx bxs-calendar'></i> <span> <?= $dateAndTime->format('d-m-Y') ?> </span> </span>
+                            <span> <i class='bx bx-time'></i> <span> <?= $dateAndTime->format('h:i:s A') ?> </span> </span>
+
+                        </div>
+
+                        <div class="news-post__description"> <?= $latestPost['post_description'] ?> </div>
+
+                        <div class="news-post__buttons">
+
+                            <a href="<?= url('home', 'preview', ['id' => $latestPost['id']]) ?>">
+                                <span>Read More</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="news-post__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime impedit neque ducimus aut quis expedita, ut at voluptatem laboriosam atque aliquid et veritatis sapiente? Quam deleniti nobis architecto magnam aliquid pariatur dolores exercitationem dolorem minus magni nulla, quisquam aperiam consequuntur impedit! Illo unde earum consequuntur nemo repudiandae veritatis tempora laborum?</div>
+            <?php endforeach ?>
 
-                <div class="news-post__buttons">
-
-                    <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>">
-                        <span>Read More</span>
-                    </a>
-
-                </div>
-
-            </div>
 
         </div>
-
-        <div class="news-post">
-
-            <div class="news-post__image"><img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt=""></div>
-
-            <div class="news-post__details">
-
-                <div class="news-post__title"> Nothing </div>
-
-                <div class="news-post__tags">
-                    <span> <i class='bx bxs-purchase-tag'></i> <span> Something</span> <span> Nomething</span> </span>
-                    <span> <i class='bx bxs-calendar'></i> <span>26-27-2032</span> </span>
-                    <span> <i class='bx bx-time'></i> <span> 02:11:30 </span> </span>
-                </div>
-
-                <div class="news-post__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime impedit neque ducimus aut quis expedita, ut at voluptatem laboriosam atque aliquid et veritatis sapiente? Quam deleniti nobis architecto magnam aliquid pariatur dolores exercitationem dolorem minus magni nulla, quisquam aperiam consequuntur impedit! Illo unde earum consequuntur nemo repudiandae veritatis tempora laborum?</div>
-
-                <div class="news-post__buttons">
-
-                    <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>">
-                        <span>Read More</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="news-post">
-
-            <div class="news-post__image"><img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt=""></div>
-
-            <div class="news-post__details">
-
-                <div class="news-post__title"> Nothing </div>
-
-                <div class="news-post__tags">
-                    <span> <i class='bx bxs-purchase-tag'></i> <span> Something</span> <span> Nomething</span> </span>
-                    <span> <i class='bx bxs-calendar'></i> <span>26-27-2032</span> </span>
-                    <span> <i class='bx bx-time'></i> <span> 02:11:30 </span> </span>
-                </div>
-
-                <div class="news-post__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime impedit neque ducimus aut quis expedita, ut at voluptatem laboriosam atque aliquid et veritatis sapiente? Quam deleniti nobis architecto magnam aliquid pariatur dolores exercitationem dolorem minus magni nulla, quisquam aperiam consequuntur impedit! Illo unde earum consequuntur nemo repudiandae veritatis tempora laborum?</div>
-
-                <div class="news-post__buttons">
-
-                    <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>">
-                        <span>Read More</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="news-post">
-
-            <div class="news-post__image"><img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt=""></div>
-
-            <div class="news-post__details">
-
-                <div class="news-post__title"> Nothing </div>
-
-                <div class="news-post__tags">
-                    <span> <i class='bx bxs-purchase-tag'></i> <span> Something</span> <span> Nomething</span> </span>
-                    <span> <i class='bx bxs-calendar'></i> <span>26-27-2032</span> </span>
-                    <span> <i class='bx bx-time'></i> <span> 02:11:30 </span> </span>
-                </div>
-
-                <div class="news-post__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime impedit neque ducimus aut quis expedita, ut at voluptatem laboriosam atque aliquid et veritatis sapiente? Quam deleniti nobis architecto magnam aliquid pariatur dolores exercitationem dolorem minus magni nulla, quisquam aperiam consequuntur impedit! Illo unde earum consequuntur nemo repudiandae veritatis tempora laborum?</div>
-
-                <div class="news-post__buttons">
-
-                    <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>">
-                        <span>Read More</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="news-post">
-
-            <div class="news-post__image"><img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt=""></div>
-
-            <div class="news-post__details">
-
-                <div class="news-post__title"> Nothing </div>
-
-                <div class="news-post__tags">
-                    <span> <i class='bx bxs-purchase-tag'></i> <span> Something</span> <span> Nomething</span> </span>
-                    <span> <i class='bx bxs-calendar'></i> <span>26-27-2032</span> </span>
-                    <span> <i class='bx bx-time'></i> <span> 02:11:30 </span> </span>
-                </div>
-
-                <div class="news-post__description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime impedit neque ducimus aut quis expedita, ut at voluptatem laboriosam atque aliquid et veritatis sapiente? Quam deleniti nobis architecto magnam aliquid pariatur dolores exercitationem dolorem minus magni nulla, quisquam aperiam consequuntur impedit! Illo unde earum consequuntur nemo repudiandae veritatis tempora laborum?</div>
-
-                <div class="news-post__buttons">
-
-                    <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>">
-                        <span>Read More</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
 
 
     </div>

@@ -14,23 +14,33 @@ body {
 @font-face {
     font-family: 'NotoSymbols2';
     src: url('fonts/NotoSansSymbols2-Regular.ttf') format('truetype');
-  }
+}
 
 :root {
     --header-height: 80px;
+    --header__wrapper-height: 130px;
     --nav_bar-height: 40px;
     --footer-height: 60px;
-    --Theme-color: #1D2733;    /* emerald : #1B4332, Charcoal with a Touch of Purple : #2A2A40 , indigo : #3F3D56 */
+    --footer__wrapper-height: 108px;
+    --Theme-color: #1D2733;
+    /* emerald : #1B4332, Charcoal with a Touch of Purple : #2A2A40 , indigo : #3F3D56 */
     /* rgb(66, 114, 185) && #222E3C */
     --text-color: #222E3C;
 
-    --primary-color: #2C6E49; /* Forest Green */
-    --secondary-color: #F59E0B; /* Amber */
-    --neutral-base: #FFFFFF; /* White */
-    --neutral-accent: #F1F5F9; /* Slate Gray */
-    --text-color: #1F2937; /* Dark Slate */
-    --success-color: #10B981; /* Emerald Green */
-    --danger-color: #EF4444; /* Red */ 
+    --primary-color: #2C6E49;
+    /* Forest Green */
+    --secondary-color: #F59E0B;
+    /* Amber */
+    --neutral-base: #FFFFFF;
+    /* White */
+    --neutral-accent: #F1F5F9;
+    /* Slate Gray */
+    --text-color: #1F2937;
+    /* Dark Slate */
+    --success-color: #10B981;
+    /* Emerald Green */
+    --danger-color: #EF4444;
+    /* Red */
 
 }
 
@@ -284,13 +294,14 @@ body {
     background-color: #F1F5F9;
     flex: 1;
     /* padding: 1.5rem; */
-    min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+    min-height: calc(100vh - (var(--header__wrapper-height) + var(--footer__wrapper-height)));
 
     display: flex;
     justify-content: center;
 }
 
 .container .content .news-page {
+    /* min-height: calc(100vh - (var(--header__wrapper-height) + var(--footer__wrapper-height))); */
     height: fit-content;
     width: 90%;
     background-color: #FFF;
@@ -1027,6 +1038,8 @@ body {
     flex: 1;
     transition: all 0.4s ease-in-out;
     position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 /*** ------------------------------------------ Header ------------------------------------------ ***/
@@ -1155,9 +1168,10 @@ body {
 
 .container.container__private .main-layout .content {
     flex: 1;
-    min-height: calc(100vh - calc(var(--header-height) + var(--footer-height)));
+    min-height: calc(100vh - calc(var(--header-height) + var(--footer-height)) - 60px);
     background-color: #F5F7FB;
-    padding: 2.5rem 3rem 1rem;
+    /* padding: 2.5rem 3rem 1rem; */
+    padding: 40px 3rem 20px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -1165,17 +1179,65 @@ body {
 
 .container.container__private .main-layout .content .content-card {
     width: 100%;
+    min-height: calc(100vh - calc(var(--header-height) + var(--footer-height)) - 60px);
 }
 
 .container.container__private .main-layout .content .content-card .title {
     font-size: 1.2rem;
-    padding-left: 10px;
-    padding-right: 15px;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 7px 10px;
+
 }
+
+
+
+.container.container__private .main-layout .content .content-card .title .tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECEEF2;
+    border-radius: 30px;
+    padding: 5px;
+    position: relative;
+}
+
+.container.container__private .main-layout .content .content-card .title .tabs button {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    width: 200px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.container.container__private .main-layout .content .content-card .title .tabs button.selected {
+    font-weight: bold;
+    color: green;
+    /* or any color you want */
+}
+
+
+.container.container__private .main-layout .content .content-card .title .tabs .active {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 50px;
+    width: 200px;
+    background-color: #FFF;
+    border-radius: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container.container__private .main-layout .content .content-card .title .tabs .active.no-transition {
+    transition: none !important;
+}
+
 
 .container.container__private .main-layout .content .content-card .title button {
     border: none;
@@ -1203,7 +1265,7 @@ body {
 }
 
 .container.container__private .main-layout .content .content-card .main-content {
-    min-height: 500px;
+    min-height: calc(100vh - calc(var(--header-height) + var(--footer-height)) - 85px);
     width: 100%;
     background-color: #FFF;
     border-radius: 3px;
@@ -1449,9 +1511,8 @@ body {
     padding-left: 2.5rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image {
+/* .container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image {
     width: 300px;
-    min-width: 200px;
     max-height: 180px;
     display: flex;
     align-items: center;
@@ -1474,7 +1535,36 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 2px;
+} */
+
+
+
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image {
+    width: 300px;
+    height: 180px;
+    flex-shrink: 0;
+    border: 3px solid rgb(211, 207, 207);
+    border-radius: 3px;
+    transition: all 0.5s ease;
 }
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image:hover{
+    border-color: var(--Theme-color);
+}
+
+
+
+
 
 .container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content {
     display: flex;
@@ -1530,6 +1620,207 @@ body {
     background-color: red;
     color: #FFF;
 }
+
+
+
+
+
+
+/*** __________________________________________ Post List New __________________________________________ ***/
+     
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #dddddd;
+    padding: 1rem 1rem 1rem 3rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card:hover {
+    background-color: #f3f0f0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card:last-of-type {
+    border: none;
+}
+
+/*** ****************************************** User Details Section ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 10px;
+    padding-right: 10px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user p {
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 3px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user p span {
+    font-weight: 600;
+    align-self: flex-start;
+    display: inline-block;
+    width: 170px;
+    word-wrap: break-word;
+}
+
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user a {
+    height: 25px;
+    width: 120px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user a:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+/*** ****************************************** Post Details Section ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__content {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    border-left: 2px solid #dddddd;
+    padding-left: 2.5rem;
+}
+
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__content .post-card__image {
+    width: 300px;
+    height: 180px;
+    flex-shrink: 0;
+    border: 3px solid rgb(211, 207, 207);
+    border-radius: 3px;
+    transition: all 0.5s ease;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__content .post-card__image img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__content .post-card__image:hover{
+    border-color: var(--Theme-color);
+}
+
+
+
+
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 1;
+    flex: 1;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details div,
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details p {
+    margin-bottom: 5px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__tags{
+    display: flex;
+    align-items: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__tags .tag:first-of-type{
+    margin-left: 20px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__tags .tag{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__tags .tag i{
+    color: #888;
+    margin-right:2px;
+}
+
+
+/*** ****************************************** Buttons ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__actions{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__actions .btn {
+    height: 25px;
+    width: 90px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__actions .btn.btn--preview {
+    width: 150px;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__actions .btn.btn--delete {
+    border-color: red;
+    color: red;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__actions .btn:hover {
+    background-color: var(--Theme-color);
+    color: #FFF;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
+.post-card__actions .btn.del-btn:hover {
+    background-color: red;
+    color: #FFF;
+}
+
+
+
+
+
+
+
+
 
 /*** __________________________________________ Pagination __________________________________________ ***/
 
@@ -1648,6 +1939,7 @@ body {
 .container.container__private .main-layout .footer {
     height: var(--footer-height);
     width: 100%;
+    /* padding: 0; */
     background-color: white;
     display: flex;
     align-items: center;
@@ -1662,31 +1954,48 @@ body {
 /* *** ------------------------------------------------------ Dashboard Style ------------------------------------------------------- *** */
 
 .container.container__private .main-layout .content .content-card .main-content.dashboard {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
+    text-align: center;
     font-size: 2rem;
     font-weight: 600;
 }
 
-/* *** ------------------------------------------------------ Categories Page Style -------------------------------------------------- *** */
-
-.container.container__private .main-layout .content .content-card .main-content.categories {
-    height: 822px;
-}
 
 /* *** ------------------------------------------------------ Users Page Style -------------------------------------------------- *** */
+
+.container.container__private .main-layout .content .content-card .main-content.tab-content {
+    min-height: calc(100vh - calc(var(--header-height) + var(--footer-height)) - 120px);
+    position: relative;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.tab-content .each-tab-content {
+    height: calc(100vh - calc(var(--header-height) + var(--footer-height)) - 120px - 2rem);
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.tab-content .each-tab-content[data-tab-content].active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
 
 
 
 /* *** ------------------------------------------------------ My Posts Page Style -------------------------------------------------- *** */
 
-.container.container__private .main-layout .content .content-card .main-content.my-posts {
+.container.container__private .main-layout .content .content-card .main-content.posts {
     padding: 1rem 0;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.my-posts .post-container .actual-post .post {
+.container.container__private .main-layout .content .content-card .main-content.posts .post-container .post-card .post-card__content {
     border: none;
     padding: 0;
 }
@@ -2331,7 +2640,7 @@ body {
     width: 60px;
     margin: 0 auto 10px;
     border-radius: 50%;
-    background-color: #E9EDFE ;
+    background-color: #E9EDFE;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2341,16 +2650,17 @@ body {
     height: 45px;
     width: 45px;
     border-radius: 50%;
-    background-color: #D5DCFF ;
+    background-color: #D5DCFF;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape {
     height: 25px;
     width: 25px;
-    background-color: #267CFA; /* original : #264AFD , light : #267CFA */
+    background-color: #267CFA;
+    /* original : #264AFD , light : #267CFA */
     /* border-radius: 50%; */
     border-radius: 5px;
     rotate: 45deg;
@@ -2368,7 +2678,7 @@ body {
 
 /*** __________________________________________ Edit Icon Size Change __________________________________________ ***/
 
-.container.container__private .main-layout .modal.modal--edit .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape{
+.container.container__private .main-layout .modal.modal--edit .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape {
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -2382,14 +2692,14 @@ body {
 /*** __________________________________________ Delete Icons __________________________________________ ***/
 
 .container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon {
-    background-color:#F8ECEE;
+    background-color: #F8ECEE;
 }
 
 .container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper {
     background-color: #F6DADD;
 }
 
-.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape{
+.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape {
     height: 25px;
     width: 25px;
     border-radius: 5px;
@@ -2397,7 +2707,7 @@ body {
     background-color: #DB342D;
 }
 
-.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape i{
+.container.container__private .main-layout .modal.modal--delete .modal__wrapper .modal__body .modal__icon .modal__icon-wrapper .modal__icon-shape i {
     rotate: -45deg;
     font-size: 1rem;
 }
@@ -2422,10 +2732,10 @@ body {
 
 /*** ------------------------------------------ Modal Alert ------------------------------------------ ***/
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert {
     width: 100%;
     padding: 2px 1rem 2px 2rem;
-    margin:  0 0 10px;
+    margin: 0 0 10px;
     background-color: transparent;
     border-radius: 15px;
     display: flex;
@@ -2434,7 +2744,7 @@ body {
     position: relative;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-symbol{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-symbol {
     height: 30px;
     width: 30px;
     background-color: transparent;
@@ -2444,56 +2754,58 @@ body {
     align-items: center;
     justify-content: center;
 }
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-symbol i{
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-symbol i {
     display: block;
     font-size: 1.1rem;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-message .modal__alert-title{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-message .modal__alert-title {
     font-family: "Poppins", "Sans-serif";
     color: #FFF;
     font-weight: 600;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-message .modal__alert-text{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__alert-message .modal__alert-text {
     font-size: 0.9rem;
     color: #FFF;
     font-weight: 600;
     margin: 0 0 5px;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__close-btn{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__close-btn {
     flex: 1;
     text-align: end;
 }
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__close-btn i{
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert .modal__close-btn i {
     font-size: 1.5rem;
     cursor: pointer;
 }
 
 /*** __________________________________________ Alert Hidden __________________________________________ ***/
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.hidden{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.hidden {
     display: none;
 }
 
 /*** __________________________________________ Alert Success __________________________________________ ***/
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.success{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.success {
     background-color: #03A75B;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.success .modal__alert-symbol{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.success .modal__alert-symbol {
     background-color: #005632;
 }
 
 /*** __________________________________________ Alert Failure __________________________________________ ***/
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.failure{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.failure {
     background-color: #DC3053;
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.failure .modal__alert-symbol{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body .modal__alert.failure .modal__alert-symbol {
     background-color: #831E3E;
 }
 
@@ -2523,7 +2835,7 @@ body {
 
 /*** __________________________________________ Error Class For Input __________________________________________ ***/
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error input{
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error input {
     border-color: red;
 }
 
@@ -2534,7 +2846,7 @@ body {
 .container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error span.error-box {
     color: red;
     font-size: 0.8rem;
-    margin:5px 20px;
+    margin: 5px 20px;
     display: block;
 }
 
@@ -2546,13 +2858,16 @@ body {
     height: 40px;
     width: 100%;
     border-radius: 50px;
-    border: 2px solid #267CFA; /* original : #264AFD , light : #267CFA */
-    background-color: #267CFA; /* original : #264AFD , light : #267CFA */
+    border: 2px solid #267CFA;
+    /* original : #264AFD , light : #267CFA */
+    background-color: #267CFA;
+    /* original : #264AFD , light : #267CFA */
     color: #FFF;
     font-weight: 600;
     cursor: pointer;
 }
-.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__add-btn:hover{
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__add-btn:hover {
     background-color: #264AFD;
 }
 
@@ -2596,6 +2911,7 @@ body {
     background-color: black;
     opacity: 0;
     pointer-events: none;
+    z-index: 5;
 }
 
 .container.container__private .main-layout .overlay.active {

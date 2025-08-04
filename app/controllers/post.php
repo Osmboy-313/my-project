@@ -8,11 +8,69 @@ require_once __DIR__ .  '/../core/auth.php';
 define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024);        // 10MB
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);
 
-function post_index()
-{
-    $posts = getUserPosts();
+function post_index(){
+
+    $recordsPerPage = 3;
+
+    $currentPage = isset($_GET['page']) ? (int)$_GET['page']: 1;
+    $totalRecords = countUserPosts(); 
+    $totalPages   = (int)ceil($totalRecords / $recordsPerPage);
+
+    if ($currentPage < 1)        $currentPage = 1;
+    elseif ($currentPage > $totalPages) $currentPage = $totalPages;
+
+    $offset = ($currentPage - 1) * $recordsPerPage;
+    $posts = getUserPaginatedPosts($recordsPerPage, $offset);
+
+    $start = $offset + 1;
+    $end = $offset + $recordsPerPage;
+    $end = min($end, $totalRecords);
+
     $modal = view('/posts/modals');
-    echo view('/posts/my', ['title' => 'My Posts', 'modals' => $modal, 'posts' => $posts,], 'private');
+    echo view('/posts/my', [
+        'title' => 'My Posts',
+        'modals' => $modal,
+        'posts' => $posts,
+        'currentPage' => $currentPage,
+        'totalPages' => $totalPages,
+        'totalRecords' => $totalRecords,
+        'start' => $start,
+        'end' => $end,
+        ],
+        'private');
+}
+
+function post_all(){
+
+    $recordsPerPage = 3;
+
+    $currentPage = isset($_GET['page']) ? (int)$_GET['page']: 1;
+    $totalRecords = countAllPosts(); 
+    $totalPages   = (int)ceil($totalRecords / $recordsPerPage);
+
+    if ($currentPage < 1)        $currentPage = 1;
+    elseif ($currentPage > $totalPages) $currentPage = $totalPages;
+
+    $offset = ($currentPage - 1) * $recordsPerPage;
+    $posts = getAllPaginatedPosts($recordsPerPage, $offset);
+    // $posts = getAllPosts();
+
+    $start = $offset + 1;
+    $end = $offset + $recordsPerPage;
+    $end = min($end, $totalRecords);
+
+    $modal = view('/posts/modals');
+    echo view('/posts/all', [
+        'title' => 'All Posts',
+        'modals' => $modal,
+        'posts' => $posts,
+        'currentPage' => $currentPage,
+        'totalPages' => $totalPages,
+        'totalRecords' => $totalRecords,
+        'start' => $start,
+        'end' => $end,
+        ],
+        'private');
 }
 
 // ==================================== OLd function, here just for comparison ====================================
@@ -263,7 +321,7 @@ function post_edit()
         'category' => $Userpost['post_category'],
         'image_S_name' => $Userpost['post_image'],
         'image_O_name' => $Userpost['post_img_original_name'],
-        'user' => $Userpost['user_id'],
+        'user' => $Userpost['post_user'],
         'created' => $Userpost['created_at'],
         'updated' => $Userpost['updated_at'],
         'category_name' => $Userpost['category_name'],

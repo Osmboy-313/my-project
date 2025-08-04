@@ -151,7 +151,7 @@
 
             <div class="modal__heading">
                 <p class="modal__message-title">Delete This Category?</p>
-                <p class="modal__message-text">This category will be permanently deleted</p>
+                <p class="modal__message-text">This category and it's associated posts both will be permanently deleted</p>
             </div>
 
             <form action="" class="modal__form del-category-form" id="del-category-form">

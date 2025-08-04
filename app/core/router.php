@@ -2,7 +2,7 @@
 
 function dispatch(string $c, string $a){
 
-    $allow = ['home', 'auth', 'post', 'category', 'code', 'user' , 'admin', 'dashboard'];
+    $allow = ['home', 'auth', 'post', 'category', 'code', 'user' , 'admin', 'dashboard', 'profile'];
 
     if(!in_array($c, $allow, true)){
         http_response_code(404);

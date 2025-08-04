@@ -1,19 +1,20 @@
 <?php
 
+// echo '<pre>';
+// print_r($posts);
+// echo '</pre>';
+
 $paginationPages = paginationDesign($currentPage, $totalPages);
 
 ?>
 
-<div class="title">
-    <span>My Posts</span>
-    <button><a href=" <?= url('post', 'add') ?> " class="add-category"><span>Add Post</span></a> </button>
-</div>
+<div class="title"> <span>All Posts</span> </div>
 
-<div class="main-content posts">
+<div class="main-content all-posts">
 
     <?php if (empty($posts)) : ?>
 
-        <div class="alert active"><span>No Posts Yet!</span></div>
+        <div class="alert active"><span>No Posts Found!</span></div>
 
     <?php else : ?>
 
@@ -25,6 +26,13 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                 <?php $dateAndTime = new DateTime($post['created_at']) ?>
 
                 <article class="post-card">
+
+                    <!-- User Info -->
+                    <header class="post-card__user">
+                        <p><strong>User ID : </strong> <span> <?= $post['user_id'] ?> </span></p>
+                        <p><strong>Username : </strong> <span> <?= $post['username'] ?> </span></p>
+                        <a href="<?= url('profile', 'preview', ['id' => $post['user_id']]) ?>" class="view-profile-link">View Profile</a>
+                    </header>
 
                     <!-- Post Content -->
                     <section class="post-card__content">
@@ -41,6 +49,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <p><strong>Post Title:</strong> <span> <?= $post['post_title'] ?> </span></p>
 
                             <div class="post-card__tags">
+
                                 <strong>Tags:</strong>
 
                                 <?php foreach ($tags as $tag): ?>
@@ -53,7 +62,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                             </div>
 
-                            <p><strong>Category:</strong> <span> <?= $post['post_category'] ?> </span></p>
+                            <p><strong>Category:</strong> <span> <?= $post['category_name'] ?> </span></p>
 
                             <p>
                                 <strong>Description:</strong>
@@ -62,17 +71,9 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                             <!-- Action Buttons -->
                             <div class="post-card__actions">
-
-                                <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>" class="btn btn--preview">
-                                    View Full Post
-                                </a>
-
-                                <a href="<?= url('post', 'edit', ['id' => $post['id']]) ?>" class="btn btn--edit">
-                                    Edit
-                                </a>
-
+                                <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>" class="btn btn--preview">View Full Post</a>
+                                <a href="#" class="btn btn--edit">Edit</a>
                                 <a href="#" class="btn btn--delete">Delete</a>
-
                             </div>
 
                         </div>
@@ -85,8 +86,6 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
         </div>
 
-
-
         <div class="pagination">
 
             <div class="pagination__wrapper">
@@ -97,9 +96,8 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                     <ul>
 
-
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('post', 'index', ['page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('post', 'all', ['page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -117,7 +115,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('post', 'index', ['page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('post', 'all', ['page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -125,7 +123,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('post', 'index', ['page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('post', 'all', ['page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
@@ -149,9 +147,4 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php endif ?>
 
-
 </div>
-
-
-
-

@@ -19,7 +19,7 @@ switch ($user_type) {
     case 'admin':
         $menuItems = [
             ['controller' => 'user', 'action' => 'index', 'label' => 'Users'],
-            ['controller' => 'admin', 'action' => 'index', 'label' => 'Admins'],
+            ['controller' => 'post', 'action' => 'all', 'label' => 'All Posts'],
             ['controller' => 'post', 'action' => 'add', 'label' => 'Add Post'],
             ['controller' => 'post', 'action' => 'index', 'label' => 'My Posts'],
             ['controller' => 'category', 'action' => 'index', 'label' => 'Categories'],
@@ -29,11 +29,11 @@ switch ($user_type) {
     case 'boss':
         $menuItems = [
             ['controller' => 'user', 'action' => 'index', 'label' => 'Users'],
-            ['controller' => 'admin', 'action' => 'index', 'label' => 'Admins'],
+            ['controller' => 'post', 'action' => 'all', 'label' => 'All Posts'],
             ['controller' => 'post', 'action' => 'add', 'label' => 'Add Post'],
             ['controller' => 'post', 'action' => 'index', 'label' => 'My Posts'],
             ['controller' => 'category', 'action' => 'index', 'label' => 'Categories'],
-            ['controller' => 'code', 'action' => 'indexs', 'label' => 'Codes'],
+            ['controller' => 'code', 'action' => 'index', 'label' => 'Codes'],
         ];
         break;
 }

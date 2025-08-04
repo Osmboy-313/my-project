@@ -1,11 +1,4 @@
-<?php
 
-session_start();
-
-$title = "My Profile";
-ob_start();
-
-?>
 <div class="title"><span>My Profile</span></div>
 
 <div class="main-content my-profile">
@@ -105,7 +98,6 @@ ob_start();
 
         <div class="title">Profile Details</div>
 
-        <!-- <img src="<?= BASE_PATH . '/images/wallpaperflare.com_wallpaper(1).jpg' ?>" alt=""> -->
         <img src="../images/wallpaperflare.com_wallpaper(1).jpg" alt="">
         
         <form action="">
@@ -127,10 +119,3 @@ ob_start();
 
 
 </div>
-
-<?php 
-
-$content = ob_get_clean();
-include BASE_PATH . '/layouts/post-login-pages-layout.php';
-
-?>

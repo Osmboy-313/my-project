@@ -1,16 +1,19 @@
 <?php
 
-session_start();
+// echo '<pre>';
+// print_r($user);
+// print_r($posts);
+// echo '</pre>';
 
-$title = "Profile";
-ob_start();
+$paginationPages = paginationDesign($currentPage, $totalPages);
+
 
 ?>
+
 <div class="title"><span>Profile</span></div>
 
-<div class="main-content profile-preview">
+<div class="main-content profile-preview posts ">
 
-    <!-- <span>Welcome <?php echo $_SESSION['user']['user_type']?></span> -->
     <div class="profile-details">
 
         <div class="title">Profile Details</div>
@@ -18,31 +21,31 @@ ob_start();
         <div class="details">
 
             <div>
-                <span class="column-name" >ID :</span>
-                <span>1</span>
+                <span class="column-name">ID :</span>
+                <span> <?= $user['id'] ?> </span>
             </div>
 
             <div>
                 <span class="column-name">Username :</span>
-                <span>nothing</span>
+                <span> <?= $user['username'] ?> </span>
             </div>
 
             <div>
                 <span class="column-name">Email :</span>
-                <span>nothing@gmail.com</span>
+                <span> <?= $user['email'] ?> </span>
             </div>
 
             <div>
                 <span class="column-name">Role :</span>
-                <span>User</span>
+                <span> <?= $user['user_type'] ?> </span>
             </div>
 
-            <?php if($_SESSION['user']['user_type'] === 'boss'){?>
+            <?php if ($_SESSION['user']['user_type'] === 'boss') { ?>
 
-            <div class="buttons">
-                <span class="column-name">Action :</span>
-                <a href=""><span>Delete</span></a>
-            </div>
+                <div class="buttons">
+                    <span class="column-name">Action :</span>
+                    <a href=""><span>Delete</span></a>
+                </div>
 
             <?php } ?>
 
@@ -50,182 +53,139 @@ ob_start();
 
     </div>
 
+
+
     <div class="post-title">Posts</div>
 
-    <div class="alert"><span>No Posts Found!</span></div>
 
 
-    <div class="post-container">
+    <?php if (empty($posts)) : ?>
 
-        <div class="actual-post">
-      
-            <div class="post">
-                
-                <div class="post-image">
-                    <!-- <span>Image : </span> -->
-                     <img src="../images/wallpaperflare.com_wallpaper(1).jpg" alt="">
+        <div class="alert active"><span>No Posts Yet!</span></div>
+
+    <?php else : ?>
+
+        <div class="post-container">
+
+            <?php foreach ($posts as $post) : ?>
+
+                <?php $tags = explode(',', $post['post_tags']) ?>
+                <?php $dateAndTime = new DateTime($post['created_at']) ?>
+
+                <article class="post-card">
+
+                    <!-- Post Content -->
+                    <section class="post-card__content">
+
+                        <!-- Post Image -->
+                        <div class="post-card__image">
+                            <img src="<?= 'assets/uploads/permanent/' . $post['post_image'] ?>" alt="Post image">
+                        </div>
+
+                        <!-- Post Details -->
+                        <div class="post-card__details">
+
+                            <p><strong>Post ID:</strong> <span> <?= $post['id'] ?> </span></p>
+                            <p><strong>Post Title:</strong> <span> <?= $post['post_title'] ?> </span></p>
+
+                            <div class="post-card__tags">
+                                <strong>Tags:</strong>
+
+                                <?php foreach ($tags as $tag): ?>
+                                    <span class="tag"> <i class='bx bxs-purchase-tag'></i> <span> <?= $tag ?> </span> </span>
+                                <?php endforeach ?>
+
+
+                                <span class="tag"> <i class='bx bxs-calendar'></i> <span> <?= $dateAndTime->format('d-m-Y') ?> </span> </span>
+                                <span class="tag"> <i class='bx bx-time'></i> <span> <?= $dateAndTime->format('h:i:s A') ?> </span> </span>
+
+                            </div>
+
+                            <p><strong>Category:</strong> <span> <?= $post['post_category'] ?> </span></p>
+
+                            <p>
+                                <strong>Description:</strong>
+                                <span> <?= $post['post_description'] ?> </span>
+                            </p>
+
+                            <!-- Action Buttons -->
+                            <div class="post-card__actions">
+                                <a href="#" class="btn btn--preview">View Full Post</a>
+                                <a href="#" class="btn btn--edit">Edit</a>
+                                <a href="#" class="btn btn--delete">Delete</a>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </article>
+
+            <?php endforeach ?>
+
+
+        </div>
+
+        <div class="pagination">
+
+            <div class="pagination__wrapper">
+
+                <div class="dummy__div">Hallo</div>
+
+                <div class="pagination__controls">
+
+                    <ul>
+
+
+                        <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
+                            <a href="<?= url('profile', 'preview', [ 'id' => $user['id'] ,'page' => max(1, $currentPage - 1)]) ?>">
+
+                                <i class='bx bx-chevron-left'></i>
+
+                            </a>
+                        </li>
+
+                        <?php foreach ($paginationPages as $page): ?>
+
+                            <?php if ($page === '...'): ?>
+
+                                <li>
+                                    <p> <?= $page ?> </p>
+                                </li>
+
+                            <?php else: ?>
+
+                                <li class="<?= $page === $currentPage ? 'active' : '' ?>">
+                                    <a href="<?= url('profile', 'preview', ['id' => $user['id'] ,'page' => $page]) ?>"> <?= $page ?> </a>
+                                </li>
+
+                            <?php endif ?>
+
+                        <?php endforeach ?>
+
+                        <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
+                            <a href="<?= url('profile', 'preview', ['id' => $user['id'] ,'page' => min($totalPages, $currentPage + 1)]) ?>">
+
+                                <i class='bx bx-chevron-right'></i>
+
+                            </a>
+                        </li>
+
+
+                    </ul>
+
                 </div>
 
-                <div class="post-content">
+                <div class="pagination__summary">
 
-                    <div>
-                    <span class="column-name" >Post Id : </span>
-                    <span>1</span>
-                    </div>
+                    <p> Showing <?= $start ?> - <?= $end ?> of <?= $totalRecords ?> </p>
 
-                    <div>
-                        <span class="column-name">Post title :</span>
-                        <span>HAllo du bist ein </span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post tag :</span>
-                    <span>Php Laravel Something Nothing</span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post Category :</span>
-                    <span>None</span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post description : </span>
-                    <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit eos nulla consectetur illo....</span>
-                    </div>
-
-                    <div class="buttons">
-                        <a href="" class="preview-btn" ><span>View Full Post</span></a> 
-                        <a href="" class="edit-btn" ><span>Edit</span></a> 
-                        <a href="" class="del-btn" ><span>Delete</span></a>
-                    </div>
-                    
                 </div>
 
             </div>
 
         </div>
 
-        <div class="actual-post">
-
-            <div class="post">
-                
-                <div class="post-image">
-                    <!-- <span>Image : </span> -->
-                     <img src="../images/wallpaperflare.com_wallpaper(1).jpg" alt="">
-                </div>
-
-                <div class="post-content">
-
-                    <div>
-                    <span class="column-name" >Post Id : </span>
-                    <span>1</span>
-                    </div>
-
-                    <div>
-                        <span class="column-name">Post title :</span>
-                        <span>HAllo du bist ein </span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post tag :</span>
-                    <span>Php Laravel Something Nothing</span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post Category :</span>
-                    <span>None</span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post description : </span>
-                    <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit eos .</span>
-                    </div>
-
-                    <div class="buttons">
-                        <a href="" class="preview-btn" ><span>View Full Post</span></a> 
-                        <a href="" class="edit-btn" ><span>Edit</span></a> 
-                        <a href="" class="del-btn" ><span>Delete</span></a>
-                    </div>
-                    
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- <div class="actual-post">
-
-            <div class="post">
-                
-                <div class="post-image">
-                     <img src="../images/wallpaperflare.com_wallpaper(1).jpg" alt="">
-                </div>
-
-                <div class="post-content">
-
-                    <div>
-                    <span class="column-name" >Post Id : </span>
-                    <span>1</span>
-                    </div>
-
-                    <div>
-                        <span class="column-name">Post title :</span>
-                        <span>HAllo du bist ein </span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post tag :</span>
-                    <span>Php Laravel Something Nothing</span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post Category :</span>
-                    <span>None</span>
-                    </div>
-
-                    <div>
-                    <span class="column-name">Post description : </span>
-                    <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit eos .</span>
-                    </div>
-
-                    <div class="buttons">
-                        <a href="" class="preview-btn" ><span>View Full Post</span></a> 
-                        <a href="" class="edit-btn" ><span>Edit</span></a> 
-                        <a href="" class="del-btn" ><span>Delete</span></a>
-                    </div>
-                    
-                </div>
-
-            </div>
-
-        </div> -->
-
-
-
-    </div>
-
-    <div class="pagination">
-
-        <ul>
-            <li> <a href=""> <i class='bx bx-chevron-left' ></i> </a> </li>
-            <li class="active" > <a href=""> 1 </a> </li>
-            <li> <a href=""> 2 </a> </li>
-            <li> <a href=""> 3 </a> </li>
-            <li> <a href=""> 4 </a> </li>
-            <li> <a href=""> 5 </a> </li>
-            <p>......</p>
-            <li> <a href=""> 20 </a> </li>
-            <li> <a href=""> <i class='bx bx-chevron-right'></i> </a> </li>
-        </ul>
-
-    </div>
+    <?php endif ?>
 
 
 </div>
-
-<?php 
-
-$content = ob_get_clean();
-include BASE_PATH . '/layouts/post-login-pages-layout.php';
-
-?>
