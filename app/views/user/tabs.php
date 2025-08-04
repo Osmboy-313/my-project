@@ -56,7 +56,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('user', 'index', ['page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('user', 'index', [ 'tab' => '#user' ,'page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -74,7 +74,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('user', 'index', ['page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('user', 'index', [ 'tab' => '#user' ,'page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -82,7 +82,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('user', 'index', ['page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('user', 'index', [ 'tab' => '#user' ,'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
@@ -162,7 +162,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('user', 'index', ['page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('user', 'index', [ 'tab' => '#admin' ,'page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -180,7 +180,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('user', 'index', ['page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('user', 'index', [ 'tab' => '#admin' ,'page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -188,7 +188,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('user', 'index', ['page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('user', 'index', [ 'tab' => '#admin' ,'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
@@ -267,7 +267,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('user', 'index', ['page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('user', 'index', [ 'tab' => '#boss' ,'page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -285,7 +285,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('user', 'index', ['page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('user', 'index', [ 'tab' => '#boss' ,'page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -293,7 +293,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('user', 'index', ['page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('user', 'index', [ 'tab' => '#boss' ,'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
