@@ -81,7 +81,7 @@ switch ($user_type) {
                         <ul class="header__menu">
 
                             <li class="header__item">
-                                <a href="<?= url('profile', 'get', ['id' => $id]) ?>" class="header__link">
+                                <a href="<?= url('profile', 'myProfile', ['id' => $id]) ?>" class="header__link">
                                     <i class='bx bx-user'></i> <span>Profile</span>
                                 </a>
                             </li>

@@ -2,6 +2,10 @@
 
 include VIEWPATH . '/layouts/head.php';
 
+$id = (int) $_SESSION['user']['id'] ?? 0;
+$username = $_SESSION['user']['username'];
+$user_type = $_SESSION['user']['user_type'];
+
 ?>
 
 <body>
@@ -36,7 +40,7 @@ include VIEWPATH . '/layouts/head.php';
                                 <ul>
 
                                     <li>
-                                        <a href="<?= url('profile', 'get', ['id' => $id]) ?>">
+                                        <a href="<?= url('profile', 'myProfile', ['id' => $id]) ?>">
                                             <i class='bx bx-user'></i> <span>Profile</span>
                                         </a>
                                     </li>

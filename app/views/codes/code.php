@@ -17,7 +17,7 @@
         <div class="active"></div>
     </div>
 
-    <button type="button" data-modal-target="#add-modal"><a href="" class="add-category" ><span>Add Code</span></a></button>
+    <button type="button" class="add-code-btn" data-modal-target="#add-modal"> <a> <span> Add Code </span> </a> </button>
 
 </div>
 

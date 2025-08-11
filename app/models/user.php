@@ -121,7 +121,7 @@ function getUserWithPosts($id, $recordsPerPage, $offset){
     if (!$user) return null;
 
     // Now, get the posts
-    $postStmt = $conn->prepare("SELECT * FROM posts WHERE post_user = ? LIMIT ? OFFSET ? ");
+    $postStmt = $conn->prepare("SELECT posts.*, categories.category_name AS category_name FROM posts JOIN categories ON posts.post_category = categories.id WHERE post_user = ? LIMIT ? OFFSET ? ");
     $postStmt->bind_param('iii', $id, $recordsPerPage,$offset);
     $postStmt->execute();
     $postResult = $postStmt->get_result();
@@ -131,6 +131,17 @@ function getUserWithPosts($id, $recordsPerPage, $offset){
         'user' => $user,
         'posts' => $posts
     ];
+}
+
+function getUserById($id){
+    $conn = db();
+
+    $sql = $conn->prepare("SELECT * FROM users WHERE id = ?");
+    $sql->bind_param('i', $id);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_assoc();
 }
 
 

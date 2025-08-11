@@ -1809,7 +1809,7 @@ body {
 }
 
 .container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details 
-.post-card__actions .btn.del-btn:hover {
+.post-card__actions .btn.btn--delete:hover {
     background-color: red;
     color: #FFF;
 }
@@ -2263,14 +2263,16 @@ body {
     width: 100%;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .title {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__title {
     color: #939ba2;
-    font-size: .925rem;
+    font-family: 'Poppins', 'Sans-serif';
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    text-align: center;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -2278,62 +2280,171 @@ body {
     padding-bottom: 1rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item {
     width: 50%;
     padding: 0.5rem 1.5rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div span.column-name {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item .profile-details__label {
     font-weight: 600;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div:nth-child(1),
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div:nth-child(3) {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item:nth-child(1),
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item:nth-child(3) {
     border-right: 1px solid #dddddd;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div.buttons {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item.profile-details__actions {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div.buttons a {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item.profile-details__actions button,
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item.profile-details__actions a {
     height: 25px;
     width: 80px;
+    font-size: 1rem;
     background-color: transparent;
     text-decoration: none;
     border: 2px solid red;
     color: red;
     border-radius: 3px;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .details div.buttons a:hover {
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item.profile-details__actions button:hover,
+.container.container__private .main-layout .content .content-card .main-content.profile-preview .profile-details .profile-details__content 
+.profile-details__item.profile-details__actions a:hover {
     background-color: red;
     color: #FFF;
 }
 
 .container.container__private .main-layout .content .content-card .main-content.profile-preview .post-title {
-    color: #939ba2;
-    font-size: .925rem;
+    color: #333;
+    font-family: 'Poppins', 'Sans-serif';
+    font-size: 1.4rem;
     font-weight: 600;
-    padding-left: 1rem;
     margin: 20px 0;
+    text-align: center;
+}
+
+
+/*** =============================================== Profile Preview Another One ===============================================***/
+
+
+
+.profile-details-card {
+    background: #fff;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.profile-details-card__title {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
     font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview {
-    padding: 1rem 0;
+.profile-details-card__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content.profile-preview .post-container .actual-post .post {
+.profile-details-card__row {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    background-color: #f9f9f9;
+}
+
+.profile-details-card__row .label {
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.profile-details-card__row .value {
+    color: #222;
+    font-size: 1rem;
+    word-break: break-word;
+}
+
+    /* Actions row */
+.profile-details-card__row.actions {
+    grid-column: span 2;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+
+.profile-details-card__row.actions .value {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+
+   /* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn--outline-red {
+    border: 2px solid red;
+    background: transparent;
+    color: red;
+}
+
+.btn--outline-red:hover {
+    background: red;
+    color: #fff;
+}
+
+.btn--red {
+    background: red;
+    color: #fff;
     border: none;
-    padding: 0;
 }
+
+.btn--red:hover {
+    background: darkred;
+}
+
+
+
+
 
 /*** =============================================== My Profile ===============================================***/
 
@@ -2833,10 +2944,21 @@ body {
 
 }
 
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box input:focus{
+    outline: none;
+    border-color: #9dbeee;
+    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+}
+
 /*** __________________________________________ Error Class For Input __________________________________________ ***/
 
 .container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error input {
     border-color: red;
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box.error input:focus {
+    border-color: #DC3545;
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
 }
 
 .container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__input-box span.error-box {
@@ -2854,25 +2976,6 @@ body {
 
 /*** __________________________________________ Add/Edit Modal buttons __________________________________________ ***/
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__add-btn {
-    height: 40px;
-    width: 100%;
-    border-radius: 50px;
-    border: 2px solid #267CFA;
-    /* original : #264AFD , light : #267CFA */
-    background-color: #267CFA;
-    /* original : #264AFD , light : #267CFA */
-    color: #FFF;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__add-btn:hover {
-    background-color: #264AFD;
-}
-
-/*** __________________________________________ Delete Modal buttons __________________________________________ ***/
-
 .container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions {
     display: flex;
     justify-content: center;
@@ -2882,7 +2985,7 @@ body {
 }
 
 .container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions button.modal__cancel-btn,
-.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__delete-btn {
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__submit-btn {
     height: 40px;
     width: 200px;
     font-weight: 600;
@@ -2893,7 +2996,21 @@ body {
 
 }
 
-.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__delete-btn {
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__submit-btn {
+    color: #FFF;
+    background-color: #267CFA;
+    /* original : #264AFD , light : #267CFA */
+    border-color: #267CFA;
+    /* original : #264AFD , light : #267CFA */
+}
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__submit-btn:hover {
+    background-color: #264AFD;
+}
+
+/*** __________________________________________ Delete Modal buttons __________________________________________ ***/
+
+.container.container__private .main-layout .modal .modal__wrapper .modal__body form .modal__actions input.modal__submit-btn.delete-btn {
     color: #FFF;
     background-color: #D53635;
     border-color: #D53635;
@@ -2917,4 +3034,428 @@ body {
 .container.container__private .main-layout .overlay.active {
     opacity: 0.4;
     pointer-events: all;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*** ===========---------------------=========== Chat Gpt design ===========---------------------=========== ***/
+
+
+
+/* ==================== POST CONTAINER ==================== */
+.post-container {
+    margin-top: 2rem;
+    padding: 0 1.5rem;
+}
+
+.post-title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ==================== GRID LAYOUT ==================== */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+/* ==================== POST CARD ==================== */
+.post-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* ==================== IMAGE ==================== */
+.post-card__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.post-card__image:hover img {
+    transform: scale(1.05);
+}
+
+/* ==================== BODY ==================== */
+.post-card__body {
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+/* Title */
+.post-card__info .title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.3rem;
+}
+
+/* Metadata (ID, category, date) */
+.post-card__info p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0.2rem 0;
+}
+
+.post-card__info .label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-right: 0.5rem;
+}
+
+/* Tags */
+.post-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background: #f0fdf4;
+    color: #10b981;
+    padding: 0.3rem 0.65rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Description */
+.post-card__desc {
+    font-size: 0.92rem;
+    color: #4b5563;
+    line-height: 1.6;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+/* ==================== ACTIONS ==================== */
+.post-card__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: auto;
+}
+
+.btn {
+    font-family: 'Poppins', sans-serif;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+    color: var(--secondary-color);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.btn--delete {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.btn--delete:hover {
+    background-color: var(--danger-color);
+    color: #fff;
+}
+
+/* ==================== USER DETAILS (for Admin/Boss) ==================== */
+.post-card.show-user-details {
+    flex-direction: row;
+}
+
+.post-card__user {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-right: 1px solid #e5e7eb;
+    min-width: 200px;
+}
+
+.post-card__user p {
+    font-size: 0.88rem;
+    color: #374151;
+}
+
+.post-card__user .label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-right: 0.3rem;
+}
+
+.post-card__user a {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 2px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.post-card__user a:hover {
+    background: var(--danger-color);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+
+
+
+/*** ===========---------------------=========== Deepseek Design 1 ===========---------------------=========== ***/
+
+
+/*** __________________________________________ Post Cards - Fixed Layout __________________________________________ ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    padding: 1rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/*** ****************************************** Image Section ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card:hover .post-card__image img {
+    transform: scale(1.03);
+}
+
+/*** ****************************************** Content Section ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__content {
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/*** ****************************************** User Info ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user {
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user strong {
+    min-width: 80px;
+    color: #555;
+    font-weight: 600;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user a.view-profile-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+}
+
+/*** ****************************************** Post Details ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details {
+    flex: 1;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details strong {
+    color: #555;
+    font-weight: 600;
+}
+
+/*** ****************************************** Tags Section ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__tags .tag {
+    background: #f2f2f2;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    color: #555;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__tags .tag i {
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/*** ****************************************** Actions Section ****************************************** ***/
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn {
+    height: 34px;
+    min-width: 80px;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn i {
+    margin-right: 0.3rem;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--preview {
+    background-color: var(--Theme-color);
+    color: white;
+    border: 2px solid var(--Theme-color);
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--edit {
+    background-color: transparent;
+    border: 2px solid var(--Theme-color);
+    color: var(--Theme-color);
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--delete {
+    background-color: transparent;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--preview:hover {
+    background-color: #1a4b8c;
+    border-color: #1a4b8c;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--edit:hover {
+    background-color: var(--Theme-color);
+    color: white;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--delete:hover {
+    background-color: #dc3545;
+    color: white;
 }

@@ -104,6 +104,17 @@ function getAllPaginatedPosts($recordsPerPage, $offset){
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
+function countAllPaginatedPosts($id){
+    $conn = db();
+
+    $sql = $conn->prepare("SELECT COUNT(*) AS total FROM posts WHERE post_user = ?");
+    $sql->bind_param('i', $id);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_assoc()['total'];
+}
+
 function countAllPosts() {
     $conn = db();
 

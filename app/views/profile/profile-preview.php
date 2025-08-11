@@ -1,12 +1,6 @@
 <?php
 
-// echo '<pre>';
-// print_r($user);
-// print_r($posts);
-// echo '</pre>';
-
 $paginationPages = paginationDesign($currentPage, $totalPages);
-
 
 ?>
 
@@ -14,44 +8,101 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 <div class="main-content profile-preview posts ">
 
-    <div class="profile-details">
+    <!-- <section class="profile-details">
+        <h2 class="profile-details__title">Profile Details</h2>
 
-        <div class="title">Profile Details</div>
-
-        <div class="details">
-
-            <div>
-                <span class="column-name">ID :</span>
-                <span> <?= $user['id'] ?> </span>
+        <div class="profile-details__content">
+            <div class="profile-details__item">
+                <span class="profile-details__label">ID:</span>
+                <span class="profile-details__value"><?= $user['id'] ?></span>
             </div>
 
-            <div>
-                <span class="column-name">Username :</span>
-                <span> <?= $user['username'] ?> </span>
+            <div class="profile-details__item">
+                <span class="profile-details__label">Username:</span>
+                <span class="profile-details__value"><?= $user['username'] ?></span>
             </div>
 
-            <div>
-                <span class="column-name">Email :</span>
-                <span> <?= $user['email'] ?> </span>
+            <div class="profile-details__item">
+                <span class="profile-details__label">Email:</span>
+                <span class="profile-details__value"><?= $user['email'] ?></span>
             </div>
 
-            <div>
-                <span class="column-name">Role :</span>
-                <span> <?= $user['user_type'] ?> </span>
+            <div class="profile-details__item">
+                <span class="profile-details__label">Role:</span>
+                <span class="profile-details__value"><?= $user['user_type'] ?></span>
             </div>
 
-            <?php if ($_SESSION['user']['user_type'] === 'boss') { ?>
+            <?php if ($_SESSION['user']['user_type'] === 'boss') : ?>
+                <div class="profile-details__item profile-details__actions">
+                    <span class="profile-details__label">Action:</span>
 
-                <div class="buttons">
-                    <span class="column-name">Action :</span>
-                    <a href=""><span>Delete</span></a>
+                    <a href="#" class="btn btn--link">Delete</a>
+
+                    <button
+                        type="button"
+                        class="btn btn--delete"
+                        data-modal-target="#del-modal"
+                        data-title="Delete this User?"
+                        data-message="This User will be permanently deleted!"
+                        data-form="delete-user-form">
+                        Delete
+                    </button>
+
                 </div>
-
-            <?php } ?>
-
+            <?php endif; ?>
         </div>
+    </section> -->
 
-    </div>
+
+
+    <section class="profile-details-card">
+
+        <h2 class="profile-details-card__title">Profile Details</h2>
+
+        <div class="profile-details-card__grid">
+            <!-- Info rows -->
+            <div class="profile-details-card__row">
+                <span class="label">ID</span>
+                <span class="value"><?= $user['id'] ?></span>
+            </div>
+
+            <div class="profile-details-card__row">
+                <span class="label">Username</span>
+                <span class="value"><?= $user['username'] ?></span>
+            </div>
+
+            <div class="profile-details-card__row">
+                <span class="label">Email</span>
+                <span class="value"><?= $user['email'] ?></span>
+            </div>
+
+            <div class="profile-details-card__row">
+                <span class="label">Role</span>
+                <span class="value"><?= $user['user_type'] ?></span>
+            </div>
+
+            <?php if ($_SESSION['user']['user_type'] === 'boss') : ?>
+                <div class="profile-details-card__row actions">
+                    <span class="label">Actions</span>
+                    <div class="value">
+
+                        <button
+                            type="button"
+                            class="btn btn--red"
+                            data-modal-target="#del-modal"
+                            data-title="Delete this User?"
+                            data-message="This User will be permanently deleted!"
+                            data-form="delete-user-form">
+                            Delete
+                        </button>
+
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+
 
 
 
@@ -74,15 +125,14 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                 <article class="post-card">
 
-                    <!-- Post Content -->
+
                     <section class="post-card__content">
 
-                        <!-- Post Image -->
                         <div class="post-card__image">
                             <img src="<?= 'assets/uploads/permanent/' . $post['post_image'] ?>" alt="Post image">
                         </div>
 
-                        <!-- Post Details -->
+
                         <div class="post-card__details">
 
                             <p><strong>Post ID:</strong> <span> <?= $post['id'] ?> </span></p>
@@ -108,11 +158,22 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                                 <span> <?= $post['post_description'] ?> </span>
                             </p>
 
-                            <!-- Action Buttons -->
                             <div class="post-card__actions">
                                 <a href="#" class="btn btn--preview">View Full Post</a>
-                                <a href="#" class="btn btn--edit">Edit</a>
                                 <a href="#" class="btn btn--delete">Delete</a>
+
+                                <button
+                                    type="button"
+                                    class="btn btn--delete"
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete this Post?"
+                                    data-message="This Post will be permanently deleted !"
+                                    data-form="delete-post-form">
+
+                                    Delete
+
+                                </button>
+
                             </div>
 
                         </div>
@@ -137,7 +198,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('profile', 'preview', [ 'id' => $user['id'] ,'page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('profile', 'preview', ['id' => $user['id'], 'page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -155,7 +216,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('profile', 'preview', ['id' => $user['id'] ,'page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('profile', 'preview', ['id' => $user['id'], 'page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -163,7 +224,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('profile', 'preview', ['id' => $user['id'] ,'page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('profile', 'preview', ['id' => $user['id'], 'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
@@ -186,6 +247,134 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
         </div>
 
     <?php endif ?>
+
+
+
+
+
+
+    <section class="posts-section">
+        <h2 class="section-title">Posts</h2>
+
+        <?php if (empty($posts)) : ?>
+
+            <div class="alert active"><span>No Posts Yet!</span></div>
+
+        <?php else : ?>
+
+            <div class="posts-grid">
+                <?php foreach ($posts as $post) : ?>
+                    <?php $tags = explode(',', $post['post_tags']) ?>
+                    <?php $date = new DateTime($post['created_at']) ?>
+
+                    <article class="post-card">
+                        <div class="post-card__image">
+                            <img src="<?= 'assets/uploads/permanent/' . $post['post_image'] ?>" alt="Post image">
+                        </div>
+
+                        <div class="post-card__body">
+                            <div class="post-card__info">
+                                <p><span class="label">Post ID:</span> <?= $post['id'] ?></p>
+                                <p><span class="label">Title:</span> <?= $post['post_title'] ?></p>
+                                <p><span class="label">Category:</span> <?= $post['category_name'] ?></p>
+                            </div>
+
+                            <div class="post-card__tags">
+                                <?php foreach ($tags as $tag) : ?>
+                                    <span class="tag"><i class="bx bxs-purchase-tag"></i><?= $tag ?></span>
+                                <?php endforeach; ?>
+                                <span class="tag"><i class="bx bxs-calendar"></i><?= $date->format('d-m-Y') ?></span>
+                                <span class="tag"><i class="bx bx-time"></i><?= $date->format('h:i:s A') ?></span>
+                            </div>
+
+                            <p class="post-card__desc"><?= $post['post_description'] ?></p>
+
+                            <div class="post-card__actions">
+                                <a href="#" class="btn btn--preview">View Full Post</a>
+
+                                <button
+                                    type="button"
+                                    class="btn btn--red"
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete this Post?"
+                                    data-message="This Post will be permanently deleted!"
+                                    data-form="delete-post-form">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+
+            </div>
+
+    </section>
+
+
+
+
+
+    <div class="pagination">
+
+        <div class="pagination__wrapper">
+
+            <div class="dummy__div">Hallo</div>
+
+            <div class="pagination__controls">
+
+                <ul>
+
+
+                    <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
+                        <a href="<?= url('profile', 'preview', ['id' => $user['id'], 'page' => max(1, $currentPage - 1)]) ?>">
+
+                            <i class='bx bx-chevron-left'></i>
+
+                        </a>
+                    </li>
+
+                    <?php foreach ($paginationPages as $page): ?>
+
+                        <?php if ($page === '...'): ?>
+
+                            <li>
+                                <p> <?= $page ?> </p>
+                            </li>
+
+                        <?php else: ?>
+
+                            <li class="<?= $page === $currentPage ? 'active' : '' ?>">
+                                <a href="<?= url('profile', 'preview', ['id' => $user['id'], 'page' => $page]) ?>"> <?= $page ?> </a>
+                            </li>
+
+                        <?php endif ?>
+
+                    <?php endforeach ?>
+
+                    <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
+                        <a href="<?= url('profile', 'preview', ['id' => $user['id'], 'page' => min($totalPages, $currentPage + 1)]) ?>">
+
+                            <i class='bx bx-chevron-right'></i>
+
+                        </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+            <div class="pagination__summary">
+
+                <p> Showing <?= $start ?> - <?= $end ?> of <?= $totalRecords ?> </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<?php endif; ?>
 
 
 </div>

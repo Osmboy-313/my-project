@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     const { openCloseModal } = await import('./modules/open-close-modal.js');
     const modalControls = openCloseModal();
 
+
+
+
+    if (c == 'profile') {
+        import('./modules/profile.js').then(module => module.profile());
+
+    }
+
     if (c == 'auth') {
         import('./modules/authentication.js').then(module => module.authentication());
 
@@ -270,6 +278,33 @@ document.addEventListener("DOMContentLoaded", async function () {
                 activateTab(index);
             });
         });
+
+        // RETURN loadTabContent, so we can use it to refresh the records !!
+        return loadTabContent;
+
+    }
+
+    function handleDynamicModalButton() {
+        const addBtn = document.querySelector('.add-code-btn');
+    
+        addBtn.addEventListener('click', () => {
+            const activeTab = document.querySelector('.tab.selected')?.dataset.tabTarget;
+    
+            // Set dynamic attributes based on active tab
+            if (activeTab === '#admin') {
+                addBtn.dataset.title = "Add Admin Code";
+                addBtn.dataset.label = "Admin Code";
+                addBtn.dataset.placeholder = "Enter admin code";
+                addBtn.dataset.form = "add-admin-form";
+            } else if (activeTab === '#boss') {
+                addBtn.dataset.title = "Add Boss Code";
+                addBtn.dataset.label = "Boss Code";
+                addBtn.dataset.placeholder = "Enter boss code";
+                addBtn.dataset.form = "add-boss-form";
+            }
+    
+            // Let the openCloseModal function do its magic
+        });
     }
     
     
@@ -278,7 +313,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     if (c == 'code' ) {
-        codeTabs();
+        handleDynamicModalButton();
+        const loadTabContent = codeTabs();
+        import('./modules/code.js').then(module => module.code(modalControls, loadTabContent));
     }
 
 

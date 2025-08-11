@@ -3,8 +3,6 @@
 
 <div class="main-content my-profile">
 
-    <!-- <span>Welcome <?php // echo $_SESSION['user']['user_type']?></span> -->
-
     <div class="profile">
 
         <div class="title1">Profile Details</div>

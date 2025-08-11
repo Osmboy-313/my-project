@@ -1,6 +1,20 @@
 <div class="title">
+    
     <span>Categories</span>
-    <button type="button" data-modal-target="#add-modal"><a href="" class="add-category"><span>Add Category</span></a></button>
+
+    <button
+        type="button"
+        data-modal-target="#add-modal"
+        data-title="Add Category"
+        data-label="Category"
+        data-placeholder="Enter Category"
+        data-form="add-category-form">
+
+        <a class="add-category"><span>Add Category</span></a>
+
+    </button>
+
+
 </div>
 
 <div class="main-content categories">
@@ -17,16 +31,8 @@
         </thead>
 
         <tbody>
-            <!-- <tr>
-                <td>1</td>
-                <td>Nothing</td>
-                <td class="action">
-                    <div class="buttons">
-                    <button type="button" data-modal-target="#edit-modal" class="edit-btn"><span>Edit</span></button>
-                    <button type="button" data-modal-target="#del-modal" class="del-btn"><span>Delete</span></button>
-                    </div>
-                </td>
-            </tr> -->
+
+
         </tbody>
 
     </table>

@@ -8,7 +8,8 @@ require_once __DIR__ .  '/../core/auth.php';
 function category_index()
 {
 
-    $modals = view('/categories/modals');
+    // $modals = view('/categories/modals');
+    $modals = view('/components/modals');
 
     echo view('/categories/index', ['title' => 'Category', 'modals' => $modals], 'private');
 }
@@ -19,7 +20,7 @@ function category_add()
 
     header('Content-Type: application/json');
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $data = json_decode(file_get_contents('php://input'), true);
         $response = [];

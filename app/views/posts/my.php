@@ -53,7 +53,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                             </div>
 
-                            <p><strong>Category:</strong> <span> <?= $post['post_category'] ?> </span></p>
+                            <p><strong>Category:</strong> <span> <?= $post['category_name'] ?> </span></p>
 
                             <p>
                                 <strong>Description:</strong>

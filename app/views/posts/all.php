@@ -71,9 +71,23 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                             <!-- Action Buttons -->
                             <div class="post-card__actions">
+
                                 <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>" class="btn btn--preview">View Full Post</a>
-                                <a href="#" class="btn btn--edit">Edit</a>
+
                                 <a href="#" class="btn btn--delete">Delete</a>
+
+                                <button
+                                    type="button"
+                                    class="btn btn--delete"
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete this Post?"
+                                    data-message="This Post will be permanently deleted !"
+                                    data-form="delete-post-form">
+
+                                    Delete
+
+                                </button>
+
                             </div>
 
                         </div>

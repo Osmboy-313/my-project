@@ -31,8 +31,32 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <td> <?= $adminCode['admin_code'] ?> </td>
                         <td>
                             <div class="buttons">
-                                <button type="button" data-modal-target="#edit-modal" class="edit-btn"><span>Edit</span></button>
-                                <button type="button" data-modal-target="#del-modal" class="del-btn"><span>Delete</span></button>
+
+                                <button
+                                    class="edit-btn"
+                                    data-modal-target="#edit-modal"
+                                    data-title="Edit Admin Code"
+                                    data-label="Admin Code"
+                                    data-placeholder="Enter admin code"
+                                    data-form="edit-admin-form"
+                                    data-id="<?= $adminCode['id'] ?>"
+                                    data-column="admin_code"
+                                    >
+                                    Edit
+                                </button>
+
+                                <button
+                                    class="del-btn"
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete Admin Code?"
+                                    data-message = "This Admin Code will be permanently deleted!"
+                                    data-form="delete-admin-form"
+                                    data-id="<?= $adminCode['id'] ?>"
+                                    data-column="admin_code"
+                                    >
+                                    Delete
+                                </button>
+
                             </div>
                         </td>
                     </tr>
@@ -55,7 +79,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('code', 'index', [ 'tab' => '#admin' ,'page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('code', 'index', ['tab' => '#admin', 'page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -73,7 +97,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('code', 'index', [ 'tab' => '#admin' ,'page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('code', 'index', ['tab' => '#admin', 'page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -81,7 +105,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('code', 'index', [ 'tab' => '#admin' ,'page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('code', 'index', ['tab' => '#admin', 'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
@@ -135,8 +159,32 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <td> <?= $bossCode['boss_code'] ?> </td>
                         <td>
                             <div class="buttons">
-                                <button type="button" data-modal-target="#edit-modal" class="edit-btn"><span>Edit</span></button>
-                                <button type="button" data-modal-target="#del-modal" class="del-btn"><span>Delete</span></button>
+
+                            <button
+                                    class="edit-btn"
+                                    data-modal-target="#edit-modal"
+                                    data-title="Edit Boss Code"
+                                    data-label="Boss Code"
+                                    data-placeholder="Enter boss code"
+                                    data-form="edit-boss-form"
+                                    data-id="<?= $bossCode['id'] ?>"
+                                    data-column="boss_code"
+                                    >
+                                    Edit
+                                </button>
+
+                                <button
+                                    class="del-btn"
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete Boss Code?"
+                                    data-message = "This Boss Code will be permanently deleted!"
+                                    data-form="delete-boss-form"
+                                    data-id="<?= $bossCode['id'] ?>"
+                                    data-column="boss_code"
+                                    >
+                                    Delete
+                                </button>
+
                             </div>
                         </td>
                     </tr>
@@ -159,7 +207,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 
                         <li class="<?= $currentPage === 1 ? 'disabled' : '' ?>">
-                            <a href="<?= url('code', 'index', [ 'tab' => '#boss' ,'page' => max(1, $currentPage - 1)]) ?>">
+                            <a href="<?= url('code', 'index', ['tab' => '#boss', 'page' => max(1, $currentPage - 1)]) ?>">
 
                                 <i class='bx bx-chevron-left'></i>
 
@@ -177,7 +225,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <?php else: ?>
 
                                 <li class="<?= $page === $currentPage ? 'active' : '' ?>">
-                                    <a href="<?= url('code', 'index', [ 'tab' => '#boss' ,'page' => $page]) ?>"> <?= $page ?> </a>
+                                    <a href="<?= url('code', 'index', ['tab' => '#boss', 'page' => $page]) ?>"> <?= $page ?> </a>
                                 </li>
 
                             <?php endif ?>
@@ -185,7 +233,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('code', 'index', [ 'tab' => '#boss' ,'page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a href="<?= url('code', 'index', ['tab' => '#boss', 'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 

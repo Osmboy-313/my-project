@@ -59,7 +59,7 @@ function post_all(){
     $end = $offset + $recordsPerPage;
     $end = min($end, $totalRecords);
 
-    $modal = view('/posts/modals');
+    $modal = view('/components/modals');
     echo view('/posts/all', [
         'title' => 'All Posts',
         'modals' => $modal,

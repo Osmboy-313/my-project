@@ -16,6 +16,24 @@ function fetch_codes()
     }
 }
 
+function addCode($codeColumn, $code){
+    $conn = db();
+    $sql = $conn->prepare("INSERT INTO `codes`($codeColumn) VALUES (?)");
+    $sql->bind_param('s', $code);
+    
+
+    return $sql->execute();
+}
+
+function updateCode($id, $code, $column){
+    $conn = db();
+    $sql = $conn->prepare("UPDATE `codes` SET $column = ? WHERE id = ? ");
+    $sql->bind_param('si', $code, $id);
+    
+
+    return $sql->execute();
+}
+
 function getAdmincodes($recordsPerPage, $offset)
 {
     $conn = db();
@@ -54,3 +72,38 @@ function countBossCodes()
 }
 
 
+function doesCodeExist($codeColumn, $code, $idToExclude = 0)
+{
+    $allowedColumns = ['admin_code', 'boss_code']; // whitelist columns
+    if (!in_array($codeColumn, $allowedColumns)) {
+        throw new Exception("Invalid column name.");
+    }
+
+    $conn = db();
+    
+    $sql = $conn->prepare("SELECT id, $codeColumn FROM codes WHERE $codeColumn IS NOT NULL AND $codeColumn = ? AND id != ?");
+
+    $sql->bind_param('si', $code, $idToExclude);
+    $sql->execute();
+    $result = $sql->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function getCodeById($id, $column){
+    $conn = db();
+    $sql = $conn->prepare("SELECT id,$column FROM codes WHERE id = ? ");
+    $sql->bind_param('i',$id);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_assoc();
+}
+
+function deleteCode($id, $column){
+    $conn = db();
+
+    $sql = $conn->prepare("DELETE FROM `codes` WHERE id = ?");
+    $sql->bind_param('i',$id);
+
+    return $sql->execute();;
+}
