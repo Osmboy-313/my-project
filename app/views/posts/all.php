@@ -37,12 +37,10 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                     <!-- Post Content -->
                     <section class="post-card__content">
 
-                        <!-- Post Image -->
                         <div class="post-card__image">
                             <img src="<?= 'assets/uploads/permanent/' . $post['post_image'] ?>" alt="Post image">
                         </div>
 
-                        <!-- Post Details -->
                         <div class="post-card__details">
 
                             <p><strong>Post ID:</strong> <span> <?= $post['id'] ?> </span></p>
@@ -74,15 +72,18 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                                 <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>" class="btn btn--preview">View Full Post</a>
 
-                                <a href="#" class="btn btn--delete">Delete</a>
-
                                 <button
                                     type="button"
                                     class="btn btn--delete"
                                     data-modal-target="#del-modal"
                                     data-title="Delete this Post?"
                                     data-message="This Post will be permanently deleted !"
-                                    data-form="delete-post-form">
+                                    data-form="delete-post-form"
+                                    data-form-action="index.php?c=post&a=delete"
+                                    data-delete-input= "delete-post"
+                                    data-delete-id= "<?= $post['id'] ?>"
+                                    data-redirect="<?= '?' . $_SERVER['QUERY_STRING'] ?>"
+                                    >
 
                                     Delete
 

@@ -144,5 +144,62 @@ function getUserById($id){
     return $result->fetch_assoc();
 }
 
+function updateUser($id, $fields) {
+    $conn = db();
+
+    if (empty($fields)) {
+        return false;
+    }
+
+    $allowed = ['username', 'email', 'user_type', 'password', 'profile_picture'];
+    $set = [];
+    $values = [];
+
+    foreach ($fields as $key => $value) {
+        if (!in_array($key, $allowed)) continue;
+
+        // Special handling for password
+        if ($key === 'password') {
+            $value = password_hash($value, PASSWORD_DEFAULT);
+        }
+
+        $set[] = "`$key` = ?";
+        $values[] = $value;
+    }
+
+    if (empty($set)) return false;
+
+    $sql = "UPDATE users SET " . implode(', ', $set) . " WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+
+    $types = str_repeat('s', count($values)) . 'i';
+    $values[] = $id;
+
+    $stmt->bind_param($types, ...$values);
+    return $stmt->execute();
+}
+
+function deleteUser($id) {
+    $conn = db();
+
+    $sql = $conn->prepare("DELETE FROM `users` WHERE id = ?");
+    $sql->bind_param('i', $id);
+    
+
+    return $sql->execute();
+}
+
+function doesUserExists($column, $value, $idToExclude = 0){
+
+    $conn = db();
+    $sql = $conn->prepare("SELECT * FROM `users` WHERE `$column` = ? AND id != ? ");
+    $sql->bind_param('si', $value, $idToExclude);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+
 
 ?>

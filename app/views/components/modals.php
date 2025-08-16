@@ -28,7 +28,7 @@
 
                 <div class="modal__alert-symbol">
 
-                    <i class='bx bx-check' ></i>
+                    <i class='bx bx-check'></i>
 
                 </div>
 
@@ -38,13 +38,13 @@
                 </div>
 
                 <div class="modal__close-btn">
-                    <i class='bx bx-x' ></i>
+                    <i class='bx bx-x'></i>
                 </div>
 
             </div>
 
 
-            <form action="" class="modal__form" id="">
+            <form action="" class="modal__form" method="post" id="">
 
                 <div class="modal__input-box">
                     <label for="name">Name</label>
@@ -96,7 +96,7 @@
 
                 <div class="modal__alert-symbol">
 
-                    <i class='bx bx-check' ></i>
+                    <i class='bx bx-check'></i>
 
                 </div>
 
@@ -106,12 +106,12 @@
                 </div>
 
                 <div class="modal__close-btn">
-                    <i class='bx bx-x' ></i>
+                    <i class='bx bx-x'></i>
                 </div>
 
             </div>
 
-            <form action="" class="modal__form" id="">
+            <form action="" class="modal__form" method="post" id="">
 
                 <div class="modal__input-box">
                     <label for="name">Name</label>
@@ -158,7 +158,12 @@
                 <p class="modal__message-text">This will be permanently deleted</p>
             </div>
 
-            <form action="" class="modal__form " id="">
+            <form action="" class="modal__form " method="post" id="">
+
+                <div class="modal__input-box">
+                    <input type="hidden" class="id-field" name="delete-id">
+                    <input type="hidden" class="url-field" name="redirect">
+                </div>
 
                 <div class="modal__actions">
                     <input type="submit" class="modal__submit-btn delete-btn" value="Delete">

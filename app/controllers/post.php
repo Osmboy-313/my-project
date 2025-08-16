@@ -9,6 +9,8 @@ define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024);        // 10MB
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);
 
 function post_index(){
+    // 🔐 Check if user is logged in
+    auth_require_login();
 
     $recordsPerPage = 3;
 
@@ -26,7 +28,7 @@ function post_index(){
     $end = $offset + $recordsPerPage;
     $end = min($end, $totalRecords);
 
-    $modal = view('/posts/modals');
+    $modal = view('/components/modals');
     echo view('/posts/my', [
         'title' => 'My Posts',
         'modals' => $modal,
@@ -41,6 +43,8 @@ function post_index(){
 }
 
 function post_all(){
+    // 🔐 Check if user is logged in and is admin or boss
+    auth_require_user_type(['admin', 'boss']);
 
     $recordsPerPage = 3;
 
@@ -195,6 +199,8 @@ function post_addd()
 
 function post_add()
 {
+    // 🔐 Check if user is logged in
+    auth_require_login();
 
     $errors = $_SESSION['errors'] ?? [];
     $oldValues = $_SESSION['old-form'] ?? [];
@@ -309,6 +315,8 @@ function post_add()
 
 function post_edit()
 {
+    // 🔐 Check if user is logged in
+    auth_require_login();
 
     $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
     $Userpost = getPostById($id);
@@ -474,6 +482,65 @@ function post_edit()
     }
 
 }
+
+// function post_delete(){
+
+//     if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+
+//         $id = trim($_POST['id']);
+//         $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : '?c=post&a=index';
+
+//         $post = getPostById($id);
+//         $filename = 'assets/uploads/permanent/'. $post['post_image'];
+
+//         // $deletePost = true;
+
+//         if (file_exists($filename)) {
+//             unlink($filename);
+
+//             $deletePost = deletePost( $id );
+
+//             if($deletePost){
+//                 if (preg_match('/^\?c=post&a=(index|all|userPosts)(&page=\d+)?$/', $redirect)) {
+//                     header("Location: $redirect");
+//                 }                
+//             }
+
+//         }
+
+//     }
+
+// }
+
+function post_delete() {
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $id = trim($_POST['delete-id']);
+        $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : '?c=post&a=index';
+
+        $post = getPostById($id);
+
+        $safeImage = basename($post['post_image']);
+        $filename = 'assets/uploads/permanent/' . $safeImage;
+
+        if (file_exists($filename)) {
+            unlink($filename);
+        }
+
+        $deletePost = deletePost($id);
+
+        if ($deletePost) {
+            // if (preg_match('/^\?c=post&a=(index|all|userPosts)(&page=\d+)?$/', $redirect))
+            if (preg_match('/^\?(c=post&a=(index|all)|c=profile&a=preview(&id=\d+)?)(&page=\d+)?$/', $redirect)) {
+                header("Location: $redirect");
+                exit;
+            }
+        }
+
+    }
+}
+
 
 // ==================================== Remove Session + temp file if user select another picture ======================================
 

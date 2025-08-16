@@ -156,9 +156,15 @@ export function code(modalControls, loadTabContent) {
             const form = e.target;
             const formId = form.id;
 
+            if (!formId || typeof formId !== 'string') {
+                console.warn('[Submit] Ignoring form with no valid ID:', form);
+                return;
+            }
+
             console.log('Form Id in setupFormHandlers Function : ', formId);
 
             let columnName = '';
+
 
             if (formId.includes('admin')) {
                 columnName = 'admin_code';
@@ -227,6 +233,7 @@ export function code(modalControls, loadTabContent) {
             const formId = form.id;
 
             let columnName = '';
+
 
             if (formId.includes('admin')) {
                 columnName = 'admin_code';

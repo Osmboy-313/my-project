@@ -71,7 +71,22 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                                     Edit
                                 </a>
 
-                                <a href="#" class="btn btn--delete">Delete</a>
+                                <button
+                                    type="button"
+                                    class="btn btn--delete"
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete this Post?"
+                                    data-message="This Post will be permanently deleted !"
+                                    data-form="delete-post-form"
+                                    data-form-action="index.php?c=post&a=delete"
+                                    data-delete-input = "delete-post"
+                                    data-delete-id= "<?= $post['id'] ?>"
+                                    data-redirect="<?= '?' . $_SERVER['QUERY_STRING'] ?>"
+                                    >
+
+                                    Delete
+
+                                </button>
 
                             </div>
 

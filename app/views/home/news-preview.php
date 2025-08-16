@@ -20,10 +20,8 @@ $dateAndTime = new DateTime($post['created_at']);
             <form action="">
 
                 <div class="news-search__input-box">
-                    <input type="text" name="search" class="search-input" placeholder="Search News">
-                    <!-- <button type="submit" class="search-btn" > <i class='bx bx-search-alt' ></i> </button> -->
+                    <input type="text" name="search" class="search-input" placeholder="Search Posts">
                     <i class='bx bx-search'></i>
-                    <!-- <i class='bx bx-search-alt' ></i> -->
                     <i class='bx bx-x right-icon'></i>
                 </div>
 
@@ -65,6 +63,10 @@ $dateAndTime = new DateTime($post['created_at']);
     <div class="news-page__list">
 
         <div class="news-page__heading--list">Recent Posts</div>
+
+        <?php if(empty($latestPosts)) : ?>
+            <div class="alert active">No Other Posts to Show</div>
+        <?php endif ?>
 
         <div class="news-page__list">
 

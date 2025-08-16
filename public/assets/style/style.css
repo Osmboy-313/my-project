@@ -44,6 +44,76 @@ body {
 
 }
 
+
+/*** ===========---------------------=========== Alerts ===========---------------------===========   ***/
+/* Alerts can be anywhere !! so no class chaining for them !! */
+
+
+.alert {
+    width: 99%;
+    height: 50px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 2px solid transparent;
+    background-color: #d1ecf1;
+    display: none;
+    position: relative;
+    user-select: none;
+}
+
+.alert i{
+    font-size: 1.2rem;
+    color: #09414a;
+    cursor: pointer;
+}
+
+.alert.hidden{
+    display: none;
+}
+
+.alert.active {
+    background-color: #d1ecf1;
+    border-color: #a2dae3;
+    color: #09414a;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert.warning {
+    width: 100%;
+    background-color: #FFEEBB;
+    border-color: #E4D191;
+    color: #B1A169;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert.success {
+    width: 100%;
+    background-color: #d1ecf1;
+    border-color: #a2dae3;
+    color: #09414a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert.failure {
+    width: 100%;
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+    color: #58151C;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+
 /*** ===========---------------------=========== Home Pages ===========---------------------===========   ***/
 
 .container {
@@ -358,20 +428,15 @@ body {
 
 
 .container .content .news-page .news-search .news-search__field form .news-search__input-box .search-btn {
-    height: 30px;
-    width: 60px;
-    max-width: 120px;
-    font-size: 1rem;
     background-color: transparent;
-    border-radius: 0 50px 50px 0;
-    border: 2px solid var(--Theme-color);
-    color: var(--Theme-color);
+    border: none;
     cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
 .container .content .news-page .news-search .news-search__field form .search-btn:hover {
-    background-color: var(--Theme-color);
-    color: #FFF;
+    color: var(--Theme-color);
 }
 
 /* Second Design For Search with Icons */
@@ -383,6 +448,7 @@ body {
 .container .content .news-page .news-search .news-search__field form .news-search__input-box i {
     position: absolute;
     font-size: 1.5rem;
+    cursor: pointer;
     color: #888;
     top: 50%;
     left: 20px;
@@ -1103,6 +1169,13 @@ body {
     cursor: pointer;
 }
 
+.container.container__private .main-layout .header .header__dropdown img{
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .container.container__private .main-layout .header .header__dropdown span {
     font-weight: 600;
     user-select: none;
@@ -1285,6 +1358,18 @@ body {
     border: 2px solid transparent;
     background-color: #d1ecf1;
     display: none;
+    position: relative;
+    user-select: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .alert i{
+    font-size: 1.2rem;
+    color: #09414a;
+    cursor: pointer;
+}
+
+.container.container__private .main-layout .content .content-card .main-content .alert.hidden{
+    display: none;
 }
 
 .container.container__private .main-layout .content .content-card .main-content .alert.active {
@@ -1294,35 +1379,39 @@ body {
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .container.container__private .main-layout .content .content-card .main-content .alert.warning {
-    width: 40%;
+    width: 100%;
     background-color: #FFEEBB;
     border-color: #E4D191;
     color: #B1A169;
     display: flex;
     align-items: center;
-    margin: 10px 0 -20px;
+    justify-content: space-between;
+    /* margin: 10px 0 -20px; */
 }
 
 .container.container__private .main-layout .content .content-card .main-content .alert.success {
-    width: 40%;
+    width: 100%;
     background-color: #d1ecf1;
     border-color: #a2dae3;
     color: #09414a;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 10px 0 -20px;
 }
 
 .container.container__private .main-layout .content .content-card .main-content .alert.failure {
-    width: 40%;
+    width: 100%;
     background-color: #f8d7da;
     border-color: #f1aeb5;
     color: #58151C;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 0;
 }
 
@@ -1377,26 +1466,6 @@ body {
     object-fit: cover;
 }
 
-.container.container__private .main-layout .content .content-card .main-content table tbody tr a {
-    height: 25px;
-    width: 100px;
-    text-decoration: none;
-    background-color: transparent;
-    font-size: 0.9rem;
-    color: var(--Theme-color);
-    border: 2px solid var(--Theme-color);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container.container__private .main-layout .content .content-card .main-content table tbody tr a:hover {
-    background-color: var(--Theme-color);
-    color: #FFF;
-    font-weight: 600;
-}
-
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons {
     display: flex;
     width: fit-content;
@@ -1405,7 +1474,7 @@ body {
 
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button,
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a {
-    height: 25px;
+    /* height: 25px;
     width: 80px;
     text-decoration: none;
     background-color: transparent;
@@ -1415,20 +1484,43 @@ body {
     border-radius: 3px;
     display: flex;
     align-items: center;
+    justify-content: center; */
+
+    font-family: 'Poppins', sans-serif;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+    color: var(--secondary-color);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button.del-btn,
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a.del-btn {
-    color: red;
-    border-color: red;
+    /* color: red;
+    border-color: red; */
+
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+
 }
 
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button:hover,
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons a:hover {
-    background-color: var(--Theme-color);
+    /* background-color: var(--Theme-color);
     color: #FFF;
-    font-weight: 600;
+    font-weight: 600; */
+
+    background: var(--secondary-color);
+    color: #fff;
+    transform: scale(1.05);
+
 }
 
 .container.container__private .main-layout .content .content-card .main-content table tbody tr .buttons button.del-btn:hover,
@@ -1438,187 +1530,266 @@ body {
     font-weight: 600;
 }
 
-/*** __________________________________________ Post List __________________________________________ ***/
 
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post {
+
+
+
+
+
+
+/*** =================== Generic Table Styles =================== ***/
+
+.custom-table {
     width: 100%;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #dddddd;
-    padding: 1rem 1rem 1rem 3rem;
+    margin: 1rem 0;
+    border-collapse: collapse;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+    overflow: hidden;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post:hover {
-    background-color: #f3f0f0;
+.custom-table.de-active {
+    display: none;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post:last-of-type {
-    border: none;
-}
+/*** ------------------- Table Head ------------------- ***/
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    gap: 10px;
-    padding-right: 10px;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user div {
-    flex-shrink: 0;
-    flex-grow: 0;
-    flex-wrap: wrap;
-    display: flex;
-    gap: 3px;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user div span.column-name {
+.custom-table thead {
+    background-color: var(--Theme-color);
+    color: #fff;
     font-weight: 600;
-    align-self: flex-start;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user div span.column-data {
-    display: inline-block;
-    width: 140px;
+.custom-table th,
+.custom-table td {
+    padding: 0.8rem 1.2rem;
     word-wrap: break-word;
+    text-align: left;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user a {
-    height: 25px;
-    width: 120px;
+.custom-table thead th.action {
+    width: 220px;
+}
+
+/*** ------------------- Table Body ------------------- ***/
+
+.custom-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-table tbody tr:last-of-type {
+    border-bottom: 4px solid var(--Theme-color);
+}
+
+/*** ------------------- Action Buttons ------------------- ***/
+
+.custom-table .table-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.custom-table .table-actions button,
+.custom-table .table-actions a {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+    color: var(--secondary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    background-color: transparent;
-    border: 2px solid var(--Theme-color);
-    color: var(--Theme-color);
-    border-radius: 3px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .associated-user a:hover {
-    background-color: var(--Theme-color);
-    color: #FFF;
+.custom-table .table-actions .del-btn {
+    color: var(--danger-color);
+    border-color: var(--danger-color);
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post {
-    display: flex;
-    align-items: stretch;
-    gap: 20px;
-    border-left: 2px solid #dddddd;
-    padding-left: 2.5rem;
+.custom-table .table-actions button:hover,
+.custom-table .table-actions a:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+    transform: scale(1.05);
 }
 
-/* .container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image {
-    width: 300px;
-    max-height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgb(211, 207, 207);
-    border-radius: 2px;
-
-    height: auto;
-    flex: 0 0 auto;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image:hover {
-    border-color: var(--Theme-color);
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image img {
-    display: block;
-    height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 2px;
-} */
-
-
-
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image {
-    width: 300px;
-    height: 180px;
-    flex-shrink: 0;
-    border: 3px solid rgb(211, 207, 207);
-    border-radius: 3px;
-    transition: all 0.5s ease;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image img {
-
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post .post-image:hover{
-    border-color: var(--Theme-color);
-}
-
-
-
-
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 1;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content div {
-    display: flex;
-    margin-bottom: 10px;
-    gap: 5px;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content div span.column-name {
-    flex-shrink: 0;
+.custom-table .table-actions .del-btn:hover {
+    background-color: var(--danger-color);
+    color: #fff;
     font-weight: 600;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons {
-    margin: 0;
+/*** ------------------- Responsive Table (Optional) ------------------- ***/
+
+/*
+@media (max-width: 768px) {
+    .custom-table thead {
+        display: none;
+    }
+
+    .custom-table, .custom-table tbody, .custom-table tr, .custom-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .custom-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .custom-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 1rem;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+*/
+
+
+
+
+
+
+/* ================================
+   Modern Stylish Table
+================================== */
+
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    margin: 2rem 0;
+    transition: all 0.3s ease;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a {
-    height: 25px;
-    width: 90px;
-    text-decoration: none;
-    background-color: transparent;
-    border: 2px solid var(--Theme-color);
-    color: var(--Theme-color);
-    border-radius: 3px;
+.custom-table.styled-table thead {
+    background: linear-gradient(135deg, var(--Theme-color), #5a4bda);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
 
+.custom-table th,
+.custom-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.custom-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+.custom-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.custom-table tbody tr {
+    transition: background 0.25s ease;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f6f9fc;
+}
+
+.custom-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ================================
+   Actions Area
+================================== */
+
+.table-actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Generic Button Style */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 0.4rem;
+    background-color: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a.preview-btn {
-    width: 150px;
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a.del-btn {
-    border-color: red;
-    color: red;
+/* Specific Styles */
+.edit-btn {
+    background-color: var(--secondary-color);
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a:hover {
-    background-color: var(--Theme-color);
-    color: #FFF;
+.del-btn {
+    background-color: var(--danger-color);
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .actual-post .post-content .buttons a.del-btn:hover {
-    background-color: red;
-    color: #FFF;
+.edit-btn:hover {
+    background-color: #4c7ef3;
+}
+
+.del-btn:hover {
+    background-color: #e74c3c;
+}
+
+/* ================================
+   Responsive Table Buttons
+================================== */
+
+@media (max-width: 600px) {
+    .table-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 
@@ -1626,7 +1797,12 @@ body {
 
 
 
-/*** __________________________________________ Post List New __________________________________________ ***/
+
+
+
+
+
+/*** __________________________________________ Post List __________________________________________ ***/
      
 
 .container.container__private .main-layout .content .content-card .main-content .post-container .post-card {
@@ -2410,15 +2586,19 @@ body {
 
    /* Buttons */
 .btn {
-    display: inline-flex;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 2px solid var(--danger-color);
+    background: transparent;
+    color: var(--danger-color);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .btn--outline-red {
@@ -2438,8 +2618,10 @@ body {
     border: none;
 }
 
-.btn--red:hover {
-    background: darkred;
+.btn:hover {
+    background: var(--danger-color);
+    color: #fff;
+    transform: scale(1.05);
 }
 
 
@@ -2510,9 +2692,29 @@ body {
     border-color: red;
 }
 
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box.error .select-wrapper select {
+    border-color: red;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box.error input:focus {
+    border-color: #DC3545;
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box.error .select-wrapper select:focus {
+    border-color: #DC3545;
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, 0.25);
+}
+
 .container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box span {
+    display: none;
+}
+
+.container.container__private .main-layout .content .content-card .main-content.my-profile .profile form .input-box.error span {
+    display: block;
     color: red;
     font-size: 0.8rem;
+    margin-top: 3px;
     margin-left: 5px;
 }
 
@@ -2667,8 +2869,6 @@ body {
 .container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .input-box .custom-file-upload span {
     user-select: none;
 }
-
-/* submit */
 
 .container.container__private .main-layout .content .content-card .main-content.my-profile .profile-picture form .submit-btn {
     height: 30px;
@@ -3062,29 +3262,36 @@ body {
 
 
 /* ==================== POST CONTAINER ==================== */
-.post-container {
-    margin-top: 2rem;
-    padding: 0 1.5rem;
-}
 
-.post-title {
+.section-title{
     text-align: center;
     font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: var(--text-color);
     font-family: 'Poppins', sans-serif;
 }
 
+
+.container.container__private .main-layout .content .content-card .main-content .posts-section {
+    margin-top: 1rem;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 /* ==================== GRID LAYOUT ==================== */
-.posts-grid {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 2rem;
+    padding: 0 1rem;
 }
 
 /* ==================== POST CARD ==================== */
-.post-card {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card {
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
@@ -3095,32 +3302,32 @@ body {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.post-card:hover {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
 /* ==================== IMAGE ==================== */
-.post-card__image {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__image {
     width: 100%;
     height: 200px;
     overflow: hidden;
     border-bottom: 1px solid #e5e7eb;
 }
 
-.post-card__image img {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
 }
 
-.post-card__image:hover img {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__image:hover img {
     transform: scale(1.05);
 }
 
 /* ==================== BODY ==================== */
-.post-card__body {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body {
     padding: 1.2rem 1.4rem;
     display: flex;
     flex-direction: column;
@@ -3129,7 +3336,7 @@ body {
 }
 
 /* Title */
-.post-card__info .title {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__info .title {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-color);
@@ -3137,26 +3344,26 @@ body {
 }
 
 /* Metadata (ID, category, date) */
-.post-card__info p {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__info p {
     font-size: 0.9rem;
     color: #6b7280;
     margin: 0.2rem 0;
 }
 
-.post-card__info .label {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__info .label {
     font-weight: 600;
     color: #4b5563;
     margin-right: 0.5rem;
 }
 
 /* Tags */
-.post-card__tags {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
 
-.tag {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .tag {
     background: #f0fdf4;
     color: #10b981;
     padding: 0.3rem 0.65rem;
@@ -3168,7 +3375,7 @@ body {
 }
 
 /* Description */
-.post-card__desc {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__desc {
     font-size: 0.92rem;
     color: #4b5563;
     line-height: 1.6;
@@ -3180,14 +3387,14 @@ body {
 }
 
 /* ==================== ACTIONS ==================== */
-.post-card__actions {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.6rem;
     margin-top: auto;
 }
 
-.btn {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__actions .btn {
     font-family: 'Poppins', sans-serif;
     padding: 0.45rem 1rem;
     font-size: 0.85rem;
@@ -3203,24 +3410,26 @@ body {
     justify-content: center;
 }
 
-.btn:hover {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__actions .btn:hover {
     background: var(--secondary-color);
     color: #fff;
     transform: scale(1.05);
 }
 
-.btn--delete {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__actions .btn--delete {
     border-color: var(--danger-color);
     color: var(--danger-color);
 }
 
-.btn--delete:hover {
+.container.container__private .main-layout .content .content-card .main-content .posts-section .posts-grid .post-card .post-card__body .post-card__actions .btn--delete:hover {
     background-color: var(--danger-color);
     color: #fff;
 }
 
 /* ==================== USER DETAILS (for Admin/Boss) ==================== */
-.post-card.show-user-details {
+
+
+/* .post-card.show-user-details {
     flex-direction: row;
 }
 
@@ -3262,200 +3471,75 @@ body {
     background: var(--danger-color);
     color: #fff;
     transform: scale(1.05);
-}
+} */
 
 
-
-
-/*** ===========---------------------=========== Deepseek Design 1 ===========---------------------=========== ***/
-
-
-/*** __________________________________________ Post Cards - Fixed Layout __________________________________________ ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    padding: 1rem;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
+/* 🔍 NEW: Search Results Info */
+.search-results-info {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-/*** ****************************************** Image Section ****************************************** ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__image {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card:hover .post-card__image img {
-    transform: scale(1.03);
-}
-
-/*** ****************************************** Content Section ****************************************** ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__content {
-    padding: 1.2rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/*** ****************************************** User Info ****************************************** ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user {
-    margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid #eee;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user p {
-    margin: 0.3rem 0;
-    font-size: 0.95rem;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user strong {
-    min-width: 80px;
-    color: #555;
-    font-weight: 600;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__user a.view-profile-link {
-    display: inline-block;
-    margin-top: 0.8rem;
-    padding: 0.4rem 1rem;
-    font-size: 0.85rem;
-}
-
-/*** ****************************************** Post Details ****************************************** ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details {
-    flex: 1;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details p {
-    margin: 0.5rem 0;
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.5;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__details strong {
-    color: #555;
-    font-weight: 600;
-}
-
-/*** ****************************************** Tags Section ****************************************** ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    padding: 1rem;
     margin: 1rem 0;
+    text-align: center;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__tags .tag {
-    background: #f2f2f2;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    color: #555;
+.search-results-info p {
+    margin: 0.5rem 0;
+    color: #1976d2;
+    font-weight: 500;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__tags .tag i {
-    margin-right: 0.3rem;
-    font-size: 0.9rem;
-    color: #777;
+.search-results-info p:first-child {
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
-/*** ****************************************** Actions Section ****************************************** ***/
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
+/* 🔍 NEW: No Posts Message */
+.no-posts-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin: 2rem 0;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn {
-    height: 34px;
-    min-width: 80px;
-    padding: 0 1rem;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.no-posts-message p {
+    margin: 0.5rem 0;
+    color: #666;
+    font-size: 1.1rem;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn i {
-    margin-right: 0.3rem;
+.no-posts-message p:first-child {
+    font-weight: 600;
+    color: #333;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--preview {
-    background-color: var(--Theme-color);
-    color: white;
-    border: 2px solid var(--Theme-color);
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--edit {
-    background-color: transparent;
-    border: 2px solid var(--Theme-color);
+.no-posts-message a {
     color: var(--Theme-color);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--delete {
-    background-color: transparent;
-    border: 2px solid #dc3545;
-    color: #dc3545;
+.no-posts-message a:hover {
+    text-decoration: underline;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* 🔍 NEW: Clear Search Button */
+.clear-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--preview:hover {
-    background-color: #1a4b8c;
-    border-color: #1a4b8c;
+.clear-search:hover {
+    color: #666;
 }
 
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--edit:hover {
-    background-color: var(--Theme-color);
-    color: white;
-}
-
-.container.container__private .main-layout .content .content-card .main-content .post-container .post-card .post-card__actions .btn.btn--delete:hover {
-    background-color: #dc3545;
-    color: white;
-}

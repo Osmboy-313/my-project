@@ -3,15 +3,19 @@
 
 <div class="main-content my-profile">
 
+    
     <div class="profile">
+    
+        <div class="alert"> <span>Something is done!</span> <i class='bx bx-x'></i> </div>
 
         <div class="title1">Profile Details</div>
 
-        <form action="" class="update-details">
+        <form action="" class="update-details" id="update-details" >
 
             <div class="input-box">
                 <label for="">Username</label>
                 <input type="text" name="" id="username" placeholder="Enter your username">
+
                 <span class="error-box">Enter your username</span>
 
             </div>
@@ -19,7 +23,9 @@
             <div class="input-box" >
                 <label for="">Email</label>
                 <input type="email" name="" id="email" placeholder="Enter your email">
+
                 <span class="error-box"></span>
+
             </div>
 
             <input type="submit" value="Update Details" class="submit-btn">
@@ -29,7 +35,7 @@
 
         <div class="title2">Role</div>
 
-            <form action="" class="update-details" id="role-update-form" >
+            <form action="" class="update-role" id="update-role" >
 
                 <div class="input-box">
                 
@@ -62,25 +68,25 @@
 
         <div class="title2">Password</div>
 
-        <form action="" class="update-pass" >
+        <form action="" class="update-password" id="update-password" >
 
             <div class="input-box current-pass">
-                <label for="">Current Password</label>
-                <input type="password" name="" id="" placeholder="Enter your current password">
+                <label for="password">Current Password</label>
+                <input type="password" id="current-password" placeholder="Enter your current password">
                 <span class="error-box"></span>
 
             </div>
 
             <div class="input-box" >
-                <label for="">New Password</label>
-                <input type="password" name="" id="" placeholder="Enter your new password">
+                <label for="password">New Password</label>
+                <input type="password" id="password" placeholder="Enter your new password">
                 <span class="error-box"></span>
 
             </div>
 
             <div class="input-box" >
-                <label for="">Confirm Password</label>
-                <input type="password" name="" id="" placeholder="Confirm new password">
+                <label for="password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm new password">
                 <span class="error-box"></span>
 
             </div>
@@ -92,13 +98,13 @@
 
     </div>
 
-    <div class="profile-picture">
+    <!-- <div class="profile-picture">
 
         <div class="title">Profile Details</div>
 
-        <img src="../images/wallpaperflare.com_wallpaper(1).jpg" alt="">
+        <img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt="">
         
-        <form action="">
+        <form action="" class="update-picture" id="update-picture" >
 
             <div class="input-box" >
                 <label for="Post Picture">Post Picture</label>
@@ -113,7 +119,7 @@
 
         </form>
 
-    </div>
+    </div> -->
 
 
 </div>

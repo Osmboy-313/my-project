@@ -16,12 +16,13 @@ $statusMsg = $status[$statusClass];
 
 <div class="main-content add-edit-post">
 
-    <div class="alert <?= htmlspecialchars($statusClass) ?>">
-        <span> <?= htmlspecialchars($statusMsg) ?> </span>
-    </div>
-
+    
     <form action="?c=post&a=add" method='POST' enctype="multipart/form-data" >
-
+        
+        <div class="alert <?= htmlspecialchars($statusClass) ?>">
+            <span> <?= htmlspecialchars($statusMsg) ?> </span>
+        </div>
+        
         <div class="title"><span>Add Post</span></div>
 
         <div class="input-box <?= $errorClass('title')?>">

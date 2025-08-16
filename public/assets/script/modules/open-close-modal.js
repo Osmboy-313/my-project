@@ -113,6 +113,43 @@ export function openCloseModal() {
                 if (form) form.id = openBtn.dataset.form;
             }
 
+            if (openBtn.dataset.formAction) {
+                const form = modal.querySelector('form');
+                if (form) form.action = openBtn.dataset.formAction;
+            }
+
+            if (openBtn.dataset.input) {
+                const input = modal.querySelector('input[type=text]');
+                if (input){
+                    input.classList.add(openBtn.dataset.input);
+                    input.name = openBtn.dataset.input;
+                }
+            }
+
+            if (openBtn.dataset.deleteInput) {
+                const input = modal.querySelector('input[type=submit]');
+                if (input){
+                    input.classList.add(openBtn.dataset.deleteInput);
+                    input.name = openBtn.dataset.deleteInput;
+                }
+            }
+
+            if (openBtn.dataset.deleteId) {
+                const input = modal.querySelector('input.id-field');
+                if (input){
+                    input.value = openBtn.dataset.deleteId;
+                    input.name = 'delete-id';
+                }
+            }
+
+            if (openBtn.dataset.redirect) {
+                const input = modal.querySelector('input.url-field');
+                if (input){
+                    input.value = openBtn.dataset.redirect;
+                    input.name = 'redirect';
+                }
+            }
+
             // Clear input and errors
             const inputs = modal.querySelectorAll('input[type="text"]');
             inputs.forEach(input => {

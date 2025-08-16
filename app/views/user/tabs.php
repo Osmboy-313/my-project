@@ -12,7 +12,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php else : ?>
 
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Id</th>
@@ -24,10 +24,10 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
             <tbody>
 
-                <?php foreach ($users as $user) : ?>
+                <?php // foreach ($users as $user) : ?>
 
                     <tr>
-                        <td> <?= $serialNumber++ ?> </td>
+                        <td> <?= $serialNumber ?> </td>
                         <td> <?= $user['username'] ?> </td>
                         <td> <?= $user['email'] ?> </td>
                         <td>
@@ -37,11 +37,45 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         </td>
                     </tr>
 
-                <?php endforeach ?>
+                <?php // endforeach ?>
 
             </tbody>
 
+        </table> -->
+
+        <table class="custom-table styled-table">
+            <thead>
+                <tr>
+
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th class="action">Profile</th>
+                    <!-- <th class="action">Actions</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td><?= $serialNumber++ ?></td>
+                        <td><?= $user['username'] ?></td>
+                        <td> <?= $user['email'] ?> </td>
+                        <td>
+                            <div class="table-actions">
+
+                                <a 
+                                    class="btn"
+                                    href="<?= url('profile', 'preview', ['id' => $user['id']]) ?>" >
+                                    View Profile
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
+
 
 
         <div class="pagination">
@@ -119,36 +153,39 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php else : ?>
 
-        <table>
+
+        <table class="custom-table styled-table">
             <thead>
                 <tr>
-                    <th>Id</th>
+
+                    <th>#</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Profile</th>
+                    <th class="action">Profile</th>
                 </tr>
             </thead>
-
             <tbody>
-
                 <?php foreach ($admins as $admin): ?>
-
                     <tr>
-                        <td> <?= $serialNumber++ ?> </td>
-                        <td> <?= $admin['username'] ?> </td>
+                        <td><?= $serialNumber++ ?></td>
+                        <td><?= $admin['username'] ?></td>
                         <td> <?= $admin['email'] ?> </td>
                         <td>
-                            <a href="<?= url('profile', 'preview', ['id' => $admin['id']]) ?>" class="view-profile-btn">
-                                <span>View Profile</span>
-                            </a>
+                            <div class="table-actions">
+
+                                <a 
+                                    class="btn"
+                                    href="<?= url('profile', 'preview', ['id' => $admin['id']]) ?>" >
+                                    View Profile
+                                </a>
+
+                            </div>
                         </td>
                     </tr>
-
-                <?php endforeach ?>
-
+                <?php endforeach; ?>
             </tbody>
-
         </table>
+
 
         <div class="pagination">
 
@@ -224,36 +261,38 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php else : ?>
 
-        <table>
+        <table class="custom-table styled-table">
             <thead>
                 <tr>
-                    <th>Id</th>
+
+                    <th>#</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Profile</th>
+                    <th class="action">Profile</th>
                 </tr>
             </thead>
-
             <tbody>
-
                 <?php foreach ($bosses as $boss): ?>
-
                     <tr>
-                        <td> <?= $serialNumber++ ?> </td>
-                        <td> <?= $boss['username'] ?> </td>
+                        <td><?= $serialNumber++ ?></td>
+                        <td><?= $boss['username'] ?></td>
                         <td> <?= $boss['email'] ?> </td>
                         <td>
-                            <a href="<?= url('profile', 'preview', ['id' => $boss['id']]) ?>" class="view-profile-btn">
-                                <span>View Profile</span>
-                            </a>
+                            <div class="table-actions">
+
+                                <a 
+                                    class="btn"
+                                    href="<?= url('profile', 'preview', ['id' => $boss['id']]) ?>" >
+                                    View Profile
+                                </a>
+
+                            </div>
                         </td>
                     </tr>
-
-                <?php endforeach ?>
-
+                <?php endforeach; ?>
             </tbody>
-
         </table>
+
 
         <div class="pagination">
 

@@ -8,6 +8,8 @@ require_once __DIR__ .  '/../core/auth.php';
 
 function code_index()
 {
+    // 🔐 Check if user is logged in and is a boss
+    auth_require_user_type(['boss']);
 
     $activeTab = $_GET['tab'] ?? '#admin';
     $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;

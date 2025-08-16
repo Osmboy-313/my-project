@@ -25,6 +25,15 @@ function updatePost($id, $title, $tags, $description, $category, $img_O_name, $i
     return $sql->execute();
 }
 
+function deletePost($id){
+    $conn = db();
+
+    $sql = $conn->prepare('DELETE FROM `posts` WHERE id = ?');
+    $sql->bind_param('i', $id);
+
+    return $sql->execute();
+}
+
 function getUserPaginatedPosts($recordsPerPage, $offset)
 {
     $conn = db();
@@ -159,4 +168,44 @@ function getLatestPosts($limit, $excludeId)
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-function getAllPostsWithUser() {}
+function getPostsbyUserId($id) {
+
+    $conn = db();
+
+    $sql = $conn->prepare("SELECT posts.*, categories.category_name FROM posts JOIN categories ON posts.post_category = categories.id WHERE posts.post_user = ?");
+    $sql->bind_param('i', $id,);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+
+}
+
+// 🔍 NEW: Search posts function
+function searchPosts($searchQuery) {
+    $conn = db();
+    
+    // Clean the search query
+    $searchQuery = '%' . trim($searchQuery) . '%';
+    
+    $sql = $conn->prepare("SELECT 
+        posts.*,
+        users.id AS user_id,
+        users.username AS username,
+        categories.id AS category_id,
+        categories.category_name AS category_name
+    FROM posts
+    JOIN users ON posts.post_user = users.id
+    JOIN categories ON posts.post_category = categories.id
+    WHERE posts.post_title LIKE ? 
+       OR posts.post_tags LIKE ? 
+       OR posts.post_description LIKE ? 
+       OR categories.category_name LIKE ?
+    ORDER BY posts.created_at DESC");
+
+    $sql->bind_param('ssss', $searchQuery, $searchQuery, $searchQuery, $searchQuery);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
+}

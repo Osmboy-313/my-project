@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const params = new URLSearchParams(window.location.search);
     const c = params.get('c');
+    const a = params.get('a');
     console.log(c);
 
     // if(c == 'users-list'){
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-    if (c == 'profile') {
+    if (c == 'profile' && a == 'myProfile') {
         import('./modules/profile.js').then(module => module.profile());
 
     }

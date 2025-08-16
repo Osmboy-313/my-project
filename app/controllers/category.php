@@ -7,6 +7,8 @@ require_once __DIR__ .  '/../core/auth.php';
 
 function category_index()
 {
+    // 🔐 Check if user is logged in
+    auth_require_login();
 
     // $modals = view('/categories/modals');
     $modals = view('/components/modals');

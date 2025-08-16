@@ -2,9 +2,11 @@
 
 include VIEWPATH . '/layouts/head.php';
 
-$id = (int) $_SESSION['user']['id'] ?? 0;
-$username = $_SESSION['user']['username'];
-$user_type = $_SESSION['user']['user_type'];
+if (isset($_SESSION['user'])) {
+    $id = (int) $_SESSION['user']['id'] ?? 0;
+    $username = $_SESSION['user']['username'];
+    $user_type = $_SESSION['user']['user_type'];
+}
 
 ?>
 

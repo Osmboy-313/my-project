@@ -73,6 +73,7 @@ switch ($user_type) {
 
                 <div class="header__dropdown" id="user-dropdown">
 
+                    <!-- <img src="assets/images/wallpaperflare.com_wallpaper(1).jpg" alt=""> -->
                     <span><?= $username ?></span>
                     <i class='bx bx-chevron-down '></i>
                     

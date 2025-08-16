@@ -7,13 +7,13 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 <div class="each-tab-content admin <?= $activeTab === '#admin' ? 'active' : '' ?> " id="admin" data-tab-content>
 
-    <?php if (empty($adminCodes)) : ?>
+    <?php if (empty($adminCodes)): ?>
 
         <div class="alert active"><span>No Admin Codes Found!</span></div>
 
-    <?php else : ?>
+    <?php else: ?>
 
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Serial Number</th>
@@ -24,36 +24,23 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
             <tbody>
 
-                <?php foreach ($adminCodes as $adminCode): ?>
+                <?php // foreach ($adminCodes as $adminCode): ?>
 
                     <tr>
-                        <td> <?= $serialNumber++ ?> </td>
-                        <td> <?= $adminCode['admin_code'] ?> </td>
+                        <td> <?=  $serialNumber ?> </td>
+                        <td> <?=  $adminCode['admin_code'] ?> </td>
                         <td>
                             <div class="buttons">
 
-                                <button
-                                    class="edit-btn"
-                                    data-modal-target="#edit-modal"
-                                    data-title="Edit Admin Code"
-                                    data-label="Admin Code"
-                                    data-placeholder="Enter admin code"
-                                    data-form="edit-admin-form"
-                                    data-id="<?= $adminCode['id'] ?>"
-                                    data-column="admin_code"
-                                    >
+                                <button class="edit-btn" data-modal-target="#edit-modal" data-title="Edit Admin Code"
+                                    data-label="Admin Code" data-placeholder="Enter admin code" data-form="edit-admin-form"
+                                    data-id="<?=  $adminCode['id'] ?>" data-column="admin_code">
                                     Edit
                                 </button>
 
-                                <button
-                                    class="del-btn"
-                                    data-modal-target="#del-modal"
-                                    data-title="Delete Admin Code?"
-                                    data-message = "This Admin Code will be permanently deleted!"
-                                    data-form="delete-admin-form"
-                                    data-id="<?= $adminCode['id'] ?>"
-                                    data-column="admin_code"
-                                    >
+                                <button class="del-btn" data-modal-target="#del-modal" data-title="Delete Admin Code?"
+                                    data-message="This Admin Code will be permanently deleted!" data-form="delete-admin-form"
+                                    data-id="<?= $adminCode['id'] ?>" data-column="admin_code">
                                     Delete
                                 </button>
 
@@ -61,11 +48,56 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         </td>
                     </tr>
 
-                <?php endforeach ?>
+                <?php // endforeach ?>
 
             </tbody>
 
+        </table> -->
+
+        <table class="custom-table styled-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Code</th>
+                    <th class="action">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($adminCodes as $adminCode): ?>
+                    <tr>
+                        <td><?= $serialNumber++ ?></td>
+                        <td><?= $adminCode['admin_code'] ?></td>
+                        <td>
+                            <div class="table-actions">
+
+                                <button 
+                                    class="btn edit-btn" 
+                                    data-modal-target="#edit-modal" 
+                                    data-title="Edit Admin Code"
+                                    data-label="Admin Code" data-placeholder="Enter admin code" data-form="edit-admin-form"
+                                    data-id="<?= $adminCode['id'] ?>" 
+                                    data-column="admin_code">
+                                    Edit
+                                </button>
+
+                                <button 
+                                    class="del-btn" 
+                                    data-modal-target="#del-modal" 
+                                    data-title="Delete Admin Code?"
+                                    data-message="This Admin Code will be permanently deleted!" data-form="delete-admin-form"
+                                    data-id="<?= $adminCode['id'] ?>" data-column="admin_code">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
+
+
+
 
         <div class="pagination">
 
@@ -105,7 +137,8 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('code', 'index', ['tab' => '#admin', 'page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a
+                                href="<?= url('code', 'index', ['tab' => '#admin', 'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 
@@ -135,51 +168,46 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 <div class="each-tab-content boss <?= $activeTab === '#boss' ? 'active' : '' ?> " id="boss" data-tab-content>
 
-    <?php if (empty($bossCodes)) : ?>
+    <?php if (empty($bossCodes)): ?>
 
         <div class="alert active"><span>No Boss Codes Found!</span></div>
 
-    <?php else : ?>
+    <?php else: ?>
 
-        <table>
+
+        <table class="custom-table styled-table">
             <thead>
                 <tr>
-                    <th>Serial Number</th>
+                    <th>#</th>
                     <th>Code</th>
-                    <th>Action</th>
+                    <th class="action">Actions</th>
                 </tr>
             </thead>
-
             <tbody>
-
                 <?php foreach ($bossCodes as $bossCode): ?>
-
                     <tr>
-                        <td> <?= $serialNumber++ ?> </td>
-                        <td> <?= $bossCode['boss_code'] ?> </td>
+                        <td><?= $serialNumber++ ?></td>
+                        <td><?= $bossCode['boss_code'] ?></td>
                         <td>
-                            <div class="buttons">
+                            <div class="table-actions">
 
-                            <button
-                                    class="edit-btn"
-                                    data-modal-target="#edit-modal"
+                                <button 
+                                    class="btn edit-btn" 
+                                    data-modal-target="#edit-modal" 
                                     data-title="Edit Boss Code"
-                                    data-label="Boss Code"
-                                    data-placeholder="Enter boss code"
-                                    data-form="edit-boss-form"
-                                    data-id="<?= $bossCode['id'] ?>"
+                                    data-label="Admin Code" data-placeholder="Enter admin code" data-form="edit-boss-form"
+                                    data-id="<?= $bossCode['id'] ?>" 
                                     data-column="boss_code"
                                     >
                                     Edit
                                 </button>
 
-                                <button
-                                    class="del-btn"
-                                    data-modal-target="#del-modal"
+                                <button 
+                                    class="btn del-btn" 
+                                    data-modal-target="#del-modal" 
                                     data-title="Delete Boss Code?"
-                                    data-message = "This Boss Code will be permanently deleted!"
-                                    data-form="delete-boss-form"
-                                    data-id="<?= $bossCode['id'] ?>"
+                                    data-message="This Boss Code will be permanently deleted!" data-form="delete-boss-form"
+                                    data-id="<?= $bossCode['id'] ?>" 
                                     data-column="boss_code"
                                     >
                                     Delete
@@ -188,12 +216,10 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             </div>
                         </td>
                     </tr>
-
-                <?php endforeach ?>
-
+                <?php endforeach; ?>
             </tbody>
-
         </table>
+
 
         <div class="pagination">
 
@@ -233,7 +259,8 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                         <?php endforeach ?>
 
                         <li class="<?= $currentPage == $totalPages ? 'disabled' : '' ?>">
-                            <a href="<?= url('code', 'index', ['tab' => '#boss', 'page' => min($totalPages, $currentPage + 1)]) ?>">
+                            <a
+                                href="<?= url('code', 'index', ['tab' => '#boss', 'page' => min($totalPages, $currentPage + 1)]) ?>">
 
                                 <i class='bx bx-chevron-right'></i>
 

@@ -5,8 +5,19 @@ require_once __DIR__ .  '/../core/view.php';
 require_once __DIR__ .  '/../core/auth.php';
 
 function home_index(){
-  $posts = getAllPosts();
-  echo view('/home/index', ['title' => 'Home', 'posts' => $posts], 'public');
+  // Get search query from URL
+  $searchQuery = $_GET['search'] ?? '';
+  $posts = [];
+  
+  if (!empty($searchQuery)) {
+    // Search posts if query exists
+    $posts = searchPosts($searchQuery);
+  } else {
+    // Get all posts if no search
+    $posts = getAllPosts();
+  }
+  
+  echo view('/home/index', ['title' => 'Home', 'posts' => $posts, 'searchQuery' => $searchQuery], 'public');
 }
 
 function home_preview(){
