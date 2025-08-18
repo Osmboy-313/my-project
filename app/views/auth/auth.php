@@ -2,13 +2,18 @@
 
     <div class="wrapper auth">
 
+        <!-- Login Form -->
+
         <div class="form auth login">
 
             <form id="login-form">
 
                 <div class="title">Login</div>
 
-                <div class="notify" id="notify-login"><span>Successfuly Registered</span></div>
+                <div class="alert de-active">
+                    <span class="alert__msg"></span>
+                    <i class='bx bx-x alert__close'></i> 
+                </div>
 
                 <div class="input-box">
 
@@ -61,11 +66,14 @@
 
         <div class="form auth register">
 
-            <form action="" id="registration-form" method="post" autocomplete="off">
+            <form id="registration-form">
 
                 <div class="title">Register</div>
 
-                <div class="notify" id="notify-register"><span>Successfuly Registered</span></div>
+                <div class="alert de-active">
+                    <span class="alert__msg"></span>
+                    <i class='bx bx-x alert__close'></i> 
+                </div>
 
                 <div class="input-box">
 
@@ -140,6 +148,8 @@
 
         </div>
 
+        <!-- Toggle Container For Form Switching Animation -->
+
         <div class="toggle-container">
 
             <div class="toggle-panel toggle-left">
@@ -155,6 +165,7 @@
             </div>
 
         </div>
+        
 
     </div>
 

@@ -204,7 +204,7 @@ function post_add()
 
     $errors = $_SESSION['errors'] ?? [];
     $oldValues = $_SESSION['old-form'] ?? [];
-    $status = $_SESSION['status'] ?? ['pending' => 'status is pending!'];
+    $status = $_SESSION['status'] ?? [];
 
     unset($_SESSION['errors'], $_SESSION['old-form'], $_SESSION['status']);
 
@@ -303,11 +303,11 @@ function post_add()
     unset($_SESSION['temp-upload']);
 
     if ($addPost) {
-        $_SESSION['status'] = ['success' => 'Successfully Uploaded The Post !'];
+        $_SESSION['status'] = ['alert--success' => 'Successfully Uploaded The Post !'];
         header('Location: ?c=post&a=add');
         exit;
     } else {
-        $_SESSION['status'] = ['error' => 'Failed To Upload Post !'];
+        $_SESSION['status'] = ['alert--failure' => 'Failed To Upload Post !'];
         header('Location: ?c=post&a=add');
         exit;
     }
@@ -337,7 +337,7 @@ function post_edit()
 
     $errors = $_SESSION['errors'] ?? [];
     $oldValues = $_SESSION['old-form'] ?? $post;
-    $status = $_SESSION['status'] ?? ['pending' => 'Edit Action is pending'];
+    $status = $_SESSION['status'] ?? [];
 
     unset($_SESSION['errors'], $_SESSION['old-form'], $_SESSION['status']);
 
@@ -418,7 +418,7 @@ function post_edit()
 
     if ($noChange) {
 
-        $_SESSION['status'] = ['warning' => 'You didnt change anything.'];
+        $_SESSION['status'] = ['alert--warning' => 'You didnt change anything.'];
 
         $_SESSION['old-form'] = [
             'id'           => $id,
@@ -472,11 +472,11 @@ function post_edit()
     $updatePost = updatePost($id ,$title, $tags, $description, $category, $image_O_name, $image_S_name);
 
     if($updatePost){
-        $_SESSION['status'] = ['success' => 'Post has been Successfully edited !'];
+        $_SESSION['status'] = ['alert--success' => 'Post has been Successfully edited !'];
         header("Location: ?c=post&a=edit&id={$id}");
         exit;
     } else {
-        $_SESSION['status'] = ['error' => 'Failed To Upload Post !'];
+        $_SESSION['status'] = ['alert--failure' => 'Failed To Upload Post !'];
         header('Location: ?c=post&a=add');
         exit;
     }

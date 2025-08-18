@@ -6,14 +6,17 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
 <div class="title">
     <span>My Posts</span>
-    <button><a href=" <?= url('post', 'add') ?> " class="add-category"><span>Add Post</span></a> </button>
+    <a href=" <?= url('post', 'add') ?> " class="btn btn--add btn--add-post"> Add Post </a>
 </div>
 
 <div class="main-content posts">
 
+    
     <?php if (empty($posts)) : ?>
-
-        <div class="alert active"><span>No Posts Yet!</span></div>
+        
+        <div class="alert alert--info">
+             <span> No Posts Yet !!</span>
+        </div>
 
     <?php else : ?>
 

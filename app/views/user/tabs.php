@@ -8,40 +8,11 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($users)) : ?>
 
-        <div class="alert active"><span>No Users Found!</span></div>
+        <div class="alert alert--info">
+             <span> No Users Yet !!</span>
+        </div>
 
     <?php else : ?>
-
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Profile</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <?php // foreach ($users as $user) : ?>
-
-                    <tr>
-                        <td> <?= $serialNumber ?> </td>
-                        <td> <?= $user['username'] ?> </td>
-                        <td> <?= $user['email'] ?> </td>
-                        <td>
-                            <a href="<?= url('profile', 'preview', ['id' => $user['id']]) ?>" class="view-profile-btn">
-                                <span>View Profile</span>
-                            </a>
-                        </td>
-                    </tr>
-
-                <?php // endforeach ?>
-
-            </tbody>
-
-        </table> -->
 
         <table class="custom-table styled-table">
             <thead>
@@ -51,9 +22,10 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                     <th>Username</th>
                     <th>Email</th>
                     <th class="action">Profile</th>
-                    <!-- <th class="action">Actions</th> -->
+
                 </tr>
             </thead>
+
             <tbody>
                 <?php foreach ($users as $user): ?>
                     <tr>
@@ -149,7 +121,9 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($admins)) : ?>
 
-        <div class="alert active"><span>No Admins Found!</span></div>
+        <div class="alert alert--info">
+             <span> No Admins Yet !!</span>
+        </div>
 
     <?php else : ?>
 
@@ -257,7 +231,9 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($bosses)) : ?>
 
-        <div class="alert active"><span>No Bosses Found!</span></div>
+        <div class="alert alert--info">
+             <span> No Bosses Yet !!</span>
+        </div>
 
     <?php else : ?>
 
@@ -281,7 +257,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <div class="table-actions">
 
                                 <a 
-                                    class="btn"
+                                    class="btn profile-preview-btn"
                                     href="<?= url('profile', 'preview', ['id' => $boss['id']]) ?>" >
                                     View Profile
                                 </a>

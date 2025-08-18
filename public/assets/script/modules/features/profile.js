@@ -1,3 +1,6 @@
+
+import { showAlert, closeAlert } from '../utils/alerts.js';
+
 export async function profile() {
 
     // ========== Constants ==========
@@ -51,11 +54,6 @@ export async function profile() {
         });
     }
 
-    function showAlert(classType, msg){
-        const box = $('.alert');
-        box.classList.add(classType);
-        box.querySelector('span').textContent = msg;
-    }
 
     // ========== API Calls ==========
 
@@ -208,7 +206,7 @@ export async function profile() {
         if (isSameRole) {
             // errors.userType = `You're already a ${capitalizeFirst(currentRole)}!`;
             errors.nothing = 'Nothing Changed';
-            showAlert('warning', 'Nothing Changed');
+            showAlert(form, 'alert--warning', 'Nothing Changed');
         }
 
         if (!isSameRole && !isUserRole) {
@@ -246,6 +244,16 @@ export async function profile() {
             if (result.success) {
                 location.reload();
             }
+
+            if (result.failure) {
+                showAlert(form,'failure', result.failure);
+            }
+
+            if(result.errors){
+                for(let key in result.errors){
+                    showErrors(form, fields[key], result.errors[key]);
+                }
+            }
         }
     }
 
@@ -271,10 +279,8 @@ export async function profile() {
         }
 
         if(username === usernameField.dataset.value && email === emailField.dataset.value){
-            // errors.username = 'Nothing Changed';
-            // errors.email = 'Nothing Changed';
             errors.nothing = 'Nothing Changed';
-            showAlert('warning', 'Nothing Changed');
+            showAlert(form, 'alert--warning', 'Nothing Changed');
         }
 
 
@@ -301,6 +307,15 @@ export async function profile() {
                 location.reload();
             }
 
+            if (result.failure) {
+                showAlert(form,'failure', result.failure);
+            }
+
+            if(result.errors){
+                for(let key in result.errors){
+                    showErrors(form, fields[key], result.errors[key]);
+                }
+            }
 
         }
 
@@ -355,6 +370,16 @@ export async function profile() {
             if(result.success){
                 form.reset();
                 showAlert('success', 'Successfully Updated the Password');
+            }
+
+            if (result.failure) {
+                showAlert(form,'failure', result.failure);
+            }
+
+            if(result.errors){
+                for(let key in result.errors){
+                    showErrors(form, fields[key], result.errors[key]);
+                }
             }
 
         }

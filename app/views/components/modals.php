@@ -1,4 +1,4 @@
-<!-- *** Add Category Modal *** -->
+<!-- *** Add Modal *** -->
 
 <div class="modal modal--add" id="add-modal">
 
@@ -24,25 +24,10 @@
                 <p class="modal__message-text"></p>
             </div>
 
-            <div class="modal__alert hidden">
-
-                <div class="modal__alert-symbol">
-
-                    <i class='bx bx-check'></i>
-
-                </div>
-
-                <div class="modal__alert-message">
-                    <div class="modal__alert-title">Success !</div>
-                    <div class="modal__alert-text"> Has Been Added!</div>
-                </div>
-
-                <div class="modal__close-btn">
-                    <i class='bx bx-x'></i>
-                </div>
-
+            <div class="alert de-active">
+                <span class="alert__msg"></span>
+                <i class='bx bx-x alert__close'></i> 
             </div>
-
 
             <form action="" class="modal__form" method="post" id="">
 
@@ -53,8 +38,17 @@
                 </div>
 
                 <div class="modal__actions">
-                    <input type="submit" class="modal__submit-btn add-edit-btn" value="Add">
-                    <button data-modal-close type="button" class="modal__cancel-btn">Cancel</button>
+
+                    <input type="submit" class="btn btn--modal btn--modal-add-edit" value="Add">
+
+                    <button 
+                        type="button" 
+                        class="btn btn--modal btn--modal-cancel"
+                        data-modal-close
+                        >
+                        Cancel
+                    </button>
+
                 </div>
 
             </form>
@@ -65,7 +59,7 @@
 
 </div>
 
-<!-- *** Edit Category Modal *** -->
+<!-- *** Edit Modal *** -->
 
 <div class="modal modal--edit" id="edit-modal">
 
@@ -91,37 +85,31 @@
                 <p class="modal__message-text"></p>
             </div>
 
-
-            <div class="modal__alert hidden">
-
-                <div class="modal__alert-symbol">
-
-                    <i class='bx bx-check'></i>
-
-                </div>
-
-                <div class="modal__alert-message">
-                    <div class="modal__alert-title">Success !</div>
-                    <div class="modal__alert-text"> Has Been Added!</div>
-                </div>
-
-                <div class="modal__close-btn">
-                    <i class='bx bx-x'></i>
-                </div>
-
+            <div class="alert de-active">
+                <span class="alert__msg"></span>
+                <i class='bx bx-x alert__close'></i> 
             </div>
 
             <form action="" class="modal__form" method="post" id="">
 
                 <div class="modal__input-box">
                     <label for="name">Name</label>
-                    <input type="text" class="name" id="name" placeholder="Add your Category name">
+                    <input type="text" class="name" id="name" placeholder="">
                     <span class="error-box">Enter your</span>
                 </div>
 
                 <div class="modal__actions">
-                    <input type="submit" class="modal__submit-btn add-edit-btn" value="Edit">
-                    <button data-modal-close type="button" class="modal__cancel-btn">Cancel</button>
+
+                    <input type="submit" class="btn btn--modal btn--modal-add-edit" value="Edit">
+
+                    <button 
+                        type="button" 
+                        class="btn btn--modal btn--modal-cancel"
+                        data-modal-close
+                        >
+                        Cancel
+                    </button>
+
                 </div>
 
             </form>
@@ -132,7 +120,7 @@
 
 </div>
 
-<!-- *** Delete Category Modal *** -->
+<!-- *** Delete Modal *** -->
 
 <div class="modal modal--delete" id="del-modal">
 
@@ -166,8 +154,17 @@
                 </div>
 
                 <div class="modal__actions">
-                    <input type="submit" class="modal__submit-btn delete-btn" value="Delete">
-                    <button data-modal-close type="button" class="modal__cancel-btn">Cancel</button>
+
+                    <input type="submit" class="btn btn--modal btn--modal-delete" value="Delete">
+
+                    <button 
+                        type="button" 
+                        class="btn btn--modal btn--modal-cancel"
+                        data-modal-close
+                        >
+                        Cancel
+                    </button>
+
                 </div>
 
             </form>

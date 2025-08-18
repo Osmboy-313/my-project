@@ -1,9 +1,5 @@
 <?php
 
-// echo '<pre>';
-// print_r($posts);
-// echo '</pre>';
-
 $paginationPages = paginationDesign($currentPage, $totalPages);
 
 ?>
@@ -14,7 +10,9 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($posts)) : ?>
 
-        <div class="alert active"><span>No Posts Found!</span></div>
+        <div class="alert alert--info">
+             <span> No Posts Yet !!</span>
+        </div>
 
     <?php else : ?>
 
@@ -31,7 +29,7 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                     <header class="post-card__user">
                         <p><strong>User ID : </strong> <span> <?= $post['user_id'] ?> </span></p>
                         <p><strong>Username : </strong> <span> <?= $post['username'] ?> </span></p>
-                        <a href="<?= url('profile', 'preview', ['id' => $post['user_id']]) ?>" class="view-profile-link">View Profile</a>
+                        <a href="<?= url('profile', 'preview', ['id' => $post['user_id']]) ?>" class="btn btn--preview view-profile">View Profile</a>
                     </header>
 
                     <!-- Post Content -->

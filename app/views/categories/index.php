@@ -4,13 +4,14 @@
 
     <button
         type="button"
+        class="btn btn--add btn--add-category"
         data-modal-target="#add-modal"
         data-title="Add Category"
         data-label="Category"
         data-placeholder="Enter Category"
         data-form="add-category-form">
 
-        <a class="add-category"><span>Add Category</span></a>
+        Add Category
 
     </button>
 
@@ -19,23 +20,26 @@
 
 <div class="main-content categories">
 
-    <div class="alert"><span>No Category Found!</span></div>
 
-    <table class="de-active">
-        <thead>
-            <tr>
-                <th>Serial No.</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody>
+    <div class="alert de-active"> 
+        <span> No Categories Yet !!</span> 
+    </div>
 
 
-        </tbody>
+    <table class="custom-table styled-table de-active">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th class="action">Actions</th>
+                </tr>
+            </thead>
 
-    </table>
+            <tbody>
+               
+            </tbody>
+        </table>
+
 
     <div class="pagination">
 
@@ -61,7 +65,7 @@
 
             <div class="pagination__summary">
 
-                <p> Showing 0 - 0 of 50 </p>
+                <p></p>
 
             </div>
 

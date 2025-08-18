@@ -66,7 +66,7 @@ function profile_update() {
         $user = getUserById($id);
 
         if (!$user) {
-            $response['error'] = 'User not found';
+            $response['failure'] = 'User not found';
             echo json_encode($response);
             return;
         }
@@ -75,7 +75,7 @@ function profile_update() {
             $currentPassword = $data['currentPassword'] ?? '';
 
             if (!password_verify($currentPassword, $user['password'])) {
-                $response['error'] = 'Current password is incorrect';
+                $response['errors']['currentPassword'] = 'Current password is incorrect';
                 echo json_encode($response);
                 return;
             }

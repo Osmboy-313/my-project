@@ -1,3 +1,8 @@
+
+import { showAlert } from '../utils/alerts.js';
+// import { closeModal } from './open-close-modal.js';
+
+
 export function code(modalControls, loadTabContent) {
     // ======================= Config =======================
     const fields = {
@@ -5,6 +10,7 @@ export function code(modalControls, loadTabContent) {
     };
 
     // ======================= DOM Utility =======================
+
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => document.querySelectorAll(selector);
 
@@ -16,7 +22,8 @@ export function code(modalControls, loadTabContent) {
         return element ? element.value.trim() : '';
     };
 
-    // ======================= Validators & Alerts =======================
+    // ======================= Error Handlers =======================
+
     function showErrors(form, field, msg) {
         if (!form) return;
         const box = getInputElement(form, field)?.closest('.modal__input-box');
@@ -36,27 +43,6 @@ export function code(modalControls, loadTabContent) {
         });
     }
 
-    function showAlert(form, classType, title, msg) {
-        if (!form) return;
-        const box = form.closest('.modal__body')?.querySelector('.modal__alert');
-        if (box) {
-            box.className = `modal__alert ${classType}`;
-            const titleEl = box.querySelector('.modal__alert-title');
-            const msgEl = box.querySelector('.modal__alert-text');
-            if (titleEl) titleEl.textContent = title;
-            if (msgEl) msgEl.textContent = msg;
-        }
-    }
-
-    function clearAlert(form) {
-        if (!form) return;
-        const box = form.closest('.modal__body')?.querySelector('.modal__alert');
-        if (box) {
-            box.className = `modal__alert hidden`;
-            const msgEl = box.querySelector('.modal__alert-text');
-            if (msgEl) msgEl.textContent = '';
-        }
-    }
 
     // ======================= Reusable API CALLS =======================
 
@@ -87,8 +73,6 @@ export function code(modalControls, loadTabContent) {
             
             const result = await response.json();
             
-            console.log('FROM PHP FOR EDIT FORM : ' , result);
-
             if (result.code) {
                 const code = result.code;
                 
@@ -150,7 +134,6 @@ export function code(modalControls, loadTabContent) {
 
     function setupFormHandlers() {
 
-        // Handle all form submissions using event delegation
 
         document.addEventListener('submit', async function (e) {
             const form = e.target;
@@ -172,51 +155,43 @@ export function code(modalControls, loadTabContent) {
                 columnName = 'boss_code';
             }
 
-            // Handle Add code Form
             if (formId === 'add-admin-form' || formId === 'add-boss-form') {
                 e.preventDefault();
                 await handleAddCode(form, formId, columnName);
             }
 
-            // Handle Edit Category Form
             else if (formId === 'edit-admin-form' || formId === 'edit-boss-form') {
                 e.preventDefault();
                 await handleEditCode(form, formId, columnName);
             }
 
-            // Handle Delete Category Form
             else if (formId === 'delete-admin-form' || formId === 'delete-boss-form') {
                 e.preventDefault();
                 await handleDeleteCode(form, formId, columnName);
             }
         });
 
-        // 🔥 NEW: Handle all button clicks using event delegation
-
         document.addEventListener('click', async function (e) {
             const button = e.target;
             
-            // Handle Edit Button Clicks
-            if (button.matches('.edit-btn')) {
+            if (button.matches('.btn--edit.btn-edit-code')) {
                 e.preventDefault();
+
                 const codeId =  button.dataset.id;
                 const columnName = button.dataset.column;
                 
                 console.log('Edit button clicked for code ID:', codeId, 'Column:', columnName);
                 
-                // Load the code data and populate the edit modal
                 await loadCodeToEdit(codeId, columnName);
             }
             
-            // Handle Delete Button Clicks
-            else if (button.matches('.del-btn')) {
+            else if (button.matches('.btn--delete.btn--delete-code')) {
                 e.preventDefault();
                 const codeId = button.dataset.id;
                 const columnName = button.dataset.column;
                 
                 console.log('Delete button clicked for code ID:', codeId, 'Column:', columnName);
                 
-                // Set the delete ID on the delete form
                 const deleteForm = document.querySelector('#delete-admin-form, #delete-boss-form');
                 if (deleteForm) {
                     deleteForm.dataset.deleteId = codeId;
@@ -300,7 +275,6 @@ export function code(modalControls, loadTabContent) {
 
     async function handleAddCode(form, formId, columnName) {
         clearAllErrors(form);
-        clearAlert(form);
 
         const errors = {};
         const name = getValue(form, fields.name);
@@ -345,12 +319,12 @@ export function code(modalControls, loadTabContent) {
             }
 
             if(result.success){
-                showAlert(form, 'success', 'Success!', result.success);
+                showAlert(form, 'alert--success', result.success);
                 form.reset();
                 refreshDisplayedCodes();
             }
             if(result.failure){
-                showAlert(form, 'failure', 'Failure!', result.error);
+                showAlert(form, 'alert--failure', result.error);
             }
 
         }
@@ -360,7 +334,6 @@ export function code(modalControls, loadTabContent) {
 
     async function handleEditCode(form, formId, columnName) {
         clearAllErrors(form);
-        clearAlert(form);
 
         const errors = {};
         const name = getValue(form, fields.name);
@@ -374,9 +347,6 @@ export function code(modalControls, loadTabContent) {
         }
         
         if (nameElement && nameElement.dataset.db === name) {
-            // errors.name = "You didnt change anything, you moron!";
-            // showAlert(form, 'warning', 'Warning !', 'You didnt change anything, you moron!');
-
             modalControls.closeModal(form.closest('.modal'));
             return;
         }
@@ -419,12 +389,12 @@ export function code(modalControls, loadTabContent) {
             }
 
             if(result.success){
-                showAlert(form, 'success', 'Success !', result.success);
+                showAlert(form, 'alert--success', result.success);
                 refreshDisplayedCodes();
             }
 
-            if(result.error){
-                showAlert(form, 'error', 'Error !', result.error);
+            if(result.failure){
+                showAlert(form, 'alert--failure', result.failure);
             }
 
         }

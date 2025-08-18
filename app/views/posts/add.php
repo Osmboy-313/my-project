@@ -6,7 +6,7 @@ $fieldError = fn($field) => $errors[$field] ?? '';
 $fillFields = fn($field) => $oldValues[$field] ?? '';
 
 $statusClass = key($status);
-$statusMsg = $status[$statusClass];
+$statusMsg = $statusClass ? $status[$statusClass] : '' ;
 
 ?>
 
@@ -19,8 +19,9 @@ $statusMsg = $status[$statusClass];
     
     <form action="?c=post&a=add" method='POST' enctype="multipart/form-data" >
         
-        <div class="alert <?= htmlspecialchars($statusClass) ?>">
-            <span> <?= htmlspecialchars($statusMsg) ?> </span>
+        <div class="alert <?= !empty($statusClass) ? htmlspecialchars($statusClass) : 'de-active'?>">
+            <p> <?= htmlspecialchars($statusMsg) ?> </p>
+            <i class='bx bx-x alert__close'></i> 
         </div>
         
         <div class="title"><span>Add Post</span></div>

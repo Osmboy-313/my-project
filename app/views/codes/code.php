@@ -9,6 +9,7 @@
 
 ?>
 
+
 <div class="title">
 
     <div class="tabs">
@@ -17,14 +18,15 @@
         <div class="active"></div>
     </div>
 
-    <button type="button" class="add-code-btn" data-modal-target="#add-modal"> <a> <span> Add Code </span> </a> </button>
+    <button 
+        type="button" 
+        class="btn btn--add btn--add-code" 
+        data-modal-target="#add-modal"
+        > 
+        Add Code 
+    </button>
 
 </div>
 
 
-<div class="main-content tab-content">
-
-    
-
-
-</div>
+<div class="main-content tab-content codes"> </div>

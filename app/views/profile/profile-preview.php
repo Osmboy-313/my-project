@@ -74,7 +74,10 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($posts)): ?>
 
-        <div class="alert active"><span>No Posts Yet!</span></div>
+
+        <div class="alert alert--info">
+                <span class="alert__msg">No Posts Yet!</span>
+        </div>
 
     <?php else: ?>
 
@@ -116,6 +119,8 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
                                 <a href="<?= url('home', 'preview', ['id' => $post['id']]) ?>" class="btn btn--preview">View Full Post</a>
 
+                                <?php if ($_SESSION['user']['user_type'] === 'boss'): ?>
+
                                 <button 
                                     type="button" 
                                     class="btn btn--delete" 
@@ -131,6 +136,8 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                                     Delete
 
                                 </button>
+
+                                <?php endif; ?>
 
                             </div>
                         </div>

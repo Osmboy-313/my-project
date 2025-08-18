@@ -6,7 +6,10 @@
     
     <div class="profile">
     
-        <div class="alert"> <span>Something is done!</span> <i class='bx bx-x'></i> </div>
+        <div class="alert de-active">
+             <p class="alert__msg" >Something is done!</p>
+              <i class='bx bx-x alert__close'></i> 
+        </div>
 
         <div class="title1">Profile Details</div>
 

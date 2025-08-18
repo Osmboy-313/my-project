@@ -9,50 +9,12 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($adminCodes)): ?>
 
-        <div class="alert active"><span>No Admin Codes Found!</span></div>
+        <div class="alert alert--info">
+            <span class="alert__msg">No Admin Codes Found!</span>
+            <i class='bx bx-x alert__close'></i>
+        </div>
 
     <?php else: ?>
-
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th>Serial Number</th>
-                    <th>Code</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <?php // foreach ($adminCodes as $adminCode): ?>
-
-                    <tr>
-                        <td> <?=  $serialNumber ?> </td>
-                        <td> <?=  $adminCode['admin_code'] ?> </td>
-                        <td>
-                            <div class="buttons">
-
-                                <button class="edit-btn" data-modal-target="#edit-modal" data-title="Edit Admin Code"
-                                    data-label="Admin Code" data-placeholder="Enter admin code" data-form="edit-admin-form"
-                                    data-id="<?=  $adminCode['id'] ?>" data-column="admin_code">
-                                    Edit
-                                </button>
-
-                                <button class="del-btn" data-modal-target="#del-modal" data-title="Delete Admin Code?"
-                                    data-message="This Admin Code will be permanently deleted!" data-form="delete-admin-form"
-                                    data-id="<?= $adminCode['id'] ?>" data-column="admin_code">
-                                    Delete
-                                </button>
-
-                            </div>
-                        </td>
-                    </tr>
-
-                <?php // endforeach ?>
-
-            </tbody>
-
-        </table> -->
 
         <table class="custom-table styled-table">
             <thead>
@@ -71,21 +33,23 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <div class="table-actions">
 
                                 <button 
-                                    class="btn edit-btn" 
-                                    data-modal-target="#edit-modal" 
-                                    data-title="Edit Admin Code"
-                                    data-label="Admin Code" data-placeholder="Enter admin code" data-form="edit-admin-form"
-                                    data-id="<?= $adminCode['id'] ?>" 
-                                    data-column="admin_code">
+                                    class="btn btn--edit btn-edit-code" 
+                                    data-modal-target="#edit-modal"
+                                    data-title="Edit Admin Code" 
+                                    data-label="Admin Code" 
+                                    data-placeholder="Enter admin code"
+                                    data-form="edit-admin-form" data-id="<?= $adminCode['id'] ?>" data-column="admin_code">
                                     Edit
                                 </button>
 
                                 <button 
-                                    class="del-btn" 
-                                    data-modal-target="#del-modal" 
-                                    data-title="Delete Admin Code?"
-                                    data-message="This Admin Code will be permanently deleted!" data-form="delete-admin-form"
-                                    data-id="<?= $adminCode['id'] ?>" data-column="admin_code">
+                                    class="btn btn--delete btn--delete-code" 
+                                    data-modal-target="#del-modal"
+                                    data-title="Delete Admin Code?" 
+                                    data-message="This Admin Code will be permanently deleted!"
+                                    data-form="delete-admin-form" 
+                                    data-id="<?= $adminCode['id'] ?>" 
+                                    data-column="admin_code">
                                     Delete
                                 </button>
 
@@ -170,7 +134,10 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
 
     <?php if (empty($bossCodes)): ?>
 
-        <div class="alert active"><span>No Boss Codes Found!</span></div>
+        <div class="alert alert--info">
+            <span class="alert__msg">No Boss Codes Found!</span>
+            <i class='bx bx-x alert__close'></i>
+        </div>
 
     <?php else: ?>
 
@@ -192,24 +159,24 @@ $paginationPages = paginationDesign($currentPage, $totalPages);
                             <div class="table-actions">
 
                                 <button 
-                                    class="btn edit-btn" 
-                                    data-modal-target="#edit-modal" 
-                                    data-title="Edit Boss Code"
-                                    data-label="Admin Code" data-placeholder="Enter admin code" data-form="edit-boss-form"
+                                    class="btn btn--edit btn-edit-code edit-btn" 
+                                    data-modal-target="#edit-modal"
+                                    data-title="Edit Boss Code" 
+                                    data-label="Boss Code" 
+                                    data-placeholder="Enter boss code"
+                                    data-form="edit-boss-form" 
                                     data-id="<?= $bossCode['id'] ?>" 
-                                    data-column="boss_code"
-                                    >
+                                    data-column="boss_code">
                                     Edit
                                 </button>
 
                                 <button 
-                                    class="btn del-btn" 
-                                    data-modal-target="#del-modal" 
-                                    data-title="Delete Boss Code?"
-                                    data-message="This Boss Code will be permanently deleted!" data-form="delete-boss-form"
+                                    class="btn btn--delete btn--delete-code del-btn" data-modal-target="#del-modal"
+                                    data-title="Delete Boss Code?" 
+                                    data-message="This Boss Code will be permanently deleted!"
+                                    data-form="delete-boss-form" 
                                     data-id="<?= $bossCode['id'] ?>" 
-                                    data-column="boss_code"
-                                    >
+                                    data-column="boss_code">
                                     Delete
                                 </button>
 

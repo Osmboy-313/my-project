@@ -52,7 +52,7 @@ switch ($user_type) {
                 <?php foreach ($menuItems as $items): ?>
                     <li class=" sidebar__item <?= active($items['controller'], $items['action']) ?>">
                         <a href="<?= url($items['controller'], $items['action']) ?>" class="sidebar__link" >
-                            <!-- <i class='bx bx-book'></i> --> <i class='bx bx-chevrons-right' ></i>  <?= $items['label'] ?>
+                            <!-- <i class='bx bx-book'></i> --> <i class='bx bx-chevron-right' ></i>  <?= $items['label'] ?>
                         </a>
                     </li>
                 <?php endforeach; ?>

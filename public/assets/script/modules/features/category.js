@@ -1,6 +1,20 @@
-// ./public/assets/script/modules/category.js
-export function categor(modalControls) {
+
+import { showAlert, closeAlert } from '../utils/alerts.js';
+
+export function category(modalControls) {
     // ======================= Config =======================
+
+    const forms = {
+        addCategory: 'add-category-form',
+        editCategory: 'edit-category-form',
+        deleteCategory: 'delete-category-form',
+    };
+
+    const buttons = {
+        editButton: '.btn--edit.btn--edit-category',
+        deleteButton: '.btn--delete.btn--delete-category',
+    };
+
     const fields = {
         name: '#name',
     };
@@ -12,21 +26,24 @@ export function categor(modalControls) {
     let totalPages = 1;
 
     // ======================= DOM Utility =======================
+
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => document.querySelectorAll(selector);
 
+    const getForm = (formId) => document.getElementById(formId);
     const getInputElement = (form, field) => form ? form.querySelector(field) : null;
     const getValue = (form, field) => {
         const element = getInputElement(form, field);
         return element ? element.value.trim() : '';
     };
 
-    // ======================= Validators & Alerts =======================
+    // ======================= Validators =======================
+
     function showErrors(form, field, msg) {
         if (!form) return;
         const box = getInputElement(form, field)?.closest('.modal__input-box');
         if (box) {
-        box.classList.add('error');
+            box.classList.add('error');
             const errorBox = box.querySelector('span.error-box');
             if (errorBox) errorBox.textContent = msg;
         }
@@ -41,29 +58,8 @@ export function categor(modalControls) {
         });
     }
 
-    function showAlert(form, classType, title, msg) {
-        if (!form) return;
-        const box = form.closest('.modal__body')?.querySelector('.modal__alert');
-        if (box) {
-        box.className = `modal__alert ${classType}`;
-            const titleEl = box.querySelector('.modal__alert-title');
-            const msgEl = box.querySelector('.modal__alert-text');
-            if (titleEl) titleEl.textContent = title;
-            if (msgEl) msgEl.textContent = msg;
-        }
-    }
-
-    function clearAlert(form) {
-        if (!form) return;
-        const box = form.closest('.modal__body')?.querySelector('.modal__alert');
-        if (box) {
-        box.className = `modal__alert hidden`;
-            const msgEl = box.querySelector('.modal__alert-text');
-            if (msgEl) msgEl.textContent = '';
-        }
-    }
-
     // ======================= Reusable API CALLS =======================
+
     async function checkCategoryExistence(name, id = null) {
         const formData = id ? { id, name } : { name };
         const response = await fetch('index.php?c=category&a=existenceCheck', {
@@ -80,16 +76,28 @@ export function categor(modalControls) {
         const response = await fetch(url, { method: 'POST' });
         const result = await response.json();
         categories = result.categories || [];
-        totalPages = Math.ceil(categories.length / recordsPerPage);       
+        totalPages = Math.ceil(categories.length / recordsPerPage);
     }
 
-    function attachListener() {
-        $$('.edit-btn').forEach(button => {
-            button.onclick = () => loadCategoriesToEdit(button.dataset.id);
+    async function loadCategoriesToEdit(id) {
+        const response = await fetch('index.php?c=category&a=populate', {
+            method: 'POST',
+            body: JSON.stringify(id),
+            headers: { 'Content-Type': 'application/json' }
         });
-        $$('.del-btn').forEach(button => {
-            button.onclick = () => deleteCategory(button.dataset.id);
-        });
+        const result = await response.json();
+
+        const form = getForm(forms.editCategory);
+        if (!form) {
+            return;
+        }
+
+        const nameElement = getInputElement(form, fields.name);
+        if (!nameElement) return;
+
+        nameElement.value = result.category_name.trim();
+        nameElement.dataset.db = result.category_name;
+        form.dataset.editId = id;
     }
 
     // ======================= Start Up =======================
@@ -99,62 +107,91 @@ export function categor(modalControls) {
     }
 
     // ======================= Event Delegation Form Handlers =======================
+
+
     function setupFormHandlers() {
-        // Handle all form submissions using event delegation
-        document.addEventListener('submit', async function(e) {
+
+        document.body.addEventListener('submit', async function (e) {
             const form = e.target;
             const formId = form.id;
 
             // Handle Add Category Form
-            if (formId === 'add-category-form') {
+            if (formId === forms.addCategory) {
                 e.preventDefault();
                 await handleAddCategory(form);
             }
-            
+
             // Handle Edit Category Form
-            else if (formId === 'edit-category-form') {
+            else if (formId === forms.editCategory) {
                 e.preventDefault();
                 await handleEditCategory(form);
             }
-            
+
             // Handle Delete Category Form
-            else if (formId === 'del-category-form') {
+            else if (formId === forms.deleteCategory) {
                 e.preventDefault();
                 await handleDeleteCategory(form);
             }
         });
 
-        // Handle real-time validation for add form
-        document.addEventListener('input', function(e) {
+
+        document.body.addEventListener('click', async function (e) {
+            const button = e.target;
+
+            if (button.matches(buttons.editButton)) {
+                e.preventDefault();
+
+                const categoryId = button.dataset.id;
+                await loadCategoriesToEdit(categoryId);
+            }
+
+            // Handle Delete Button Clicks
+            else if (button.matches(buttons.deleteButton)) {
+                e.preventDefault();
+
+                const categoryId = button.dataset.id;
+
+                // Setting the delete ID on the delete form
+
+                const deleteForm = getForm(forms.deleteCategory);
+                if (deleteForm) {
+                    deleteForm.dataset.deleteCategoryId = categoryId;
+                }
+            }
+
+        });
+
+
+        document.body.addEventListener('input', function (e) {
             const input = e.target;
             const form = input.closest('form');
-            
-            if (form && form.id === 'add-category-form' && input.matches('#name')) {
+
+            if (form && form.id === forms.addCategory && input.matches('#name')) {
                 handleAddFormValidation(input);
             }
-            
-            if (form && form.id === 'edit-category-form' && input.matches('#name')) {
+
+            if (form && form.id === forms.editCategory && input.matches('#name')) {
                 handleEditFormValidation(input);
             }
         });
     }
 
-    // ======================= Form Handlers =======================
-    
+    // ======================= Form Real Time Validation Handlers =======================
+
     let addValidationTimer;
     async function handleAddFormValidation(input) {
         clearTimeout(addValidationTimer);
         addValidationTimer = setTimeout(async () => {
             const form = input.closest('form');
             clearAllErrors(form);
-            
-            const name = input.value.trim();
-                if (!name) return;
 
-                const exists = await checkCategoryExistence(name);
+            const name = input.value.trim();
+            if (!name) return;
+
+            const exists = await checkCategoryExistence(name);
             input.dataset.valid = !exists;
             if (exists) showErrors(form, fields.name, 'Category Already Exists');
-            }, 1000);
+        }, 1000);
     }
 
     let editValidationTimer;
@@ -163,7 +200,7 @@ export function categor(modalControls) {
         editValidationTimer = setTimeout(async () => {
             const form = input.closest('form');
             clearAllErrors(form);
-            
+
             const name = input.value.trim();
             if (!name) return;
 
@@ -174,8 +211,9 @@ export function categor(modalControls) {
         }, 1000);
     }
 
+    // ======================= Form Handlers =======================
+
     async function handleAddCategory(form) {
-        clearAlert(form);
         clearAllErrors(form);
 
         const errors = {};
@@ -183,56 +221,58 @@ export function categor(modalControls) {
         const nameElement = getInputElement(form, fields.name);
 
         if (!name) errors.name = "Enter Category Name";
-        
+
         if (nameElement && nameElement.dataset.valid === 'false') {
             errors.name = "Category Already Exists";
         }
-        
-        
+
 
         for (let key in errors) {
-        showErrors(form, fields[key], errors[key]);
+            showErrors(form, fields[key], errors[key]);
         }
 
         if (Object.keys(errors).length === 0) {
-        const formData = { name };
+            const formData = { name };
             const response = await fetch('index.php?c=category&a=add', {
                 method: 'POST',
                 body: JSON.stringify(formData),
-            headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' }
             });
             const result = await response.json();
 
             if (result.errors) {
                 for (let key in result.errors) {
-                showErrors(form, fields[key], result.errors[key]);
+                    showErrors(form, fields[key], result.errors[key]);
                 }
             }
             if (result.success) {
-                showAlert(form, 'success', 'Success!', result.success);
                 form.reset();
-                await fetchCategories();
+                showAlert(form, 'alert--success', result.success);
                 showCategories(currentPage);
-                modalControls.closeModal(form.closest('.modal'));
             }
             if (result.failure) {
-            showAlert(form, 'failure', 'Error', result.failure);
+                showAlert(form, 'alert--failure', result.failure);
             }
-        
+
         }
     }
 
     async function handleEditCategory(form) {
-        clearAlert(form);
         clearAllErrors(form);
 
         const errors = {};
         const name = getValue(form, fields.name);
         if (!name) errors.name = "Enter Category";
-        
+
         const nameElement = getInputElement(form, fields.name);
+
         if (nameElement && nameElement.dataset.valid === 'false') {
             errors.name = "Category Already Exists";
+        }
+
+        if (nameElement && nameElement.dataset.db === name) {
+            modalControls.closeModal(form.closest('.modal'));
+            return;
         }
 
         for (let key in errors) {
@@ -255,19 +295,17 @@ export function categor(modalControls) {
                 }
             }
             if (result.success) {
-                showAlert(form, 'success', 'Success!', result.success);
-                await fetchCategories();
+                showAlert(form, 'alert--success', result.success);
                 showCategories(currentPage);
-                modalControls.closeModal(form.closest('.modal'));
             }
             if (result.failure) {
-                showAlert(form, 'failure', 'Error', result.failure);
+                showAlert(form, 'alert--failure', result.failure);
             }
         }
     }
 
     async function handleDeleteCategory(form) {
-        const categoryId = form.dataset.deleteId;
+        const categoryId = form.dataset.deleteCategoryId;
         const response = await fetch('index.php?c=category&a=delete', {
             method: 'POST',
             body: JSON.stringify({ id: categoryId }),
@@ -276,7 +314,6 @@ export function categor(modalControls) {
         const result = await response.json();
 
         if (result.success) {
-            await fetchCategories();
             showCategories(currentPage);
             modalControls.closeModal(form.closest('.modal'));
         }
@@ -286,6 +323,8 @@ export function categor(modalControls) {
     }
 
     // ======================= AJAX/FETCH CRUD OPERATIONS =======================
+
+
     async function showCategories(page = currentPage) {
         currentPage = page;
         const table = $('.main-content.categories table');
@@ -293,7 +332,7 @@ export function categor(modalControls) {
         const alert = table.closest('.main-content').querySelector('.alert');
         const pagination = $('.pagination__controls');
 
-       await fetchCategories();
+        await fetchCategories();
 
         function render() {
             renderTable();
@@ -312,15 +351,38 @@ export function categor(modalControls) {
                 tr.innerHTML = `
                     <td>${serialNumber++}</td>
                     <td>${category.category_name}</td>
-                    <td class="action">
-                        <div class="buttons">
-                            <button type="button" class="edit-btn" data-id="${category.id}" data-modal-target="#edit-modal" data-title="Edit Category" data-label="Category" data-placeholder="Enter Category" data-form="edit-category-form">
-                         <span>Edit</span>
-                        </button>
-                            <button type="button" class="del-btn" data-id="${category.id}" data-modal-target="#del-modal" data-title="Delete This Category?" data-message="This Category will be permanently deleted!" data-form="del-category-form">
-                            <span>Delete</span>
-                        </button>
+                    <td >
+
+                        <div class="table-actions">
+
+                            <button 
+                                type="button"
+                                class="btn btn--edit btn--edit-category" 
+                                data-id="${category.id}" 
+                                data-modal-target="#edit-modal" 
+                                data-title="Edit Category" 
+                                data-label="Category" 
+                                data-placeholder="Enter Category" 
+                                data-form="edit-category-form">
+
+                                Edit
+
+                            </button>
+
+                            <button 
+                                type="button" 
+                                class="btn btn--delete btn--delete-category" 
+                                data-id="${category.id}" 
+                                data-modal-target="#del-modal" 
+                                data-title="Delete This Category?" 
+                                data-message="This Category will be permanently deleted!" data-form="delete-category-form">
+                            
+                            Delete
+
+                            </button>
+
                         </div>
+
                     </td>`;
                 tableBody.appendChild(tr);
             });
@@ -336,9 +398,14 @@ export function categor(modalControls) {
             if (table) table.classList.toggle('de-active', categories.length === 0);
             const paginationEl = $('.pagination');
             if (paginationEl) paginationEl.classList.toggle('de-active', categories.length === 0);
-            if (alert) alert.classList.toggle('active', categories.length === 0);
+            
+            if (alert && categories.length === 0){
+                showAlert(alert, 'alert--info', 'No Categories Yet !', false);
+            }
+            else{
+                closeAlert(alert);
+            }
 
-            attachListener();
         }
 
         function renderPagination() {
@@ -407,43 +474,6 @@ export function categor(modalControls) {
         }
 
         render();
-    }
-
-    async function loadCategoriesToEdit(id) {
-        const response = await fetch('index.php?c=category&a=populate', {
-            method: 'POST',
-            body: JSON.stringify(id),
-            headers: { 'Content-Type': 'application/json' }
-        });
-        const result = await response.json();
-
-        // Wait for modal to be created and form to be available
-        const checkForm = () => {
-            const form = document.getElementById('edit-category-form');
-            if (!form) {
-                setTimeout(checkForm, 100);
-                return;
-            }
-
-            const nameElement = getInputElement(form, fields.name);
-            if (!nameElement) return;
-            
-            nameElement.value = result.category_name.trim();
-            form.dataset.editId = id;
-        };
-        checkForm();
-    }
-
-    function deleteCategory(id) {
-        const checkForm = () => {
-            const form = document.getElementById('del-category-form');
-            if (!form) {
-                setTimeout(checkForm, 100);
-                return;
-            }
-            form.dataset.deleteId = id;
-        };
-        checkForm();
     }
 
     startCategoryModule();

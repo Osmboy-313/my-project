@@ -69,10 +69,10 @@ function auth_register()
             $addUser = addUser($username, $email, $userType, $password);
 
             if($addUser){
-                $response['success'] = "Success ! hurra !";
+                $response['success'] = "Successfully Registered";
             }
             else{
-                $response['failure'] = "Failed ! hurra !";
+                $response['failure'] = "Registration Failed. Please try again!";
             }
             
         }
@@ -104,7 +104,7 @@ function auth_login(){
                 $userPassword = $fetchedUser['password'];
                 
                 if(password_verify($password,$userPassword)){
-                    $response['success'] = "SUccessfully logged in! but wait for the redirection system!";
+                    $response['success'] = "Successfully log in";
                     $_SESSION['user'] = $fetchedUser;
                 }else{
                     $response['failure'] = "Invalid Login Credentials";

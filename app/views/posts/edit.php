@@ -11,23 +11,25 @@ $fieldError = fn($field) => $errors[$field] ?? '';
 $fillFields = fn($field) => $oldValues[$field] ?? '';
 
 $statusClass = key($status);
-$statusMsg = $status[$statusClass];
+$statusMsg = $statusClass ? $status[$statusClass] : '';
 
 ?>
 
 <div class="title">
     <span>Edit Post</span>
-    <button><a href=" <?= url('post', 'index') ?> " class="add-category"><span>Back</span></a> </button>
+    <a href=" <?= url('post', 'index') ?> " class="btn btn--add btn--edit-category">Back</a>
 </div>
 
 <div class="main-content add-edit-post">
 
     
     <form action="?c=post&a=edit&id=<?= $oldValues['id'] ?>" method="POST" enctype="multipart/form-data">
-        
-        <div class="alert <?=htmlspecialchars($statusClass)?>">
-            <span> <?= htmlspecialchars($statusMsg) ?> </span>
+
+        <div class="alert <?= !empty($statusClass) ? htmlspecialchars($statusClass) : 'de-active'?>">
+            <p> <?= htmlspecialchars($statusMsg) ?> </p>
+            <i class='bx bx-x alert__close'></i> 
         </div>
+   
         
         <div class="title"><span>Edit Post</span></div>
 
